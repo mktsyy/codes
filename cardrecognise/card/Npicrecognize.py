@@ -3,8 +3,7 @@
 
 import cv2
 import numpy as np
-from matplotlib
-import pyplot as plt
+from matplotlib import pyplot as plt
 
 # 最简单的以灰度直方图作为相似比较的实现
 def classify_gray_hist(image1, image2, size = (256, 256)): #先计算直方图# 几个参数必须用方括号括起来# 这里直接用灰度图计算直方图， 所以是使用第一个通道，# 也可以进行通道分离后， 得到多个通道的直方图# bins 取为16
@@ -17,23 +16,23 @@ def classify_gray_hist(image1, image2, size = (256, 256)): #先计算直方图# 
 	plt.show()# 计算直方图的重合度
 	degree = 0
 	for i in range(len(hist1)):
-	    if hist1[i] != hist2[i]:
-	    degree = degree + (1 - abs(hist1[i] - hist2[i]) / max(hist1[i], hist2[i]))
-	else :
-	    degree = degree + 1
+		if (hist1[i] != hist2[i]):
+			degree = degree + (1 - abs(hist1[i] - hist2[i]) / max(hist1[i], hist2[i]))
+		else:
+			degree = degree + 1
 	degree = degree / len(hist1)
 	return degree
 
 # 计算单通道的直方图的相似值
 def calculate(image1, image2):
-    hist1 = cv2.calcHist([image1], [0], None, [256], [0.0, 255.0])
+	hist1 = cv2.calcHist([image1], [0], None, [256], [0.0, 255.0])
 	hist2 = cv2.calcHist([image2], [0], None, [256], [0.0, 255.0])# 计算直方图的重合度
 	degree = 0
 	for i in range(len(hist1)):
-	    if hist1[i] != hist2[i]:
-	    degree = degree + (1 - abs(hist1[i] - hist2[i]) / max(hist1[i], hist2[i]))
+		if hist1[i] != hist2[i]:
+		degree = degree + (1 - abs(hist1[i] - hist2[i]) / max(hist1[i], hist2[i]))
 	else :
-	    degree = degree + 1
+		degree = degree + 1
 	degree = degree / len(hist1)
 	return degree
 
@@ -45,13 +44,13 @@ def classify_hist_with_split(image1, image2, size = (256, 256)): #将图像resiz
 	sub_image2 = cv2.split(image2)
 	sub_data = 0
 	for im1, im2 in zip(sub_image1, sub_image2):
-	    sub_data += calculate(im1, im2)
+		sub_data += calculate(im1, im2)
 	sub_data = sub_data / 3
 	return sub_data
 
 # 平均哈希算法计算
 def classify_aHash(image1, image2):
-    image1 = cv2.resize(image1, (8, 8))
+	image1 = cv2.resize(image1, (8, 8))
 	image2 = cv2.resize(image2, (8, 8))
 	gray1 = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
 	gray2 = cv2.cvtColor(image2, cv2.COLOR_BGR2GRAY)
@@ -60,7 +59,7 @@ def classify_aHash(image1, image2):
 	return Hamming_distance(hash1, hash2)
 
 def classify_pHash(image1, image2):
-    image1 = cv2.resize(image1, (32, 32))
+	image1 = cv2.resize(image1, (32, 32))
 	image2 = cv2.resize(image2, (32, 32))
 	gray1 = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
 	gray2 = cv2.cvtColor(image2, cv2.COLOR_BGR2GRAY)# 将灰度图转为浮点型， 再进行dct变换
@@ -74,30 +73,30 @@ def classify_pHash(image1, image2):
 
 # 输入灰度图， 返回hash
 def getHash(image):
-    avreage = np.mean(image)
+	avreage = np.mean(image)
 	hash = []
 	for i in range(image.shape[0]):
-	    for j in range(image.shape[1]):
-	    if image[i, j] > avreage:
-	    hash.append(1)
+		for j in range(image.shape[1]):
+		if image[i, j] > avreage:
+		hash.append(1)
 	else :
-	    hash.append(0)
+		hash.append(0)
 	return hash
 
 
 # 计算汉明距离
 def Hamming_distance(hash1, hash2):
-    num = 0
+	num = 0
 	for index in range(len(hash1)):
-	    if hash1[index] != hash2[index]:
-	    num += 1
+		if hash1[index] != hash2[index]:
+		num += 1
 	return num
 
 
 if __name__ == '__main__':
-    img1 = cv2.imread('10.jpg')
+	img1 = cv2.imread('2222.jpg')
 	cv2.imshow('img1', img1)
-	img2 = cv2.imread('11.jpg')
+	img2 = cv2.imread('2222.bmp')
 	cv2.imshow('img2', img2)
 	degree = classify_gray_hist(img1, img2)# degree = classify_hist_with_split(img1, img2)# degree = classify_aHash(img1, img2)# degree = classify_pHash(img1, img2)
 	print degree

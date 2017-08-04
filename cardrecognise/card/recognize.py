@@ -59,3 +59,5 @@ for file in files:
    b=getImgHash(str(file))  
    compare=getMH(a,b)  
    print file,u'相似度',str(compare)+'%'      
+
+
