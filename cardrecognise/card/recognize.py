@@ -54,10 +54,10 @@ def getImgHash(fne):
    
    
 a=getImgHash("temp.jpg")#图片地址自行替换  
-files = os.listdir(os.getcwd())#图片文件夹地址自行替换  
+files = os.listdir(os.getcwd()+"\\num")#图片文件夹地址自行替换  
 for file in files:
    # print file
-   if not file in"recognize.pycutpic.pyNpicrecognize.pycutpicsendcard.pycutpicfirstcard.pytempall.py":
-      b=getImgHash(str(file))  
+   if not file in"recognize.pycutpic.pyNpicrecognize.pycutpicsendcard.pycutpicfirstcard.pytempall.pynumtemp":
+      b=getImgHash(os.getcwd()+"\\num\\"+str(file))  
       compare=getMH(a,b)  
       print file,u'相似度',str(compare)+'%'

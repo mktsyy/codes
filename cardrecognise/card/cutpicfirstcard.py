@@ -25,10 +25,10 @@ import Image
 
 #数字10
 
-img = Image.open('666666.bmp')
+# img = Image.open('666666.bmp')
 
-region = (6,16,15,25)
+# region = (6,16,15,25)
 
-cropImg = img.crop(region)
+# cropImg = img.crop(region)
 
-cropImg.save("temp.jpg")
+# cropImg.save("temp.jpg")
