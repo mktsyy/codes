@@ -68,17 +68,17 @@ def bubble(l):
 
 
 def main():
-	print win32gui.GetCursorPos()
-	im = ImageGrab.grab() 
-	im.save(os.getcwd()+"/screenshot.png")#保存图片 
-	#os.execvp( "mspaint",('mspaint','c:/screenshot.png'))#调用画图程序打开截屏图片
-	im1=Image.open(os.getcwd()+"/screenshot.png")
-	print im1.size
+	# print win32gui.GetCursorPos()
+	# im = ImageGrab.grab() 
+	# im.save(os.getcwd()+"/screenshot.png")#保存图片 
+	# #os.execvp( "mspaint",('mspaint','c:/screenshot.png'))#调用画图程序打开截屏图片
+	# im1=Image.open(os.getcwd()+"/screenshot.png")
+	# print im1.size
 
-	rec=(800,840,880,875)
-	region=im1.crop(rec)
-	# region.show()
-	region.save(os.getcwd()+"/123.bmp")
+	# rec=(800,840,880,875)
+	# region=im1.crop(rec)
+	# # region.show()
+	# region.save(os.getcwd()+"/123.bmp")
 
 	img = Image.open('123.bmp')
 
@@ -190,7 +190,7 @@ def main():
 
 
 	   
-	################以下未完成      
+	################以下完成      
 	cutpic = os.listdir(os.getcwd()+"\\temp")
 	# a=getImgHash("temp.jpg")#图片地址自行替换 
 	comparelist = []
@@ -219,7 +219,7 @@ def main():
 	# embed()	
 	for ii in secondcard:
 		if str(max(comparelist)) in ii:
-			print ii.split(".bmp")[0].split(".jpg")[1]
+			print (u"当中位......."+ii)
 
 
 if __name__ == '__main__':
