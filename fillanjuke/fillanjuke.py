@@ -6,63 +6,172 @@ import win32api
 import win32con
 import time
 
-#os.startfile("D:\\artcut6\\Prog\\Artcut6.exe")
-#time.sleep(1)
 
 wdname1=u"房源发布 - 租房 - 中国网络经纪人 - Cent Browser"
 w1hd=win32gui.FindWindow(0,wdname1)
 
-
-# print w2hd
-
-def active():
-	 #获取窗口焦点
-	w2hd=win32gui.FindWindowEx(w1hd,None,None,None)
-	win32gui.SetForegroundWindow(w2hd)
-	# time.sleep(0.2)
-
-	# win32api.keybd_event(18,0,0,0)     # ALT
-	# win32api.keybd_event(38,0,0,0)     # Up Arrow　
-	# win32api.keybd_event(38,0,win32con.KEYEVENTF_KEYUP,0)     #Up Arrow　
-	# win32api.keybd_event(18,0,win32con.KEYEVENTF_KEYUP,0)     #ALT
-	# time.sleep(0.1)
-	# i = 1
-	# while i<10:
-	# 	win32api.keybd_event(9,0,0,0)     # Tab 　　　　　　
-	# 	win32api.keybd_event(9,0,win32con.KEYEVENTF_KEYUP,0)     #Tab
-	# 	i+=1
-	# # time.sleep(0.2)
-	# # win32api.keybd_event(9,0,0,0)     # Tab 　　　　　　
-	# # win32api.keybd_event(9,0,win32con.KEYEVENTF_KEYUP,0)     #Tab
-	# win32api.keybd_event(40,0,0,0)     # Down Arrow 
-	# win32api.keybd_event(40,0,win32con.KEYEVENTF_KEYUP,0)     #Down Arrow 
-	# time.sleep(0.1)
-	# win32api.keybd_event(13,0,0,0)     # Enter 
-	# win32api.keybd_event(13,0,win32con.KEYEVENTF_KEYUP,0)     #Enter 
-	# time.sleep(0.1)
-	# win32api.keybd_event(17,0,0,0)     # Control 　　　　 
-	# win32api.keybd_event(65,0,0,0)     # A 
-	# win32api.keybd_event(65,0,win32con.KEYEVENTF_KEYUP,0)     #A 
-	# win32api.keybd_event(17,0,win32con.KEYEVENTF_KEYUP,0)     #Control 　　　　 
-	# win32api.keybd_event(13,0,0,0)     # Enter 
-	# win32api.keybd_event(13,0,win32con.KEYEVENTF_KEYUP,0)     #Enter 
+#获取窗口焦点
+w2hd=win32gui.FindWindowEx(w1hd,None,None,None)
+win32gui.SetForegroundWindow(w2hd)
+time.sleep(0.2)
 
 
 
-# if w1hd:
-# 	print w1hd
-# 	active()
 
-# wdname1=u"房源发布 -租房 -中国网络经纪人 -Cent Browser"
-# w1hd=win32gui.FindWindow(0,wdname1)
-
-# active()
-
-
-#获取当前坐标
+# #获取当前坐标
 print win32gui.GetCursorPos()
 
-#让Python遍历当前Windows下所有运行程序的窗口，并获得运行窗口的标题输出
+#房屋户型-室
+# win32api.SetCursorPos([572,605])
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+# time.sleep(0.05)
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+# time.sleep(0.05)
+# #快捷键2
+# win32api.keybd_event(50,0,0,0)     
+# win32api.keybd_event(50,0,win32con.KEYEVENTF_KEYUP,0)
+
+# #房屋户型 -厅
+# win32api.SetCursorPos([705, 607])
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+# time.sleep(0.05)
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+# time.sleep(0.05)
+# #快捷键2
+# win32api.keybd_event(50,0,0,0)     
+# win32api.keybd_event(50,0,win32con.KEYEVENTF_KEYUP,0)
+
+
+# #房屋户型 -卫
+# win32api.SetCursorPos([817, 602])
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+# time.sleep(0.05)
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+# time.sleep(0.05)
+# #快捷键2
+# win32api.keybd_event(50,0,0,0)     
+# win32api.keybd_event(50,0,win32con.KEYEVENTF_KEYUP,0)
+
+# #楼层 - 楼
+# win32api.SetCursorPos([594, 657])
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+# time.sleep(0.05)
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+# time.sleep(0.05)
+# #快捷键2
+# win32api.keybd_event(50,0,0,0)     
+# win32api.keybd_event(50,0,win32con.KEYEVENTF_KEYUP,0)
+
+# #楼层 - 层
+# win32api.SetCursorPos([723, 656])
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+# time.sleep(0.05)
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+# time.sleep(0.05)
+# #快捷键2
+# win32api.keybd_event(50,0,0,0)     
+# win32api.keybd_event(50,0,win32con.KEYEVENTF_KEYUP,0)
+
+# #房屋情况 -1
+win32api.SetCursorPos([574, 627])
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+time.sleep(0.05)
+win32api.SetCursorPos([575, 694])
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+time.sleep(0.05)
+
+
+win32api.SetCursorPos([799, 632])
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+time.sleep(0.05)
+win32api.SetCursorPos([734, 789])
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+time.sleep(0.05)
+
+
+# #出租间介绍
+win32api.SetCursorPos([570, 678])
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+time.sleep(0.05)
+win32api.SetCursorPos([570, 1003])
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+time.sleep(0.05)
+
+# #面积
+# win32api.SetCursorPos([552, 739])
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+# time.sleep(0.05)
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+# time.sleep(0.05)
+# #快捷键2
+# win32api.keybd_event(50,0,0,0)     
+# win32api.keybd_event(50,0,win32con.KEYEVENTF_KEYUP,0)
+
+# #配套设施 - 全选
+win32api.SetCursorPos([561, 796])
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+time.sleep(0.05)
+
+# #租金
+# win32api.SetCursorPos([628, 947])
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+# time.sleep(0.05)
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+# time.sleep(0.05)
+# #快捷键2
+# win32api.keybd_event(50,0,0,0)     
+# win32api.keybd_event(50,0,win32con.KEYEVENTF_KEYUP,0)
+
+# ##付款方式
+win32api.SetCursorPos([820, 950])
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+time.sleep(0.05)
+
+#下
+win32api.keybd_event(34,0,0,0)     
+win32api.keybd_event(34,0,win32con.KEYEVENTF_KEYUP,0)
+time.sleep(0.5)
+
+win32api.SetCursorPos([763, 312])
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+time.sleep(0.05)
+win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+time.sleep(0.05)
+
+##标题
+# win32api.SetCursorPos([820, 950])
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) 
+# time.sleep(0.05)
+# win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+# time.sleep(0.05)
+
+
+
+## 让Python遍历当前Windows下所有运行程序的窗口，并获得运行窗口的标题输出
 # from win32gui import *
 # titles = set()
 # def foo(hwnd,mouse):
