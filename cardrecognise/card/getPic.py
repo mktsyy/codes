@@ -5,7 +5,11 @@
 import rightCard
 import leftcard
 import middlecard
+import time
 
-rightCard.main()
-middlecard.main()
-leftcard.main()
+while True:
+	# pass
+	time.sleep(0.2)
+	middlecard.main()
+	rightCard.main()
+	leftcard.main()

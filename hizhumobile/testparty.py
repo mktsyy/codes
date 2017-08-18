@@ -27,7 +27,11 @@ import urllib2
 
 # 		print r
 
-estate_name = "\\u6c38\\u5e73\\u5357\\u8def198\\u5f041\\uff5e13\\u53f7"
-print estate_name.decode("unicode-escape")
+# estate_name = "\\u6c38\\u5e73\\u5357\\u8def198\\u5f041\\uff5e13\\u53f7"
+# print estate_name.decode("unicode-escape")
 
+
+a = (10,10,10)
+b = (10,10,10)
+print cmp(a,b)
 

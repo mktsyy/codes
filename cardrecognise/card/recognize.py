@@ -53,7 +53,7 @@ def getImgHash(fne):
 '''  
    
    
-a=getImgHash(os.getcwd()+"\\rightTemp\\right4.jpg")#图片地址自行替换  
+a=getImgHash(os.getcwd()+"\\lefttemp\\left8.jpg")#图片地址自行替换  
 files = os.listdir(os.getcwd()+"\\num")#图片文件夹地址自行替换  
 for file in files:
    # print file

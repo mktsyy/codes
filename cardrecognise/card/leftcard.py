@@ -69,14 +69,22 @@ def bubble(l):
             break
     return l
 
+def cmpcolor(coordinate):
+	img = Image.open('123.bmp')
+	if cmp(img.getpixel(coordinate),(195, 35, 37))==0 or cmp(img.getpixel(coordinate),(0, 0, 0))==0 \
+	or cmp(img.getpixel(coordinate),(205, 37, 39))==0:
+		return True
+	else:
+		return False
+
 
 def main():
-	# print win32gui.GetCursorPos()
+	##print win32gui.GetCursorPos()
 	# im = ImageGrab.grab() 
 	# im.save(os.getcwd()+"/screenshot.png")#保存图片 
 	# #os.execvp( "mspaint",('mspaint','c:/screenshot.png'))#调用画图程序打开截屏图片
 	# im1=Image.open(os.getcwd()+"/screenshot.png")
-	# print im1.size
+	# # print im1.size
 
 	# rec=(800,840,880,875)
 	# region=im1.crop(rec)
@@ -84,168 +92,164 @@ def main():
 	# region.save(os.getcwd()+"/123.bmp")
 
 	img = Image.open('123.bmp')
+	print img.getpixel((106,6))
 
-	#数字7
-
+	if cmpcolor((106,6)) or cmpcolor((113,12)) or cmpcolor((104,10)) or cmpcolor((106,14)) or cmpcolor((113,10)):
 	
 
-	region = (5,15,18,26)
+		#数字7
 
-	cropImg = img.crop(region)
+		
 
-	cropImg.save(os.getcwd()+"\\lefttemp\\left7.jpg")
+		region = (100,1,119,23)
 
-	#数字A
+		cropImg = img.crop(region)
 
-	
+		cropImg.save(os.getcwd()+"\\lefttemp\\left7.jpg")
 
-	region = (6,16,15,26)
+		#数字A
 
-	cropImg = img.crop(region)
+		
 
-	cropImg.save(os.getcwd()+"\\lefttemp\\leftA.jpg")
+		region = (100,1,119,23)
+		cropImg = img.crop(region)
 
-	#数字K
+		cropImg.save(os.getcwd()+"\\lefttemp\\leftA.jpg")
 
-	
+		#数字K
 
-	region = (6,17,15,25)
+		
 
-	cropImg = img.crop(region)
+		region = (100,1,119,23)
+		cropImg = img.crop(region)
 
-	cropImg.save(os.getcwd()+"\\lefttemp\\leftK.jpg")
+		cropImg.save(os.getcwd()+"\\lefttemp\\leftK.jpg")
 
-	#数字4
+		#数字4
 
-	
+		
 
-	region = (6,17,15,25)
+		region = (100,1,119,23)
+		cropImg = img.crop(region)
 
-	cropImg = img.crop(region)
+		cropImg.save(os.getcwd()+"\\lefttemp\\left4.jpg")
 
-	cropImg.save(os.getcwd()+"\\lefttemp\\left4.jpg")
+		#数字2
 
-	#数字2
+		
 
-	
+		region = (100,1,119,23)
+		cropImg = img.crop(region)
 
-	region = (6,17,15,25)
+		cropImg.save(os.getcwd()+"\\lefttemp\\left2.jpg")
 
-	cropImg = img.crop(region)
+		#数字3
 
-	cropImg.save(os.getcwd()+"\\lefttemp\\left2.jpg")
+		
 
-	#数字3
+		region = (102,1,119,23)
+		cropImg = img.crop(region)
 
-	
+		cropImg.save(os.getcwd()+"\\lefttemp\\left3.jpg")
 
-	region = (6,17,15,25)
+		#数字5
 
-	cropImg = img.crop(region)
+		
 
-	cropImg.save(os.getcwd()+"\\lefttemp\\left3.jpg")
+		region = (100,1,119,23)
+		cropImg = img.crop(region)
 
-	#数字5
+		cropImg.save(os.getcwd()+"\\lefttemp\\left5.jpg")
 
-	
+		#数字6
 
-	region = (6,17,15,25)
+		
 
-	cropImg = img.crop(region)
+		region = (100,1,119,23)
+		cropImg = img.crop(region)
 
-	cropImg.save(os.getcwd()+"\\lefttemp\\left5.jpg")
+		cropImg.save(os.getcwd()+"\\lefttemp\\left6.jpg")
 
-	#数字6
+		#数字8
 
-	
+		
 
-	region = (6,17,15,25)
+		region = (102,1,118,23)
+		cropImg = img.crop(region)
 
-	cropImg = img.crop(region)
+		cropImg.save(os.getcwd()+"\\lefttemp\\left8.jpg")
 
-	cropImg.save(os.getcwd()+"\\lefttemp\\left6.jpg")
+		#数字9
 
-	#数字8
+		
 
-	
+		region = (100,1,119,23)
+		cropImg = img.crop(region)
 
-	region = (6,17,15,25)
+		cropImg.save(os.getcwd()+"\\lefttemp\\left9.jpg")
 
-	cropImg = img.crop(region)
+		#数字J
 
-	cropImg.save(os.getcwd()+"\\lefttemp\\left8.jpg")
+		
 
-	#数字9
+		region = (100,1,119,23)
+		cropImg = img.crop(region)
 
-	
+		cropImg.save(os.getcwd()+"\\lefttemp\\leftJ.jpg")
 
-	region = (6,17,15,25)
+		#数字Q
 
-	cropImg = img.crop(region)
+		
 
-	cropImg.save(os.getcwd()+"\\lefttemp\\left9.jpg")
+		region = (100,1,121,21)
+		cropImg = img.crop(region)
 
-	#数字J
+		cropImg.save(os.getcwd()+"\\lefttemp\\leftQ.jpg")
 
-	
+		#数字10
 
-	region = (6,17,15,25)
+		
 
-	cropImg = img.crop(region)
+		region = (100,1,119,23)
+		cropImg = img.crop(region)
 
-	cropImg.save(os.getcwd()+"\\lefttemp\\leftJ.jpg")
+		cropImg.save(os.getcwd()+"\\lefttemp\\left10.jpg")
 
-	#数字Q
+		################以下完成      
+		cutpic = os.listdir(os.getcwd()+"\\lefttemp")
+		# a=getImgHash("temp.jpg")#图片地址自行替换 
+		comparelist = []
+		secondcard = []
+		for pic in cutpic:
+			a=getImgHash(os.getcwd()+"\\lefttemp\\"+pic)#图片地址自行替换 
+			files = os.listdir(os.getcwd()+"\\num")#图片文件夹地址自行替换  
 
-	
+			#用ipython调试
+			# from IPython import embed
+			# embed()
 
-	region = (6,17,15,25)
-
-	cropImg = img.crop(region)
-
-	cropImg.save(os.getcwd()+"\\lefttemp\\leftQ.jpg")
-
-	#数字10
-
-	
-
-	region = (6,16,15,25)
-
-	cropImg = img.crop(region)
-
-	cropImg.save(os.getcwd()+"\\lefttemp\\left10.jpg")
-
-	################以下完成      
-	cutpic = os.listdir(os.getcwd()+"\\lefttemp")
-	# a=getImgHash("temp.jpg")#图片地址自行替换 
-	comparelist = []
-	secondcard = []
-	for pic in cutpic:
-		a=getImgHash(os.getcwd()+"\\lefttemp\\"+pic)#图片地址自行替换 
-		files = os.listdir(os.getcwd()+"\\num")#图片文件夹地址自行替换  
+			for file in files:
+			   # print file
+				if not file in"recognize.pycutpic.pyNpicrecognize.pycutpicsendcard.pycutpicfirstcard.pytempall.pynumtemp":
+					b=getImgHash(os.getcwd()+"\\num\\"+file)  
+					compare=getMH(a,b)  
+					comparelist.append(int(compare)) 
+					strdata = str(pic)+"............"+ file+u'相似度'+str(compare)+'%'
+					secondcard.append(strdata)
+					# print str(pic)+"............"+ file,u'相似度',str(compare)+'%'
+			# print str(pic)+"............"+ file,u'最相似,相似度',str(max(comparelist))+'%'
 
 		#用ipython调试
 		# from IPython import embed
-		# embed()
-
-		for file in files:
-		   # print file
-			if not file in"recognize.pycutpic.pyNpicrecognize.pycutpicsendcard.pycutpicfirstcard.pytempall.pynumtemp":
-				b=getImgHash(os.getcwd()+"\\num\\"+file)  
-				compare=getMH(a,b)  
-				comparelist.append(int(compare)) 
-				strdata = str(pic)+"............"+ file+u'相似度'+str(compare)+'%'
-				secondcard.append(strdata)
-				# print str(pic)+"............"+ file,u'相似度',str(compare)+'%'
-		# print str(pic)+"............"+ file,u'最相似,相似度',str(max(comparelist))+'%'
-
-	#用ipython调试
-	# from IPython import embed
-	# embed()	
-	for ii in secondcard:
-		if str(max(comparelist)) in ii:
-			print (u"最左位......."+ii)
+		# embed()	
+		for ii in secondcard:
+			if str(max(comparelist)) in ii:
+				print('\033[1;33;40m')
+				print (u"最右位......."+ii.split(".bmp")[0].split("............")[1])
 
 
 if __name__ == '__main__':
-	main()
+	# main()
+	while True:
+		time.sleep(0.2)
+		main()
