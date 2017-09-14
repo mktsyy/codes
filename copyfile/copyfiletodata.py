@@ -12,48 +12,54 @@ import datetime
 
 localdir = os.getcwd()
 # print dir
-for dst_dirpath, dst_dirnames, dst_filenames in os.walk(localdir):
-	# print dst_dirpath
+for dst_dirpath, dst_dirnames, dst_filenames in os.walk(localdir,topdown=False):
+	print dst_dirpath
 	# print type(dst_dirpath)
-	# print dst_filenames
+# print dst_filenames
 	# print type(dst_filenames)
 	# print dst_filenames
 	# print type(dst_dirnames)
 	# print dst_dirnames
-	for i in dst_filenames:
-		if i != "copyfiletodata.py":
+	# from IPython import embed#调用ipython进行调试
+	# embed()
+	
+for i in dst_filenames:
+	if i != "copyfiletodata.py":
 
+		# from IPython import embed#调用ipython进行调试
+		# embed()
+
+		ad = os.path.getmtime(os.path.join(dst_dirpath,i))
+		newdirstr = (datetime.datetime.fromtimestamp(ad)).strftime("%Y-%m-%d %H:%M:%S").split(" ")[0]
+		newfilepath = os.path.join(localdir,newdirstr)
+		# print newdirstr
+			
+		# print newfilepath
+		newpath = os.path.join(newfilepath,i)
+		# print newpath
+		oldfilepath = os.path.join(dst_dirpath,i)
+		# print oldfilepath
+		
+
+		if not os.path.isdir(newdirstr):
+			os.mkdir(newdirstr)
+			
+		
+		if not os.path.exists(newpath):
+			# os.chdir(newfilepath)
+			shutil.copy2(oldfilepath,newpath)
 			# from IPython import embed#调用ipython进行调试
 			# embed()
+			os.remove(oldfilepath)
+			# from IPython import embed#调用ipython进行调试
+			# embed()
+			continue
+		else:
+			if os.path.exists(oldfilepath):	
+				os.remove(oldfilepath)
+				# from IPython import embed#调用ipython进行调试
+				# embed()
+				continue
 
-			ad = os.path.getmtime(os.path.join(dst_dirpath,i))
-			newdirstr = (datetime.datetime.fromtimestamp(ad)).strftime("%Y-%m-%d %H:%M:%S").split(" ")[0]
-			newfilepath = os.path.join(localdir,newdirstr)
-			# print newdirstr
-				
-			# print newfilepath
-			newpath = os.path.join(newfilepath,i)
-			# print newpath
-			oldfilepath = os.path.join(dst_dirpath,i)
-			# print oldfilepath
-			
-
-			if not os.path.isdir(newdirstr):
-				os.mkdir(newdirstr)
-				
-			if  os.path.exists(newfilepath):
-				if not os.path.exists(newpath):
-					# os.chdir(newfilepath)
-					shutil.copy2(oldfilepath,newpath)
-					os.remove(oldfilepath)
-					# from IPython import embed#调用ipython进行调试
-					# embed()
-					continue
-				else:	
-					os.remove(oldfilepath)
-					# from IPython import embed#调用ipython进行调试
-					# embed()
-					continue
-
-			
+	
 
