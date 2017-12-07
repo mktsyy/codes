@@ -12,6 +12,10 @@ import re,time
 import urllib, random 
 import time
 
+
+##pytesser安装方法，把pytesser下载，放入python的Lib\site-packages下，然后在
+# Lib\site-packages\pytesser下新建空__init__.py文件，完成安装
+
 #import hashlib    
    
 def getGray(image_file):  
