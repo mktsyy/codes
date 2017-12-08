@@ -15,6 +15,25 @@ import time
 
 import smtplib
 
+##python隐藏console window的另一个方法
+
+# 做GUI系统的时候，总是想去掉DOS窗口，而一般的做法是用pythonw.exe启动。
+# 很可惜，目前的2.5版本的pythonw是有一些bug的。
+# 见：http://mail.python.org/pipermail/python-bugs-list/2004-June/023703.html 。
+# 我在做项目的时候就遇到过这类问题，而且还有一些乱七八糟解释不了的问题，而用python.exe启动就是好的，但是恼人的黑窗口又出现了。 
+# # 其实有一种办法可以解决，不能跨平台，仅限windows。是用windows api的ShowWindow方法，将console隐藏（就是看不到而已）。
+# 需要win32api库（copy两个文件win32api.pyd和win32gui.pyd就行了）。
+# 很简单吧，就是获得console的handle，然后隐藏（0分别代表NULL和SW_HIDE）。启动还是用python.exe。
+# 不过有一个缺点，DOS窗口在开始的时候会闪一下，:-)。
+#原链接http://noahgenius.iteye.com/blog/216124
+
+import win32api, win32gui  
+ct = win32api.GetConsoleTitle()  
+hd = win32gui.FindWindow(0,ct)  
+win32gui.ShowWindow(hd,0)
+######################################
+
+
 def _format_addr(s):
     name, addr = parseaddr(s)
     return formataddr(( \

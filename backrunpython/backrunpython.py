@@ -52,18 +52,18 @@ class SmallestPythonService(win32serviceutil.ServiceFramework):
     def SvcDoRun(self):
         #what to do#
         ##增加定时发邮件
-        from_addr = "13564945645@139.com"
-        password = "13564945645syy"
-        to_addr = "13564945645@139.com"
-        smtp_server = "smtp.139.com"
+        # from_addr = "13564945645@139.com"
+        # password = "13564945645syy"
+        # to_addr = "13564945645@139.com"
+        # smtp_server = "smtp.139.com"
 
-        msg = MIMEMultipart()
+        # msg = MIMEMultipart()
         # msg['From'] = self.format_addr('桌面截图')
         # msg['To'] = self.format_addr('管理员')
-        msg['Subject'] = Header(u'来自SMTP的问候……', 'utf-8').encode()
+        # msg['Subject'] = Header(u'来自SMTP的问候……', 'utf-8').encode()
 
         # add MIMEText:
-        msg.attach(MIMEText('send with file...', 'plain', 'utf-8'))
+        # msg.attach(MIMEText('send with file...', 'plain', 'utf-8'))
 
 
         #截图
@@ -80,13 +80,16 @@ class SmallestPythonService(win32serviceutil.ServiceFramework):
         #     encoders.encode_base64(mime)
         #     msg.attach(mime)
 
-        while True:
-            server = smtplib.SMTP(smtp_server, 25)
-            server.set_debuglevel(1)
-            server.login(from_addr, password)
-            server.sendmail(from_addr, [to_addr], msg.as_string())
-            server.quit()
-            time.sleep(5)
+        # while True:
+        #     server = smtplib.SMTP(smtp_server, 25)
+        #     server.set_debuglevel(1)
+        #     server.login(from_addr, password)
+        #     server.sendmail(from_addr, [to_addr], msg.as_string())
+        #     server.quit()
+        #     time.sleep(5)
+
+        #调用shell命令
+        os.system('python D:\\littleapp\\sendmail\\sendmail.py')
 
         win32event.WaitForSingleObject(self.hWaitStop, win32event.INFINITE)
 
