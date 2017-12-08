@@ -98,7 +98,7 @@ def main():
 
 
 		#数字10参数
-		region = (61,1,79,21)
+		region = (61,1,79,21)		
 
 		cropImg = img.crop(region)
 
