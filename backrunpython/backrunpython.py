@@ -53,7 +53,7 @@ class SmallestPythonService(win32serviceutil.ServiceFramework):
         #what to do#
         ##增加定时发邮件
         # from_addr = "13564945645@139.com"
-        # password = "13564945645syy"
+        # password = ""
         # to_addr = "13564945645@139.com"
         # smtp_server = "smtp.139.com"
 
