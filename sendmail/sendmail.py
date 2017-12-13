@@ -41,7 +41,7 @@ def _format_addr(s):
 		addr.encode('utf-8') if isinstance(addr, unicode) else addr))
 
 from_addr = "13564945645@139.com"
-password = "13564945645syy"
+password = ""
 to_addr = "13564945645@139.com"
 smtp_server = "smtp.139.com"
 
