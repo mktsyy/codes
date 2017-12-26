@@ -218,7 +218,7 @@ def main():
 
 	
 
-	region = (140,0,165,31) 
+	region = (138,1,167,28) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\righttemp\\right10.jpg")

@@ -142,7 +142,7 @@ def main():
 	region.save(os.getcwd()+"/banker123.bmp")
 
 	img = Image.open('banker123.bmp')
-	print img.getpixel((2,6))
+	# print img.getpixel((2,6))
 
 	# ##用ipython调试
 	# from IPython import embed
@@ -201,7 +201,7 @@ def main():
 
 	
 
-	region = (69,1,91,30) 
+	region = (69,1,92,31) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\bankermiddletemp\\middle3.jpg")
@@ -264,7 +264,7 @@ def main():
 
 	
 
-	region = (69,1,93,30)
+	region = (65,1,95,28)
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\bankermiddletemp\\middle10.jpg")

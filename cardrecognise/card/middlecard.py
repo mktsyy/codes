@@ -97,7 +97,7 @@ def main():
 	region.save(os.getcwd()+"/123.bmp")
 
 	img = Image.open('123.bmp')
-	print img.getpixel((2,6))
+	# print img.getpixel((2,6))
 
 	# ##用ipython调试
 	# from IPython import embed
