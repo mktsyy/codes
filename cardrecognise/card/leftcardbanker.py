@@ -256,7 +256,7 @@ def main():
 			if int(max(comparelist))> 75:
 			# print('\033[1;33;40m')
 			# print (u"PLAYER最左位......."+ii.split(".bmp")[0].split("............")[1])
-				lastlist.append(u"PLAYER左位......."+ii.split(".bmp")[0].split("............")[1])
+				lastlist.append(u"BANKER左位......."+ii.split(".bmp")[0].split("............")[1])
 
 
 	if (len(lastlist)>=1):
@@ -266,5 +266,5 @@ def main():
 if __name__ == '__main__':
 	# main()
 	while True:
-		time.sleep(0.2)
+		time.sleep(0.1)
 		main()

@@ -119,7 +119,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,27,29,57) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\leftA.jpg")

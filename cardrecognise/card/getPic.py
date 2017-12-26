@@ -2,7 +2,7 @@
 #-*-coding:utf-8-*-
 
 
-import rightcard
+import rightCard
 import leftcard
 import middlecard
 import middlecardbanker
@@ -14,7 +14,7 @@ while True:
 	# pass
 	time.sleep(0.2)
 	middlecard.main()
-	rightcard.main()
+	rightCard.main()
 	leftcard.main()
 	middlecardbanker.main()
 	rightcardbanker.main()

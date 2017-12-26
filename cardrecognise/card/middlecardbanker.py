@@ -269,5 +269,5 @@ def main():
 if __name__ == '__main__':
 	# main()
 	while True:
-		time.sleep(0.2)
+		time.sleep(0.1)
 		main()

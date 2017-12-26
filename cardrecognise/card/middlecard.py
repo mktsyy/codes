@@ -138,7 +138,7 @@ def main():
 
 	
 
-	region = (86,1,108,30) 
+	region = (85,2,109,30) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\middletemp\\middle4.jpg")

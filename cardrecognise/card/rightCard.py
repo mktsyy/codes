@@ -137,7 +137,7 @@ def main():
 
 	
 
-	region = (140,0,165,31) 
+	region = (140,0,165,30) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\righttemp\\right4.jpg")
@@ -164,7 +164,7 @@ def main():
 
 	
 
-	region = (140,0,165,31) 
+	region = (141,1,164,31) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\righttemp\\right5.jpg")
