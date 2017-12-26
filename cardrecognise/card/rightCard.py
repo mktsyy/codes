@@ -1,4 +1,6 @@
-##rightCard
+#rightall
+#-*-coding:utf-8-*-
+
 #-*-coding:utf-8-*-
 import win32gui
 import PIL
@@ -10,8 +12,6 @@ from PIL import Image,ImageEnhance,ImageFilter
 import fnmatch  
 import re,time  
 import urllib, random 
-import time
-
 
 ##pytesser安装方法，把pytesser下载，放入python的Lib\site-packages下，然后在
 # Lib\site-packages\pytesser下新建空__init__.py文件，完成安装
@@ -75,206 +75,196 @@ def bubble(l):
 def cmpcolor(coordinate):
 	img = Image.open('123.bmp')
 	if cmp(img.getpixel(coordinate),(195, 35, 37))==0 or cmp(img.getpixel(coordinate),(0, 0, 0))==0 \
-	or cmp(img.getpixel(coordinate),(205, 37, 39))==0:
+	or cmp(img.getpixel(coordinate),(205, 37, 39))==0 or cmp(img.getpixel(coordinate),(238, 255, 255))==0 \
+	or cmp(img.getpixel(coordinate),(233, 240, 243))==0:
 		return True
 	else:
 		return False
 
 
 def main():
-	# # print win32gui.GetCursorPos()
+	#print win32gui.GetCursorPos()
 	# im = ImageGrab.grab() 
 	# im.save(os.getcwd()+"/screenshot.png")#保存图片 
 	# #os.execvp( "mspaint",('mspaint','c:/screenshot.png'))#调用画图程序打开截屏图片
 	# im1=Image.open(os.getcwd()+"/screenshot.png")
 	# # print im1.size
 
-	# rec=(679,713,806,760)
+	# rec=(569,751,746,817)
 	# region=im1.crop(rec)
 	# # region.show()
 	# region.save(os.getcwd()+"/123.bmp")
 
 	img = Image.open('123.bmp')
-	print img.getpixel((6,32))
+	# # print img.getpixel((2,6))
 
-	if cmpcolor((6,32)) or cmpcolor((7,35)) or cmpcolor((5,27)):
+	# # ##用ipython调试
+	# # from IPython import embed
+	# # embed()
+
+	# # if cmpcolor((2,6)) or cmpcolor((2,12)) or cmpcolor((2,10)) or cmpcolor((2,14)):
 	
-		# print cmp(img.getpixel((68,25)),(224, 39, 38))
 
+	#数字7
 
+	
 
+	region = (140,0,165,31)
 
-		##数字A
+	cropImg = img.crop(region)
 
-		
+	cropImg.save(os.getcwd()+"\\righttemp\\right7.jpg")
 
-		region = (1,22,23,38)
+	# #数字A
 
-		cropImg = img.crop(region)
+	
 
-		cropImg.save(os.getcwd()+"\\rightTemp\\rightA.jpg")
+	region = (138,0,167,29) 
+	cropImg = img.crop(region)
 
+	cropImg.save(os.getcwd()+"\\righttemp\\rightA.jpg")
 
+	#数字K
 
-		# #数字2
+	
 
-		
+	region = (140,0,165,31) 
+	cropImg = img.crop(region)
 
-		region = (1,22,23,38)
+	cropImg.save(os.getcwd()+"\\righttemp\\rightK.jpg")
 
-		cropImg = img.crop(region)
+	#数字4
 
-		cropImg.save(os.getcwd()+"\\rightTemp\\right2.jpg")
+	
 
-		# #数字3
+	region = (140,0,165,31) 
+	cropImg = img.crop(region)
 
-		
+	cropImg.save(os.getcwd()+"\\righttemp\\right4.jpg")
 
-		region = (1,22,23,38)
+	#数字2
 
-		cropImg = img.crop(region)
+	
 
-		cropImg.save(os.getcwd()+"\\rightTemp\\right3.jpg")
+	region = (140,0,165,31) 
+	cropImg = img.crop(region)
 
-		# #数字4
+	cropImg.save(os.getcwd()+"\\righttemp\\right2.jpg")
 
-		
+	#数字3
 
-		region = (1,22,23,38)
+	
 
-		cropImg = img.crop(region)
+	region = (140,0,165,31) 
+	cropImg = img.crop(region)
 
-		cropImg.save(os.getcwd()+"\\rightTemp\\right4.jpg")
+	cropImg.save(os.getcwd()+"\\righttemp\\right3.jpg")
 
-		# #数字5
+	#数字5
 
-		
+	
 
-		region = (1,22,23,38)
+	region = (140,0,165,31) 
+	cropImg = img.crop(region)
 
-		cropImg = img.crop(region)
+	cropImg.save(os.getcwd()+"\\righttemp\\right5.jpg")
 
-		cropImg.save(os.getcwd()+"\\rightTemp\\right5.jpg")
+	#数字6
 
-		# #数字6
+	
 
-		
+	region = (140,0,165,31) 
+	cropImg = img.crop(region)
 
-		region = (1,22,23,38)
+	cropImg.save(os.getcwd()+"\\righttemp\\right6.jpg")
 
-		cropImg = img.crop(region)
+	#数字8
 
-		cropImg.save(os.getcwd()+"\\rightTemp\\right6.jpg")
+	
 
-		##数字7
+	region = (140,0,165,31) 
+	cropImg = img.crop(region)
 
-		
+	cropImg.save(os.getcwd()+"\\righttemp\\right8.jpg")
 
-		region = (1,22,23,38)
+	#数字9
 
-		cropImg = img.crop(region)
+	
 
-		cropImg.save(os.getcwd()+"\\rightTemp\\right7.jpg")
+	region = (140,0,165,31) 
+	cropImg = img.crop(region)
 
-		# #数字8
+	cropImg.save(os.getcwd()+"\\righttemp\\right9.jpg")
 
-		
+	#数字J
 
-		region = (1,22,23,38)
+	
 
-		cropImg = img.crop(region)
+	region = (140,0,165,31) 
+	cropImg = img.crop(region)
 
-		cropImg.save(os.getcwd()+"\\rightTemp\\right8.jpg")
+	cropImg.save(os.getcwd()+"\\righttemp\\rightJ.jpg")
 
-		# #数字9
-
-		
-
-		region = (1,22,23,39)
-
-		cropImg = img.crop(region)
-
-		cropImg.save(os.getcwd()+"\\rightTemp\\right9.jpg")
-		
-		# #数字10
-
-		
-		region = (1,19,21,40)
-
-		cropImg = img.crop(region)
-
-		cropImg.save(os.getcwd()+"\\rightTemp\\right10.jpg")
-
-		# #数字J
-
-		
-
-		region = (1,22,23,38)
-
-		cropImg = img.crop(region)
-
-		cropImg.save(os.getcwd()+"\\rightTemp\\rightJ.jpg")
-
-		# #数字Q
-
-		
-
-		region = (1,22,23,38)
-
-		cropImg = img.crop(region)
-
-		cropImg.save(os.getcwd()+"\\rightTemp\\rightQ.jpg")
-
-
-		# #数字K
-
-		
-
-		region = (1,22,23,38)
-
-		cropImg = img.crop(region)
-
-		cropImg.save(os.getcwd()+"\\rightTemp\\rightK.jpg")
-
-		################以下完成      
-		cutpic = os.listdir(os.getcwd()+"\\rightTemp")
-		# a=getImgHash("temp.jpg")#图片地址自行替换 
-		comparelist = []
-		secondcard = []
-		for pic in cutpic:
-			a=getImgHash(os.getcwd()+"\\rightTemp\\"+pic)#图片地址自行替换 
-			files = os.listdir(os.getcwd()+"\\num")#图片文件夹地址自行替换  
-
-			#用ipython调试
-			# from IPython import embed
-			# embed()
-
-			for file in files:
-			   # print file
-				if not file in"recognize.pycutpic.pyNpicrecognize.pycutpicsendcard.pycutpicfirstcard.pytempall.pynumtemp":
-					b=getImgHash(os.getcwd()+"\\num\\"+file)  
-					compare=getMH(a,b)  
-					comparelist.append(int(compare)) 
-					strdata = str(pic)+"............"+ file+u'相似度'+str(compare)+'%'
-					secondcard.append(strdata)
-					# print str(pic)+"............"+ file,u'相似度',str(compare)+'%'
-			# print str(pic)+"............"+ file,u'最相似,相似度',str(max(comparelist))+'%'
-
-		#用ipython调试
-		# from IPython import embed
-		# embed()	
-		for ii in secondcard:
-			if str(max(comparelist)) in ii:
-				# print type(max(comparelist))
-				print('\033[1;32;40m')
-
-				print (u"最左位...."+ii)
-
-				# print (u"最左位...."+ii.split(".bmp")[0].split("rotation")[1])
-
+	#数字Q
+
+	
+
+	region = (140,0,165,31) 
+	cropImg = img.crop(region)
+
+	cropImg.save(os.getcwd()+"\\righttemp\\rightQ.jpg")
+
+	#数字10
+
+	
+
+	region = (140,0,165,31) 
+	cropImg = img.crop(region)
+
+	cropImg.save(os.getcwd()+"\\righttemp\\right10.jpg")
+
+	# ################以下完成      
+	cutpic = os.listdir(os.getcwd()+"\\righttemp")
+	# a=getImgHash("temp.jpg")#图片地址自行替换 
+	comparelist = []
+	secondcard = []
+	lastlist = []
+	for pic in cutpic:
+		a=getImgHash(os.getcwd()+"\\righttemp\\"+pic)#图片地址自行替换 
+		files = os.listdir(os.getcwd()+"\\num")#图片文件夹地址自行替换  
+
+	# 	#用ipython调试
+	# 	# from IPython import embed
+	# 	# embed()
+
+		for file in files:
+		   # print file
+			if not file in"recognize.pycutpic.pyNpicrecognize.pycutpicsendcard.pycutpicfirstcard.pytempall.pynumtemp":
+				b=getImgHash(os.getcwd()+"\\num\\"+file)  
+				compare=getMH(a,b)  
+				comparelist.append(int(compare)) 
+				strdata = str(pic)+"............"+ file+u'相似度'+str(compare)+'%'
+				secondcard.append(strdata)
+				# print str(pic)+"............"+ file,u'相似度',str(compare)+'%'
+		# print str(pic)+"............"+ file,u'最相似,相似度',str(max(comparelist))+'%'
+
+	#用ipython调试
+	# from IPython import embed
+	# embed()	
+	for ii in secondcard:
+		if str(max(comparelist)) in ii:
+			if int(max(comparelist))> 75:
+			# print('\033[1;33;40m')
+
+			# print (u"PLAYER最右位......."+ii.split(".bmp")[0].split("............")[1])
+				lastlist.append(u"PLAYER右位......."+ii.split(".bmp")[0].split("............")[1])
+	# print max(comparelist)			
+
+	if (len(lastlist)>=1):
+		print lastlist[0]
 
 if __name__ == '__main__':
 	# main()
 	while True:
-		time.sleep(1)
+		time.sleep(0.2)
 		main()
