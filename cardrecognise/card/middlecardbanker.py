@@ -304,9 +304,11 @@ def main():
 	for ii in secondcard:
 		if str(max(comparelist)) in ii:
 			# print('\033[1;33;40m')
-			if int(max(comparelist))> 75:
+			if int(max(comparelist))> 80:
 				# print (u"PLAYER当中位......."+ii.split(".bmp")[0].split("............")[1])
 				lastlist.append(u"BANKER当中位......."+ii.split(".bmp")[0].split("............")[1])
+			else:
+				raise RuntimeError
 
 	if (len(lastlist)>=1):
 		clr = Color()

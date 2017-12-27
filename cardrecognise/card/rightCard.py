@@ -137,7 +137,7 @@ def main():
 
 	
 
-	region = (140,0,165,30) 
+	region = (140,2,166,31) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\righttemp\\right4.jpg")
@@ -191,7 +191,7 @@ def main():
 
 	
 
-	region = (140,0,165,31) 
+	region = (140,1,165,32) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\righttemp\\right9.jpg")
@@ -253,12 +253,13 @@ def main():
 	# embed()	
 	for ii in secondcard:
 		if str(max(comparelist)) in ii:
-			if int(max(comparelist))> 75:
+			if int(max(comparelist))> 80:
 			# print('\033[1;33;40m')
 
 			# print (u"PLAYER最右位......."+ii.split(".bmp")[0].split("............")[1])
 				lastlist.append(u"PLAYER右位......."+ii.split(".bmp")[0].split("............")[1])
-	# print max(comparelist)			
+			else:
+				raise RuntimeError
 
 	if (len(lastlist)>=1):
 		print lastlist[0]

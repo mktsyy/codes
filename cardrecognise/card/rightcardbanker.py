@@ -297,13 +297,14 @@ def main():
 	# embed()	
 	for ii in secondcard:
 		if str(max(comparelist)) in ii:
-			if int(max(comparelist))> 75:
+			if int(max(comparelist))> 80:
 			# print('\033[1;33;40m')
-
-			# print (u"PLAYER最右位......."+ii.split(".bmp")[0].split("............")[1])
-				lastlist.append(u"BANKER右位......."+ii.split(".bmp")[0].split("............")[1])
-	# print max(comparelist)			
-
+				if "rotation" in ii:
+					ii = ii.replace("rotation",' ')	
+					lastlist.append(u"BANKER右位......."+ii.split(".bmp")[0].split("............")[1])
+				else:
+					raise RuntimeError
+					
 	if (len(lastlist)>=1):
 		clr = Color()
 		clr.print_blue_text(lastlist[0])

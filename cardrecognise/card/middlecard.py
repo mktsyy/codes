@@ -83,10 +83,10 @@ def cmpcolor(coordinate):
 
 
 def main():
-	#print win32gui.GetCursorPos()
+	##print win32gui.GetCursorPos()
 	im = ImageGrab.grab() 
 	im.save(os.getcwd()+"/screenshot.png")#保存图片 
-	#os.execvp( "mspaint",('mspaint','c:/screenshot.png'))#调用画图程序打开截屏图片
+	##os.execvp( "mspaint",('mspaint','c:/screenshot.png'))#调用画图程序打开截屏图片
 
 
 	im1=Image.open(os.getcwd()+"/screenshot.png")
@@ -138,7 +138,7 @@ def main():
 
 	
 
-	region = (85,2,109,30) 
+	region = (85,1,110,30) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\middletemp\\middle4.jpg")
@@ -259,9 +259,11 @@ def main():
 	for ii in secondcard:
 		if str(max(comparelist)) in ii:
 			# print('\033[1;33;40m')
-			if int(max(comparelist))> 75:
+			if int(max(comparelist))> 80:
 				# print (u"PLAYER当中位......."+ii.split(".bmp")[0].split("............")[1])
 				lastlist.append(u"PLAYER当中位......."+ii.split(".bmp")[0].split("............")[1])
+			else:
+				raise RuntimeError
 
 	if (len(lastlist)>=1):
 		print lastlist[0]

@@ -262,7 +262,7 @@ def main():
 
 	
 
-	region = (12,1,37,32) 
+	region = (10,1,39,28) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\bankerlefttemp\\left10.jpg")
@@ -297,11 +297,13 @@ def main():
 	# embed()	
 	for ii in secondcard:
 		if str(max(comparelist)) in ii:
-			if int(max(comparelist))> 75:
+			if int(max(comparelist))> 80:
 			# print('\033[1;33;40m')
 			# print (u"PLAYER最左位......."+ii.split(".bmp")[0].split("............")[1])
-				lastlist.append(u"BANKER左位......."+ii.split(".bmp")[0].split("............")[1])
 
+				lastlist.append(u"BANKER左位......."+ii.split(".bmp")[0].split("............")[1])
+			else:
+				raise RuntimeError
 
 	if (len(lastlist)>=1):
 		clr = Color()

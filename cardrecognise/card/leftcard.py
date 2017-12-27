@@ -200,7 +200,7 @@ def main():
 
 	
 
-	region = (0,30,31,53) 
+	region = (0,31,32,52) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\leftJ.jpg")
@@ -253,17 +253,21 @@ def main():
 	# embed()	
 	for ii in secondcard:
 		if str(max(comparelist)) in ii:
-			if int(max(comparelist))> 75:
+			if int(max(comparelist))> 80:
 			# print('\033[1;33;40m')
 			# print (u"PLAYER最左位......."+ii.split(".bmp")[0].split("............")[1])
-				lastlist.append(u"PLAYER左位......."+ii.split(".bmp")[0].split("............")[1])
+				if "rotation" in ii:
+					ii = ii.replace("rotation",' ')	
+					lastlist.append(u"PLAYER左位......."+ii.split(".bmp")[0].split("............")[1])
+			else:
+				raise RuntimeError
 
 
 	if (len(lastlist)>=1):
-		if "rotation" in str((lastlist[0]).encode('utf-8')):
+		# if "rotation" in str((lastlist[0]).encode('utf-8')):
 
-			print type((lastlist[0]).encode('unicode-escape').decode('string_escape')  )
-			# print str(lastlist[0]).encode('utf-8').split("otation")[1]
+			# print (lastlist[0]).encode('unicode-escape').decode('string_escape').replace("rotation",' ')  
+			# print str(lastlist[0]).replace("rotation",' ')
 		print lastlist[0]
 	
 
