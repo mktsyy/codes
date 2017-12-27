@@ -109,7 +109,7 @@ def main():
 
 	
 
-	region = (0,28,28,54)
+	region = (0,30,31,53)
 
 	cropImg = img.crop(region)
 
@@ -128,7 +128,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,30,31,53) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\leftK.jpg")
@@ -137,7 +137,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,30,31,53) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\left4.jpg")
@@ -146,7 +146,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,30,31,53) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\left2.jpg")
@@ -155,7 +155,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,30,31,53) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\left3.jpg")
@@ -164,7 +164,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,30,31,53) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\left5.jpg")
@@ -173,7 +173,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,30,31,53) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\left6.jpg")
@@ -182,7 +182,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,30,31,53) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\left8.jpg")
@@ -191,7 +191,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,30,31,53) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\left9.jpg")
@@ -200,7 +200,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,30,31,53) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\leftJ.jpg")
@@ -209,7 +209,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,30,31,53) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\leftQ.jpg")
@@ -218,7 +218,7 @@ def main():
 
 	
 
-	region = (0,28,28,54) 
+	region = (0,30,31,53) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\lefttemp\\left10.jpg")
@@ -260,6 +260,10 @@ def main():
 
 
 	if (len(lastlist)>=1):
+		if "rotation" in str((lastlist[0]).encode('utf-8')):
+
+			print type((lastlist[0]).encode('unicode-escape').decode('string_escape')  )
+			# print str(lastlist[0]).encode('utf-8').split("otation")[1]
 		print lastlist[0]
 	
 
