@@ -262,7 +262,7 @@ def main():
 
 	
 
-	region = (112,27,140,56) 
+	region = (113,28,140,56) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\bankerrighttemp\\right10.jpg")
@@ -302,9 +302,9 @@ def main():
 				if "rotation" in ii:
 					ii = ii.replace("rotation",' ')	
 					lastlist.append(u"BANKER右位......."+ii.split(".bmp")[0].split("............")[1])
-				else:
-					raise RuntimeError
-					
+				# else:
+				# 	raise RuntimeError
+
 	if (len(lastlist)>=1):
 		clr = Color()
 		clr.print_blue_text(lastlist[0])

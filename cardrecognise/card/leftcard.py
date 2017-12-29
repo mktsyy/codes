@@ -259,8 +259,8 @@ def main():
 				if "rotation" in ii:
 					ii = ii.replace("rotation",' ')	
 					lastlist.append(u"PLAYER左位......."+ii.split(".bmp")[0].split("............")[1])
-			else:
-				raise RuntimeError
+			# else:
+			# 	raise RuntimeError
 
 
 	if (len(lastlist)>=1):

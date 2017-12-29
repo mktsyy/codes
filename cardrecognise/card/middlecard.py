@@ -138,7 +138,7 @@ def main():
 
 	
 
-	region = (85,1,110,30) 
+	region = (84,1,110,31) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\middletemp\\middle4.jpg")
@@ -261,9 +261,11 @@ def main():
 			# print('\033[1;33;40m')
 			if int(max(comparelist))> 80:
 				# print (u"PLAYER当中位......."+ii.split(".bmp")[0].split("............")[1])
+				if "-" in ii:
+					ii = ii.replace("-1",' ')
 				lastlist.append(u"PLAYER当中位......."+ii.split(".bmp")[0].split("............")[1])
-			else:
-				raise RuntimeError
+			# else:
+			# 	raise RuntimeError
 
 	if (len(lastlist)>=1):
 		print lastlist[0]

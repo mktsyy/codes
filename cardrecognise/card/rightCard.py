@@ -137,7 +137,7 @@ def main():
 
 	
 
-	region = (140,2,166,31) 
+	region = (140,0,165,30) 
 	cropImg = img.crop(region)
 
 	cropImg.save(os.getcwd()+"\\righttemp\\right4.jpg")
@@ -257,9 +257,11 @@ def main():
 			# print('\033[1;33;40m')
 
 			# print (u"PLAYER最右位......."+ii.split(".bmp")[0].split("............")[1])
+				if "-" in ii:
+					ii = ii.replace("-1",' ')
 				lastlist.append(u"PLAYER右位......."+ii.split(".bmp")[0].split("............")[1])
-			else:
-				raise RuntimeError
+			# else:
+			# 	raise RuntimeError
 
 	if (len(lastlist)>=1):
 		print lastlist[0]
