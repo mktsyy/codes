@@ -22,7 +22,8 @@ for i in range(256):
 rep={'O':'0',    
     'I':'1','L':'1',    
     'Z':'2',    
-    'S':'8'    
+    'S':'8'
+     
     };    
  
 def  getverify1(name):          
@@ -36,13 +37,19 @@ def  getverify1(name):
     out = imgry.point(table,'1')    
     out.save('b'+name)    
     #识别    
-    text = image_to_string(out)    
+    text = image_to_string(out)
+    # print text 
     #识别对吗    
-    text = text.strip()    
+    text = text.strip()  
+    # print text  
     text = text.upper();      
     for r in rep:    
         text = text.replace(r,rep[r])     
     #out.save(text+'.jpg')    
-    # print text    
+    # if len(text) == 0:
+    # 	text = '8' 
+    # if text == "1Q":
+    # 	text = "10"   
+    # print text
     return text    
-# getverify1('newjpg.jpg')  #注意这里的图片要和此文件在同一个目录，要不就传绝对路径也行
+# getverify1('PLAYER-right.jpg')  #注意这里的图片要和此文件在同一个目录，要不就传绝对路径也行
