@@ -46,10 +46,10 @@ def  getverify1(name):
     for r in rep:    
         text = text.replace(r,rep[r])     
     #out.save(text+'.jpg')    
-    # if len(text) == 0:
-    # 	text = '8' 
-    # if text == "1Q":
-    # 	text = "10"   
+    if len(text) == 0:
+    	text = '8' 
+    if text == "1Q":
+    	text = "10"   
     # print text
     return text    
 # getverify1('PLAYER-right.jpg')  #注意这里的图片要和此文件在同一个目录，要不就传绝对路径也行
