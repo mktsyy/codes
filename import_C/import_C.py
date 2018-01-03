@@ -7,11 +7,13 @@ from ctypes import *
 # pDll=WinDLL("test.dll")
 # print pDll.add(1,2)
 
+
 ##调用C的数组求和
 # pDll=WinDLL("test3.dll")
-# ARRAY = (c_int *13) #包含4个整数的数组类型
-# a = ARRAY(0,1,2,3,4,5,6,7,8,9,0,11,12) #声明包含4个整数的数组，初值均为0      
+# ARRAY = (c_int *13) #包含13个整数的数组类型
+# a = ARRAY(0,1,2,3,4,5,6,7,8,9,0,11,12) #声明包含13个整数的数组   
 # print pDll.sum(a)
+
 
 ##调用C函数结构
 
