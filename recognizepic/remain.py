@@ -1,7 +1,7 @@
 ##remain
 #-*-coding:utf-8-*-
 
-from cutpic import *
+from getPicture import *
  
 import ImageEnhance    
 import ImageFilter    
@@ -9,6 +9,8 @@ import sys
 from pytesser import *  
 from recognizenum import *
 import time
+from PIL import Image,ImageGrab
+import when
 
 
 # ifcolor = [(233, 241, 243),(237, 238, 240),(238, 240, 239),(235, 237, 236),(236, 238, 237),
@@ -31,9 +33,9 @@ import time
 #            ]
 
 ifcolor = []
-for i in xrange(210,255):
-	for n in xrange(210,255):
-		for g in xrange(210,255):
+for i in xrange(210,256):
+	for n in xrange(210,256):
+		for g in xrange(210,256):
 			ifcolor.append((i,n,g))
 
 
@@ -108,12 +110,16 @@ colorRecorde = 0
 playLeftColorRecode = 0
 bankerRightRecode = 0
 while True:
+	# print colorRecorde
+	# print bankerRightRecode
 	time.sleep(1.5)
 
 	##PLAYER
 
-	# cutpic((569,751,746,817),"testnew.jpg")
-	# cutpic((1173,751,1350,817),"BANKER.jpg")
+	cutpic((569,751,746,817),"testnew.jpg")
+	cutpic((1173,751,1350,817),"BANKER.jpg")
+
+	
 
 	clr = Color()
 
@@ -160,7 +166,7 @@ while True:
 		continue
 
 	elif img.getpixel((79,16))  not in ifcolor and imgBANKER.getpixel((62,26))   \
-	not in ifcolor and img.getpixel((134,16)) not in ifcolor and imgBANKER.getpixel((7,26)) not in ifcolor and \
+	not in ifcolor and img.getpixel((130,3)) not in ifcolor and imgBANKER.getpixel((7,26)) not in ifcolor and \
 	imgBANKER.getpixel((137,26)) not in ifcolor and img.getpixel((23,23)) not in ifcolor:
 		ifcolor.append(colorRecorde)
 		ifcolor.append(playLeftColorRecode)
@@ -175,7 +181,7 @@ while True:
 
 	# print img.getpixel((79,16))
 	elif img.getpixel((79,16))  in ifcolor  and imgBANKER.getpixel((62,26)) in ifcolor  \
-	and img.getpixel((134,16)) in ifcolor and imgBANKER.getpixel((7,26)) in ifcolor:
+	and img.getpixel((130,3)) in ifcolor and imgBANKER.getpixel((7,26)) in ifcolor:
 
 		# print colorRecorde
 		# print playLeftColorRecode
@@ -200,6 +206,11 @@ while True:
 		colorRecorde = img.getpixel((79,16))
 		ifcolor.remove(img.getpixel((79,16)))
 
+
+		##录屏
+		im = ImageGrab.grab() 
+		im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
+
 		if  clr.intCardNum(getverify1('PLAYER-middle.jpg')) + clr.intCardNum(getverify1('PLAYER-right.jpg')) > 10:
 			mainCard = clr.intCardNum(getverify1('PLAYER-middle.jpg')) + clr.intCardNum(getverify1('PLAYER-right.jpg')) -10
 			# print mainCard
@@ -216,33 +227,39 @@ while True:
 
 			# print BankerCard
 
-			# time.sleep(1)
-			# cutpic((569,751,746,817),"testnew.jpg")
-			img = Image.open("testnew.jpg")
-			# print img.getpixel((23,23))
-			if img.getpixel((23,23)) in ifcolor:
-				cutnum(img,((0,30,34,53)),'PLAYER-left.jpg')
-				leftpic = Image.open('PLAYER-left.jpg')
-				newLP = leftpic.rotate(270)
-				newLP.save("PLAYER-left.jpg")
+			while True:
+				print "PLAYER-left.jpg here"
+				time.sleep(1.5)
+				cutpic((569,751,746,817),"testnew.jpg")
+				img = Image.open("testnew.jpg")
+				# print img.getpixel((23,23))
+				if img.getpixel((23,23)) in ifcolor:
+					cutnum(img,((0,30,34,53)),'PLAYER-left.jpg')
+					leftpic = Image.open('PLAYER-left.jpg')
+					newLP = leftpic.rotate(270)
+					newLP.save("PLAYER-left.jpg")
 
-				# if imgBANKER.getpixel((137,26)) in ifcolor:
-				##先移除像素点值，便于只输出一次
-				playLeftColorRecode = img.getpixel((23,23))
-				ifcolor.remove(playLeftColorRecode)
+					# if imgBANKER.getpixel((137,26)) in ifcolor:
+					##先移除像素点值，便于只输出一次
+					playLeftColorRecode = img.getpixel((23,23))
+					ifcolor.remove(playLeftColorRecode)
+					print u"PLAYER-左边是。。。。。"+str(getverify1('PLAYER-left.jpg'))  #leftcard
 
-				print u"PLAYER-左边是。。。。。"+str(getverify1('PLAYER-left.jpg'))  #leftcard
+					##录屏
+					im = ImageGrab.grab() 
+					im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
 
-				# mainCard = mainCard + int(getverify1('PLAYER-left.jpg'))
+					# time.sleep(3)
+					break
 
 			if BankerCard <=2:
 				while True:
-					print "here"
-					# time.sleep(1)
-					# cutpic((1173,751,1350,817),"BANKER.jpg")
+					print "BankerCard <=2 here"
+					time.sleep(1)
+					cutpic((1173,751,1350,817),"BANKER.jpg")
 					imgBANKER = Image.open("BANKER.jpg")
 					# print img.getpixel((137,26))
-					if imgBANKER.getpixel((137,26)) in ifcolor:
+					if imgBANKER.getpixel((175,63)) in ifcolor and imgBANKER.getpixel((114,20)) in ifcolor:
 						cutnum(imgBANKER,((112,30,144,54)),'BANKER-right.jpg')
 						rightpic = Image.open('BANKER-right.jpg')
 						newRP = rightpic.rotate(270)
@@ -251,6 +268,12 @@ while True:
 
 						bankerRightRecode = imgBANKER.getpixel((137,26))
 						ifcolor.remove(bankerRightRecode)
+
+						##录屏
+						im = ImageGrab.grab() 
+						im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
+
+						time.sleep(3)
 						break
 
 
@@ -258,17 +281,18 @@ while True:
 
 			if BankerCard == 3:
 
-				if int(getverify1('PLAYER-left.jpg')) == 8:
+				if clr.intCardNum(getverify1('PLAYER-left.jpg')) == 8:
+					time.sleep(3)
 					continue
 				else:
 
 					while True:
 						# print "here"
-						# time.sleep(1)
-						# cutpic((1173,751,1350,817),"BANKER.jpg")
+						time.sleep(1.5)
+						cutpic((1173,751,1350,817),"BANKER.jpg")
 						imgBANKER = Image.open("BANKER.jpg")
 						# print img.getpixel((137,26))
-						if imgBANKER.getpixel((137,26)) in ifcolor:
+						if imgBANKER.getpixel((175,63)) in ifcolor and imgBANKER.getpixel((114,20)) in ifcolor:
 							cutnum(imgBANKER,((112,30,144,54)),'BANKER-right.jpg')
 							rightpic = Image.open('BANKER-right.jpg')
 							newRP = rightpic.rotate(270)
@@ -277,19 +301,33 @@ while True:
 
 							bankerRightRecode = imgBANKER.getpixel((137,26))
 							ifcolor.remove(bankerRightRecode)
+
+							##录屏
+							im = ImageGrab.grab() 
+							im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
+
+							time.sleep(3)
 							break
+
 			if BankerCard == 4 :
-				if int(getverify1('PLAYER-left.jpg')) == 1 or int(getverify1('PLAYER-left.jpg')) == 8 or  \
-				int(getverify1('PLAYER-left.jpg')) == 9 or int(getverify1('PLAYER-left.jpg')) == 10:
+				try:
+					if int(getverify1('PLAYER-left.jpg')) == 10 :
+						continue
+				except:
+						pass
+
+				if clr.intCardNum(getverify1('PLAYER-left.jpg')) == 1 or clr.intCardNum(getverify1('PLAYER-left.jpg')) == 8 or  \
+				clr.intCardNum(getverify1('PLAYER-left.jpg')) == 9 or clr.intCardNum(getverify1('PLAYER-left.jpg')) == 10:
+					time.sleep(3)
 					continue
 				else:
 					while True:
 						# print "here"
-						# time.sleep(1)
-						# cutpic((1173,751,1350,817),"BANKER.jpg")
+						time.sleep(1.5)
+						cutpic((1173,751,1350,817),"BANKER.jpg")
 						imgBANKER = Image.open("BANKER.jpg")
 						# print img.getpixel((137,26))
-						if imgBANKER.getpixel((137,26)) in ifcolor:
+						if imgBANKER.getpixel((175,63)) in ifcolor and imgBANKER.getpixel((114,20)) in ifcolor:
 							cutnum(imgBANKER,((112,30,144,54)),'BANKER-right.jpg')
 							rightpic = Image.open('BANKER-right.jpg')
 							newRP = rightpic.rotate(270)
@@ -298,20 +336,33 @@ while True:
 
 							bankerRightRecode = imgBANKER.getpixel((137,26))
 							ifcolor.remove(bankerRightRecode)
+
+							##录屏
+							im = ImageGrab.grab() 
+							im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
+
 							break
+
 			if BankerCard == 5 :
-				if int(getverify1('PLAYER-left.jpg')) == 1 or int(getverify1('PLAYER-left.jpg')) == 2 or  \
-				int(getverify1('PLAYER-left.jpg')) == 3 or int(getverify1('PLAYER-left.jpg')) == 8 \
-				int(getverify1('PLAYER-left.jpg')) == 9 or int(getverify1('PLAYER-left.jpg')) == 10:
+
+				try:
+					if int(getverify1('PLAYER-left.jpg')) == 10 :
+						continue
+				except:
+						pass
+
+				if clr.intCardNum(getverify1('PLAYER-left.jpg')) == 1 or clr.intCardNum(getverify1('PLAYER-left.jpg')) == 2 or  \
+				clr.intCardNum(getverify1('PLAYER-left.jpg')) == 3 or clr.intCardNum(getverify1('PLAYER-left.jpg')) == 8 or \
+				clr.intCardNum(getverify1('PLAYER-left.jpg')) == 9 or clr.intCardNum(getverify1('PLAYER-left.jpg')) == 10:
 					continue
 				else:
 					while True:
 						# print "here"
-						# time.sleep(1)
-						# cutpic((1173,751,1350,817),"BANKER.jpg")
+						time.sleep(1.5)
+						cutpic((1173,751,1350,817),"BANKER.jpg")
 						imgBANKER = Image.open("BANKER.jpg")
 						# print img.getpixel((137,26))
-						if imgBANKER.getpixel((137,26)) in ifcolor:
+						if imgBANKER.getpixel((175,63)) in ifcolor and imgBANKER.getpixel((114,20)) in ifcolor:
 							cutnum(imgBANKER,((112,30,144,54)),'BANKER-right.jpg')
 							rightpic = Image.open('BANKER-right.jpg')
 							newRP = rightpic.rotate(270)
@@ -320,15 +371,13 @@ while True:
 
 							bankerRightRecode = imgBANKER.getpixel((137,26))
 							ifcolor.remove(bankerRightRecode)
+
+							##录屏
+							im = ImageGrab.grab() 
+							im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
+
 							break
-			# else:
-			# 	ifcolor.append(colorRecorde)
-			# 	colorRecorde = 0
-			# 	playLeftColorRecode = 0
-			# 	bankerRightRecode = 0
-			# 	clr.print_red_text('---------------------------------')
-			# 	time.sleep(3)
-			# 	continue
+			
 
 			
 			else:
@@ -342,16 +391,15 @@ while True:
 			
 
 
-	 	elif mainCard == 6 :
+	 	elif mainCard == 6 or mainCard == 7 :
 
 	 		if BankerCard <= 5 :
 	 			while True:
-						# print "here"
-						# time.sleep(1)
-						# cutpic((1173,751,1350,817),"BANKER.jpg")
+						time.sleep(1.5)
+						cutpic((1173,751,1350,817),"BANKER.jpg")
 						imgBANKER = Image.open("BANKER.jpg")
 						# print img.getpixel((137,26))
-						if imgBANKER.getpixel((137,26)) in ifcolor:
+						if imgBANKER.getpixel((175,63)) in ifcolor and imgBANKER.getpixel((114,20)) in ifcolor:
 							cutnum(imgBANKER,((112,30,144,54)),'BANKER-right.jpg')
 							rightpic = Image.open('BANKER-right.jpg')
 							newRP = rightpic.rotate(270)
@@ -360,16 +408,23 @@ while True:
 
 							bankerRightRecode = imgBANKER.getpixel((137,26))
 							ifcolor.remove(bankerRightRecode)
+
+							##录屏
+							im = ImageGrab.grab() 
+							im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
+
+
 							break
+				continue
 			elif BankerCard == 6:
-				if int(getverify1('PLAYER-left.jpg')) = 6 or int(getverify1('PLAYER-left.jpg')) = 7:
+				if clr.intCardNum(getverify1('PLAYER-left.jpg')) == 6 or clr.intCardNum(getverify1('PLAYER-left.jpg')) == 7:
 					while True:
 						# print "here"
-						# time.sleep(1)
-						# cutpic((1173,751,1350,817),"BANKER.jpg")
+						time.sleep(1.5)
+						cutpic((1173,751,1350,817),"BANKER.jpg")
 						imgBANKER = Image.open("BANKER.jpg")
 						# print img.getpixel((137,26))
-						if imgBANKER.getpixel((137,26)) in ifcolor:
+						if imgBANKER.getpixel((175,63)) in ifcolor and imgBANKER.getpixel((114,20)) in ifcolor:
 							cutnum(imgBANKER,((112,30,144,54)),'BANKER-right.jpg')
 							rightpic = Image.open('BANKER-right.jpg')
 							newRP = rightpic.rotate(270)
@@ -378,10 +433,23 @@ while True:
 
 							bankerRightRecode = imgBANKER.getpixel((137,26))
 							ifcolor.remove(bankerRightRecode)
+
+							##录屏
+							im = ImageGrab.grab() 
+							im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
+
 							break
+			else:
+				ifcolor.append(colorRecorde)
+				colorRecorde = 0
+				playLeftColorRecode = 0
+				bankerRightRecode = 0
+				clr.print_red_text('---------------------------------')
+				time.sleep(3.5)
+				continue
 
 
-		elif mainCard == 7 or mainCard == 8 or mainCard == 9:
+		elif  mainCard == 8 or mainCard == 9:
 		 	time.sleep(2)
 		 	continue
 
