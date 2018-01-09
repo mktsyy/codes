@@ -54,6 +54,9 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 			##先移除像素点值，便于只输出一次
 			# playLeftColorRecode = img.getpixel(i)
 			# ifcolor.remove(playLeftColorRecode)
+
+			del PlayerLeftJudgeCoordinate[0]
+			
 			print PlayerLeftPicName.split('.')[0]+u"。。。。。"+str(getverify1(PlayerLeftPicName))  #leftcard
 
 			##录屏
