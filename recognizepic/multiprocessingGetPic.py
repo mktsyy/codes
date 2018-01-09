@@ -32,28 +32,38 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 		cutpic(PlayPiccoordinate,PlayerPicName)
 		img = Image.open(PlayerPicName)
 		# print img.getpixel((23,23))
-		for i in PlayerLeftJudgeCoordinate:
+		
+		tempx = []
+		x = 0
+		while x < len(PlayerLeftJudgeCoordinate):
+			tempx.append(img.getpixel(PlayerLeftJudgeCoordinate[x]))
+			# print type(img.getpixel(PlayerLeftJudgeCoordinate[x]))
+			x = x + 1
 
-			if img.getpixel(i) in ifcolor:
-				cutnum(img,(PlayerCutCoordinate),PlayerLeftPicName)
-				leftpic = Image.open(PlayerLeftPicName)
-				newLP = leftpic.rotate(270)
-				newLP.save(PlayerLeftPicName)
+		# print tempx
+		# print len(list(set(tempx).intersection(set(ifcolor))))
+		# print "PlayerLeftJudgeCoordinate........."+str(len(PlayerLeftJudgeCoordinate))
+		##判断列表中元素是否在ifcolor中，如果一样，再进行截图操作
+		if len(list(set(tempx).intersection(set(ifcolor)))) == len(PlayerLeftJudgeCoordinate):
+			cutnum(img,(PlayerCutCoordinate),PlayerLeftPicName)
+			leftpic = Image.open(PlayerLeftPicName)
+			newLP = leftpic.rotate(270)
+			newLP.save(PlayerLeftPicName)
 
-				# if imgBANKER.getpixel((137,26)) in ifcolor:
-				##先移除像素点值，便于只输出一次
-				# playLeftColorRecode = img.getpixel(i)
-				# ifcolor.remove(playLeftColorRecode)
-				print PlayerLeftPicName.split('.')[0]+u"。。。。。"+str(getverify1(PlayerLeftPicName))  #leftcard
+			# if imgBANKER.getpixel((137,26)) in ifcolor:
+			##先移除像素点值，便于只输出一次
+			# playLeftColorRecode = img.getpixel(i)
+			# ifcolor.remove(playLeftColorRecode)
+			print PlayerLeftPicName.split('.')[0]+u"。。。。。"+str(getverify1(PlayerLeftPicName))  #leftcard
 
-				##录屏
-				im = ImageGrab.grab() 
-				im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
+			##录屏
+			im = ImageGrab.grab() 
+			im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
 
-				# time.sleep(3)
-				break
-			else:
-				break
+			# time.sleep(3)
+			break
+		else:
+			break
 		break
    
 
@@ -68,7 +78,7 @@ if __name__=='__main__':
 		time.sleep(1)
 		# print('Parent process %s.' % os.getpid())
 		p = Process(target=run_proc, args=((569,751,746,817),"testnew.jpg",[(23,23)],(0,30,34,53),'PLAYER-left.jpg'))
-		p1 = Process(target=run_proc, args=((1173,751,1350,817),"BANKER.jpg",[(175,63),(145,63)],(112,30,144,54),'BANKER-right.jpg'))
+		p1 = Process(target=run_proc, args=((1173,751,1350,817),"BANKER.jpg",[(175,63),(145,63),(165,54)],(112,30,144,54),'BANKER-right.jpg'))
 		p2 = Process(target=ScreenShot,args=())
 		# print('Child process will start.')
 		p2.start()
