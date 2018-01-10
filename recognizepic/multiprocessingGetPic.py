@@ -23,9 +23,9 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 		# print "PLAYER-left.jpg here"
 
 		if PlayerPicName == "testnew.jpg" :
-			time.sleep(1.1)
+			time.sleep(0.2)
 		else:
-			time.sleep(0.8)
+			time.sleep(0.5)
 		
 
 
@@ -56,14 +56,17 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 			# ifcolor.remove(playLeftColorRecode)
 
 			del PlayerLeftJudgeCoordinate[0]
-			
+
 			print PlayerLeftPicName.split('.')[0]+u"。。。。。"+str(getverify1(PlayerLeftPicName))  #leftcard
 
 			##录屏
 			im = ImageGrab.grab() 
 			im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
 
-			# time.sleep(3)
+			if PlayerLeftPicName == 'PLAYER-left.jpg':
+				time.sleep(5)
+			else:
+				time.sleep(3)
 			break
 		else:
 			break
@@ -80,14 +83,14 @@ if __name__=='__main__':
 	while True:
 		time.sleep(1)
 		# print('Parent process %s.' % os.getpid())
-		p = Process(target=run_proc, args=((569,751,746,817),"testnew.jpg",[(23,23)],(0,30,34,53),'PLAYER-left.jpg'))
-		p1 = Process(target=run_proc, args=((1173,751,1350,817),"BANKER.jpg",[(175,63),(145,63),(165,54)],(112,30,144,54),'BANKER-right.jpg'))
-		p2 = Process(target=ScreenShot,args=())
+		PLAYERLeftPic = Process(target=run_proc, args=((569,751,746,817),"testnew.jpg",[(23,23)],(0,30,34,53),'PLAYER-left.jpg'))
+		BANKERRightPic = Process(target=run_proc, args=((1173,751,1350,817),"BANKER.jpg",[(175,63),(145,63),(165,54)],(112,30,144,54),'BANKER-right.jpg'))
+		ScreenShotPic = Process(target=ScreenShot,args=())
 		# print('Child process will start.')
-		p2.start()
-		p2.join()
-		p.start()
-		p1.start()
-		p.join()
-		p1.join()
+		ScreenShotPic.start()
+		ScreenShotPic.join()
+		PLAYERLeftPic.start()
+		BANKERRightPic.start()
+		PLAYERLeftPic.join()
+		BANKERRightPic.join()
 		# print('Child process end.')
