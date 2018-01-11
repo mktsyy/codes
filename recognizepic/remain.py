@@ -12,7 +12,7 @@ import time
 from PIL import Image,ImageGrab
 import when
 import os
-from multiprocessing import Process
+from multiprocessing import Process,Manager
 
 
 # ifcolor = [(233, 241, 243),(237, 238, 240),(238, 240, 239),(235, 237, 236),(236, 238, 237),
@@ -40,7 +40,15 @@ for i in xrange(210,256):
 		for g in xrange(210,256):
 			ifcolor.append((i,n,g))
 
-
+cardAllNum = []
+k = 0
+# print cardAllNum.count('A')
+basicCard =['0','A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] 
+for i in basicCard:
+	while k < 32:
+		cardAllNum.append(i)
+		k = k + 1
+	k = 0
 
 ##BANKER
 
@@ -106,7 +114,7 @@ class Color:
 clr = Color()
 
 # 子进程要执行的代码
-def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCutCoordinate,PlayerLeftPicName):
+def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCutCoordinate,PlayerLeftPicName,q):
 	while True:
 		# print "PLAYER-left.jpg here"
 
@@ -143,16 +151,24 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 			# playLeftColorRecode = img.getpixel(i)
 			# ifcolor.remove(playLeftColorRecode)
 
+			# if str(getverify1(PlayerLeftPicName)) == None:
+			# 	continue
+
 			del PlayerLeftJudgeCoordinate[0]
 
 			if "BANKER" in PlayerLeftPicName:
 				clr.print_blue_text(PlayerLeftPicName.split('.')[0]+u"。。。。。"+str(getverify1(PlayerLeftPicName)))
+			
 			else:
 				print PlayerLeftPicName.split('.')[0]+u"。。。。。"+str(getverify1(PlayerLeftPicName))  #leftcard
 
 			##录屏
 			im = ImageGrab.grab() 
 			im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
+
+			# print str(getverify1(PlayerLeftPicName))
+			# print cardAllNum
+			q.remove(str(getverify1(PlayerLeftPicName)))
 
 			if PlayerLeftPicName == 'PLAYER-left.jpg':
 				time.sleep(4)
@@ -174,15 +190,36 @@ if __name__=='__main__':
 	colorRecorde = 0
 	playLeftColorRecode = 0
 	bankerRightRecode = 0
+
+	q = Manager().list(cardAllNum)
+
 	while True:
 		# print colorRecorde
 		# print bankerRightRecode
+
+		##打印剩余牌数
+		print clr.print_green_text([
+		'0'+':'+str(q.count('0')), 
+		'A'+':'+str(q.count('A')), 
+		'2'+':'+str(q.count('2')), 
+		'3'+':'+str(q.count('3')), 
+		'4'+':'+str(q.count('4')),
+		'5'+':'+str(q.count('5')), 
+		'6'+':'+str(q.count('6')), 
+		'7'+':'+str(q.count('7')), 
+		'8'+':'+str(q.count('8')), 
+		'9'+':'+str(q.count('9')), 
+		'10'+':'+str(q.count('10')), 
+		'J'+':'+str(q.count('J')), 
+		'Q'+':'+str(q.count('Q')), 
+		'K'+':'+str(q.count('K'))
+		]) 
+
 		time.sleep(1)
 
-		
 
-		PLAYERLeftPic = Process(target=run_proc, args=((569,751,746,817),"testnew.jpg",[(23,23)],(0,30,34,53),'PLAYER-left.jpg'))
-		BANKERRightPic = Process(target=run_proc, args=((1173,751,1350,817),"BANKER.jpg",[(175,63),(145,63),(165,54)],(112,30,144,54),'BANKER-right.jpg'))
+		PLAYERLeftPic = Process(target=run_proc, args=((569,751,746,817),"testnew.jpg",[(23,23)],(0,30,34,53),'PLAYER-left.jpg',q))
+		BANKERRightPic = Process(target=run_proc, args=((1173,751,1350,817),"BANKER.jpg",[(175,63),(145,63),(165,54)],(112,30,144,54),'BANKER-right.jpg',q))
 		ScreenShotPic = Process(target=ScreenShot,args=())
 
 		
@@ -289,6 +326,12 @@ if __name__=='__main__':
 			####先移除像素点值，便于只输出一次
 			colorRecorde = img.getpixel((79,16))
 			ifcolor.remove(img.getpixel((79,16)))
+
+			##识别牌后从列表中移除
+			q.remove(str(getverify1('PLAYER-middle.jpg')))
+			q.remove(str(getverify1('PLAYER-right.jpg')))
+			q.remove(str(getverify1('BANKER-middle.jpg')))
+			q.remove(str(getverify1('BANKER-left.jpg')))
 			# time.sleep(15)
 
 
