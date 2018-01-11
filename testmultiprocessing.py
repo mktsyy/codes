@@ -13,7 +13,10 @@ qq = ['1','2','3','4']
 # 子进程要执行的代码
 def run_proc(name,q):
 	print q
-	q.remove(q[0])
+	if len(q) > 0:
+		q.remove(q[0])
+	else:
+		raise KeyboardInterrupt
 	print('Run child process %s (%s)...' % (name, os.getpid()))
 
 if __name__=='__main__':
