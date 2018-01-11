@@ -116,7 +116,6 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 			time.sleep(0.5)
 		
 
-
 		cutpic(PlayPiccoordinate,PlayerPicName)
 		img = Image.open(PlayerPicName)
 		# print img.getpixel((23,23))
@@ -130,6 +129,7 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 
 		# print tempx
 		# print len(list(set(tempx).intersection(set(ifcolor))))
+		# print len(PlayerLeftJudgeCoordinate)
 		# print "PlayerLeftJudgeCoordinate........."+str(len(PlayerLeftJudgeCoordinate))
 		##判断列表中元素是否在ifcolor中，如果一样，再进行截图操作
 		if len(list(set(tempx).intersection(set(ifcolor)))) == len(PlayerLeftJudgeCoordinate):
