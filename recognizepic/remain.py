@@ -12,7 +12,7 @@ import time
 from PIL import Image,ImageGrab
 import when
 import os
-from multiprocessing import Process,Manager
+from multiprocessing import Process,Manager,Lock
 
 
 # ifcolor = [(233, 241, 243),(237, 238, 240),(238, 240, 239),(235, 237, 236),(236, 238, 237),
@@ -113,17 +113,27 @@ class Color:
 
 clr = Color()
 
+def ScreenShot():
+	im = ImageGrab.grab() 
+	im.save(os.getcwd()+"/screenshot.png")#保存图片 
+
 # 子进程要执行的代码
-def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCutCoordinate,PlayerLeftPicName,q):
+def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCutCoordinate,PlayerLeftPicName,q,lock):
 	while True:
 		# print "PLAYER-left.jpg here"
 
 		if PlayerPicName == "testnew.jpg" :
 			time.sleep(0.2)
 		else:
-			time.sleep(0.5)
-		
+			time.sleep(0.7)
 
+		# lock.acquire() 
+
+		# try:
+		# 	ScreenShot()
+		# finally:
+		# 	lock.release()
+		
 		cutpic(PlayPiccoordinate,PlayerPicName)
 		img = Image.open(PlayerPicName)
 		# print img.getpixel((23,23))
@@ -171,9 +181,9 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 			q.remove(str(getverify1(PlayerLeftPicName)))
 
 			if PlayerLeftPicName == 'PLAYER-left.jpg':
-				time.sleep(4)
+				time.sleep(3)
 			else:
-				time.sleep(2)
+				time.sleep(1)
 			break
 		else:
 			break
@@ -191,12 +201,6 @@ class testdll(ctypes.Structure):
 pDll=ctypes.WinDLL("test5.dll")
 ##其中sum是c的函数名称
 pDll.Dec_bet.restype=testdll 
-
-
-
-def ScreenShot():
-	im = ImageGrab.grab() 
-	im.save(os.getcwd()+"/screenshot.png")#保存图片 
 
 
 if __name__=='__main__':
@@ -233,12 +237,14 @@ if __name__=='__main__':
 
 		ScreenShotPic = Process(target=ScreenShot,args=())
 
+		lock = Lock()
+
 		##PLAYER
 		ScreenShotPic.start()
 		ScreenShotPic.join()
 
-		PLAYERLeftPic = Process(target=run_proc, args=((569,751,746,817),"testnew.jpg",[(23,23)],(0,30,34,53),'PLAYER-left.jpg',q))
-		BANKERRightPic = Process(target=run_proc, args=((1173,751,1350,817),"BANKER.jpg",[(175,63),(145,63),(165,54)],(112,30,144,54),'BANKER-right.jpg',q))
+		PLAYERLeftPic = Process(target=run_proc, args=((569,751,746,817),"testnew.jpg",[(23,23)],(0,30,34,53),'PLAYER-left.jpg',q,lock))
+		BANKERRightPic = Process(target=run_proc, args=((1173,751,1350,817),"BANKER.jpg",[(175,63),(145,63),(165,54)],(112,30,144,54),'BANKER-right.jpg',q,lock))
 
 		
 

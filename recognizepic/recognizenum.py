@@ -5,7 +5,8 @@ import Image
 import ImageEnhance    
 import ImageFilter    
 import sys    
-from pytesser import *  
+from pytesser import * 
+import os 
 
 
 # 二值化    
@@ -51,6 +52,11 @@ def  getverify1(name):
     if text == "1Q":
     	text = "10"   
     # print text
+
+    ##del file
+    os.remove('g'+name)
+    os.remove('b'+name)
+    
     return text    
 # getverify1('PLAYER-left.jpg')  #注意这里的图片要和此文件在同一个目录，要不就传绝对路径也行
 # getverify1('BANKER-right.jpg')  #注意这里的图片要和此文件在同一个目录，要不就传绝对路径也行
