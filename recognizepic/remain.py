@@ -127,66 +127,67 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 		else:
 			time.sleep(0.7)
 
-		# lock.acquire() 
+		lock.acquire() 
 
-		# try:
-		# 	ScreenShot()
-		# finally:
-		# 	lock.release()
+		try:
+			# ScreenShot()
 		
-		cutpic(PlayPiccoordinate,PlayerPicName)
-		img = Image.open(PlayerPicName)
-		# print img.getpixel((23,23))
 		
-		tempx = []
-		x = 0
-		while x < len(PlayerLeftJudgeCoordinate):
-			tempx.append(img.getpixel(PlayerLeftJudgeCoordinate[x]))
-			# print type(img.getpixel(PlayerLeftJudgeCoordinate[x]))
-			x = x + 1
-
-		# print tempx
-		# print len(list(set(tempx).intersection(set(ifcolor))))
-		# print len(PlayerLeftJudgeCoordinate)
-		# print "PlayerLeftJudgeCoordinate........."+str(len(PlayerLeftJudgeCoordinate))
-		##判断列表中元素是否在ifcolor中，如果一样，再进行截图操作
-		if len(list(set(tempx).intersection(set(ifcolor)))) == len(PlayerLeftJudgeCoordinate):
-			cutnum(img,(PlayerCutCoordinate),PlayerLeftPicName)
-			leftpic = Image.open(PlayerLeftPicName)
-			newLP = leftpic.rotate(270)
-			newLP.save(PlayerLeftPicName)
-
-			# if imgBANKER.getpixel((137,26)) in ifcolor:
-			##先移除像素点值，便于只输出一次
-			# playLeftColorRecode = img.getpixel(i)
-			# ifcolor.remove(playLeftColorRecode)
-
-			# if str(getverify1(PlayerLeftPicName)) == None:
-			# 	continue
-
-			del PlayerLeftJudgeCoordinate[0]
-
-			if "BANKER" in PlayerLeftPicName:
-				clr.print_blue_text(PlayerLeftPicName.split('.')[0]+u"。。。。。"+str(getverify1(PlayerLeftPicName)))
+			cutpic(PlayPiccoordinate,PlayerPicName)
+			img = Image.open(PlayerPicName)
+			# print img.getpixel((23,23))
 			
+			tempx = []
+			x = 0
+			while x < len(PlayerLeftJudgeCoordinate):
+				tempx.append(img.getpixel(PlayerLeftJudgeCoordinate[x]))
+				# print type(img.getpixel(PlayerLeftJudgeCoordinate[x]))
+				x = x + 1
+
+			# print tempx
+			# print len(list(set(tempx).intersection(set(ifcolor))))
+			# print len(PlayerLeftJudgeCoordinate)
+			# print "PlayerLeftJudgeCoordinate........."+str(len(PlayerLeftJudgeCoordinate))
+			##判断列表中元素是否在ifcolor中，如果一样，再进行截图操作
+			if len(list(set(tempx).intersection(set(ifcolor)))) == len(PlayerLeftJudgeCoordinate):
+				cutnum(img,(PlayerCutCoordinate),PlayerLeftPicName)
+				leftpic = Image.open(PlayerLeftPicName)
+				newLP = leftpic.rotate(270)
+				newLP.save(PlayerLeftPicName)
+
+				# if imgBANKER.getpixel((137,26)) in ifcolor:
+				##先移除像素点值，便于只输出一次
+				# playLeftColorRecode = img.getpixel(i)
+				# ifcolor.remove(playLeftColorRecode)
+
+				# if str(getverify1(PlayerLeftPicName)) == None:
+				# 	continue
+
+				del PlayerLeftJudgeCoordinate[0]
+
+				if "BANKER" in PlayerLeftPicName:
+					clr.print_blue_text(PlayerLeftPicName.split('.')[0]+u"。。。。。"+str(getverify1(PlayerLeftPicName)))
+				
+				else:
+					print PlayerLeftPicName.split('.')[0]+u"。。。。。"+str(getverify1(PlayerLeftPicName))  #leftcard
+
+				##录屏
+				im = ImageGrab.grab() 
+				im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
+
+				# print str(getverify1(PlayerLeftPicName))
+				# print cardAllNum
+				q.remove(str(getverify1(PlayerLeftPicName)))
+
+				if PlayerLeftPicName == 'PLAYER-left.jpg':
+					time.sleep(2.5)
+				else:
+					time.sleep(1)
+				break
 			else:
-				print PlayerLeftPicName.split('.')[0]+u"。。。。。"+str(getverify1(PlayerLeftPicName))  #leftcard
-
-			##录屏
-			im = ImageGrab.grab() 
-			im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
-
-			# print str(getverify1(PlayerLeftPicName))
-			# print cardAllNum
-			q.remove(str(getverify1(PlayerLeftPicName)))
-
-			if PlayerLeftPicName == 'PLAYER-left.jpg':
-				time.sleep(3)
-			else:
-				time.sleep(1)
-			break
-		else:
-			break
+				break
+		finally:
+			lock.release()
 		break
 
 ##加入c计算赔率  
