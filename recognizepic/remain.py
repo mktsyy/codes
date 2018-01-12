@@ -178,7 +178,21 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 		else:
 			break
 		break
-   
+
+##加入c计算赔率  
+class testdll(ctypes.Structure):  
+    _fields_=[('Banker_wager',ctypes.c_int),  
+             ('Player_wager',ctypes.c_int),
+             ('Tie_wager',ctypes.c_int),
+             ('Pair_wager',ctypes.c_int),
+             ('DB_wager',ctypes.c_int),
+             ] 
+
+pDll=ctypes.WinDLL("test5.dll")
+##其中sum是c的函数名称
+pDll.Dec_bet.restype=testdll 
+
+
 
 def ScreenShot():
 	im = ImageGrab.grab() 
@@ -198,35 +212,36 @@ if __name__=='__main__':
 		# print bankerRightRecode
 
 		##打印剩余牌数
-		print clr.print_green_text([
-		'0'+':'+str(q.count('0')), 
-		'A'+':'+str(q.count('A')), 
-		'2'+':'+str(q.count('2')), 
-		'3'+':'+str(q.count('3')), 
-		'4'+':'+str(q.count('4')),
-		'5'+':'+str(q.count('5')), 
-		'6'+':'+str(q.count('6')), 
-		'7'+':'+str(q.count('7')), 
-		'8'+':'+str(q.count('8')), 
-		'9'+':'+str(q.count('9')), 
-		'10'+':'+str(q.count('10')), 
-		'J'+':'+str(q.count('J')), 
-		'Q'+':'+str(q.count('Q')), 
-		'K'+':'+str(q.count('K'))
-		]) 
-
+		# print clr.print_green_text([
+		# '0'+':'+str(q.count('0')), 
+		# 'A'+':'+str(q.count('A')), 
+		# '2'+':'+str(q.count('2')), 
+		# '3'+':'+str(q.count('3')), 
+		# '4'+':'+str(q.count('4')),
+		# '5'+':'+str(q.count('5')), 
+		# '6'+':'+str(q.count('6')), 
+		# '7'+':'+str(q.count('7')), 
+		# '8'+':'+str(q.count('8')), 
+		# '9'+':'+str(q.count('9')), 
+		# '10'+':'+str(q.count('10')), 
+		# 'J'+':'+str(q.count('J')), 
+		# 'Q'+':'+str(q.count('Q')), 
+		# 'K'+':'+str(q.count('K'))
+		# ]) 
+		### print type(q.count('K'))
 		time.sleep(1)
 
-
-		PLAYERLeftPic = Process(target=run_proc, args=((569,751,746,817),"testnew.jpg",[(23,23)],(0,30,34,53),'PLAYER-left.jpg',q))
-		BANKERRightPic = Process(target=run_proc, args=((1173,751,1350,817),"BANKER.jpg",[(175,63),(145,63),(165,54)],(112,30,144,54),'BANKER-right.jpg',q))
 		ScreenShotPic = Process(target=ScreenShot,args=())
-
-		
 
 		##PLAYER
 		ScreenShotPic.start()
 		ScreenShotPic.join()
+
+		PLAYERLeftPic = Process(target=run_proc, args=((569,751,746,817),"testnew.jpg",[(23,23)],(0,30,34,53),'PLAYER-left.jpg',q))
+		BANKERRightPic = Process(target=run_proc, args=((1173,751,1350,817),"BANKER.jpg",[(175,63),(145,63),(165,54)],(112,30,144,54),'BANKER-right.jpg',q))
+
+		
+
 
 		# cutpic((569,751,746,817),"testnew.jpg")
 		# cutpic((1173,751,1350,817),"BANKER.jpg")
@@ -289,6 +304,36 @@ if __name__=='__main__':
 		elif img.getpixel((79,16))  not in ifcolor and imgBANKER.getpixel((62,26))   \
 		not in ifcolor and img.getpixel((130,3)) not in ifcolor and imgBANKER.getpixel((7,26)) not in ifcolor and \
 		imgBANKER.getpixel((137,26)) not in ifcolor and img.getpixel((23,23)) not in ifcolor:
+
+			finallist = [
+					q.count('0'), 
+					q.count('A'), 
+					q.count('2'), 
+					q.count('3'), 
+					q.count('4'),
+					q.count('5'), 
+					q.count('6'), 
+					q.count('7'), 
+					q.count('8'), 
+					q.count('9'), 
+					q.count('10'), 
+					q.count('J'), 
+					q.count('Q'), 
+					q.count('K')
+					]
+			m = (ctypes.c_int *14)(*finallist)
+
+			import numpy as np
+			arraytolist = np.array(m)
+			print arraytolist.tolist()
+
+			t=pDll.Dec_bet(m) 
+			print t.Banker_wager  
+			print t.Player_wager
+			print t.DB_wager
+			print t.Tie_wager
+			print t.Pair_wager
+
 			ifcolor.append(colorRecorde)
 			# ifcolor.append(playLeftColorRecode)
 			# ifcolor.append(bankerRightRecode)
@@ -296,13 +341,16 @@ if __name__=='__main__':
 			# playLeftColorRecode = 0
 			# bankerRightRecode = 0
 			clr.print_red_text('---------------------------------')
+
+
 			continue
 
 
 
 		# print img.getpixel((79,16))
 		elif img.getpixel((79,16))  in ifcolor  and imgBANKER.getpixel((62,26)) in ifcolor  \
-		and img.getpixel((130,3)) in ifcolor and imgBANKER.getpixel((7,26)) in ifcolor:
+		and img.getpixel((130,3)) in ifcolor and imgBANKER.getpixel((7,26)) in ifcolor \
+		and imgBANKER.getpixel((2,3)) in ifcolor and imgBANKER.getpixel((103,3)) in ifcolor:
 
 			# print colorRecorde
 			# print playLeftColorRecode
@@ -335,9 +383,9 @@ if __name__=='__main__':
 			# time.sleep(15)
 
 
-		##录屏
-		# im = ImageGrab.grab() 
-		# im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
+			#录屏
+			im = ImageGrab.grab() 
+			im.save(os.getcwd()+"\\pic\\"+str(when.now()).split(".")[0].replace(":","-")+"screenshot.png")#保存图片 
 
 		# if  clr.intCardNum(getverify1('PLAYER-middle.jpg')) + clr.intCardNum(getverify1('PLAYER-right.jpg')) > 10:
 		# 	mainCard = clr.intCardNum(getverify1('PLAYER-middle.jpg')) + clr.intCardNum(getverify1('PLAYER-right.jpg')) -10

@@ -1,7 +1,8 @@
 ##Import_C
 #-*-coding:utf-8-*-
 
-from ctypes import *  
+# from ctypes import *  
+import ctypes
 
 ##调用C函数求和
 # pDll=WinDLL("test.dll")
@@ -34,25 +35,41 @@ from ctypes import *
 
 ##另外调用test5.dll
 
-class testdll(Structure):  
-    _fields_=[('Banker_wager',c_int),  
-             ('Player_wager',c_int),
-             ('Tie_wager',c_int),
-             ('Pair_wager',c_int),
-             ('DB_wager',c_int),
+class testdll(ctypes.Structure):  
+    _fields_=[('Banker_wager',ctypes.c_int),  
+             ('Player_wager',ctypes.c_int),
+             ('Tie_wager',ctypes.c_int),
+             ('Pair_wager',ctypes.c_int),
+             ('DB_wager',ctypes.c_int),
              ]  
 
-pDll=WinDLL("test5.dll")
+pDll=ctypes.WinDLL("test5.dll")
 
 ##其中sum是c的函数名称
 pDll.Dec_bet.restype=testdll 
-ARRAY = (c_int *14) #包含4个整数的数组类型
+ARRAY = (ctypes.c_int *14) #包含4个整数的数组类型
 a = ARRAY(0,12,4,5,5,5,4,6,10,6,8,9,6,11)
-# print len(a)
-t=pDll.Dec_bet(a) 
+# print type(a)
+
+###以下为列表转array方法
+b = [32, 32, 30, 32, 31, 31, 32, 32, 32, 32, 32, 32, 32, 32]
+m = (ctypes.c_int *14)(*b)
+print type(m)
+#########################
+
+##arraytolist
+import numpy as np
+a = np.array(m)
+print a.tolist()
+####################
+
+t=pDll.Dec_bet(m) 
 
 print t.Banker_wager  
 print t.Player_wager
 print t.DB_wager
 print t.Tie_wager
 print t.Pair_wager
+
+
+
