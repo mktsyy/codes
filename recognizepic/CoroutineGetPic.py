@@ -96,10 +96,21 @@ def consumer():
 		print n
 		if not n:
 			return
-		# print('[CONSUMER] Consuming %s...' % n)
+
+		print('[CONSUMER] Consuming %s...' % n)
+
+		# from IPython import embed
+		# embed()
+		img = Image.open("testnew.jpg")
+
+		imgBANKER = Image.open("BANKER.jpg")
 
 		cutnum(img,(86,1,111,30),'PLAYER-middle.jpg')
+		# from IPython import embed
+		# embed()
 		print u"PLAYER-当中是。。。。。"+str(getverify1('PLAYER-middle.jpg'))  #middlecard
+		# from IPython import embed
+		# embed()
 
 		cutnum(img,((138,1,167,31)),'PLAYER-right.jpg')
 		print u"PLAYER-右边是。。。。。"+str(getverify1('PLAYER-right.jpg'))  #rightcard
@@ -125,6 +136,15 @@ def produce(c):
 		cutpic((569,751,746,817),"testnew.jpg")
 		cutpic((1173,751,1350,817),"BANKER.jpg")
 
+		img = Image.open("testnew.jpg")
+
+		imgBANKER = Image.open("BANKER.jpg")
+		
+		print('[PRODUCER] Producing %s...' % n)
+
+		# from IPython import embed
+		# embed()
+
 		if img.getpixel((79,16))  in ifcolor  and imgBANKER.getpixel((62,26)) in ifcolor  \
 		and img.getpixel((130,3)) in ifcolor and imgBANKER.getpixel((7,26)) in ifcolor \
 		and imgBANKER.getpixel((2,3)) in ifcolor and imgBANKER.getpixel((103,3)) in ifcolor:
@@ -133,7 +153,6 @@ def produce(c):
 			
 
 
-		# print('[PRODUCER] Producing %s...' % n)
 		# r = c.send(n)
 		# print('[PRODUCER] Consumer return: %s' % r)
 
