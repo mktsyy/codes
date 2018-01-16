@@ -195,7 +195,7 @@ if __name__=='__main__':
 			# print ":::", res.get()
 			if res.get() in "12345678910JQKA":
 				time.sleep(4)
-			# print res.get()
+			print res.get()
 
 
 

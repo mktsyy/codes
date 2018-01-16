@@ -1,6 +1,10 @@
 ##Coroutine
 #- * -coding: utf - 8 - * -
 
+from ipdb import set_trace
+
+set_trace()
+
 def consumer():
     r = ''
     while True:
