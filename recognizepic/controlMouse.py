@@ -1,24 +1,55 @@
 ##controlMouse
 #-*-coding:utf-8-*-
 
-from pymouse import PyMouse
-from pykeyboard import PyKeyboard
+from pynput.mouse import Button, Controller
 import win32gui,win32api
 import time
 
-m = PyMouse()
-k = PyKeyboard()
 
-print win32gui.GetCursorPos()
+## print win32gui.GetCursorPos()
 
-#定位
-# win32api.SetCursorPos((812, 42))
+mouse = Controller()
+
+# Read pointer position
+print('The current pointer position is {0}'.format(
+    mouse.position))
 
 ##选择一元
-m.click(775, 1022,n=2)
-time.sleep(1)
-##押注
-m.click(1246, 843,n=2)
+mouse.position = (775, 1022)
 
-time.sleep(1)
-m.click(706, 1044,n=2)
+##选择五元
+mouse.position = (830, 1000)
+
+##选择二十五元
+# mouse.position = (898, 987)
+
+##选择一百元
+# mouse.position = (959, 986)
+
+mouse.press(Button.left)
+time.sleep(0.3)
+mouse.release(Button.left)
+
+time.sleep(0.3)
+
+# ##押注
+mouse.position = (1246, 843)
+
+mouse.press(Button.left)
+time.sleep(0.3)
+mouse.release(Button.left)
+# time.sleep(0.8)
+# mouse.click(Button.left, 1)
+
+##取消
+time.sleep(0.3)
+
+mouse.position = (706, 1044)
+
+mouse.press(Button.left)
+time.sleep(0.3)
+mouse.release(Button.left)
+mouse.press(Button.left)
+time.sleep(0.3)
+mouse.release(Button.left)
+

@@ -25,9 +25,9 @@ for i in xrange(210,256):
 		for g in xrange(210,256):
 			ifcolor.append((i,n,g))
 
-img = Image.open("testnew.jpg")
+# img = Image.open("testnew.jpg")
 
-imgBANKER = Image.open("BANKER.jpg")
+# imgBANKER = Image.open("BANKER.jpg")
 
 def ScreenShot():
 	im = ImageGrab.grab() 
@@ -46,6 +46,36 @@ BACKGROUND_BLUE = 0x10 # background color contains blue.
 BACKGROUND_GREEN= 0x20 # background color contains green.
 BACKGROUND_RED = 0x40 # background color contains red.
 BACKGROUND_INTENSITY = 0x80 # background color is intensified.
+
+
+# global MAINCARD
+# MAINCARD = 0
+# PLAYLEFTCARD = 0
+# BANKERRIGHTCARD = 0
+
+cardAllNum = []
+k = 0
+# print cardAllNum.count('A')
+basicCard =['0','A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] 
+for i in basicCard:
+	while k < 32:
+		cardAllNum.append(i)
+		k = k + 1
+	k = 0
+
+##加入c计算赔率  
+class testdll(ctypes.Structure):  
+    _fields_=[('Banker_wager',ctypes.c_int),  
+             ('Player_wager',ctypes.c_int),
+             ('Tie_wager',ctypes.c_int),
+             ('Pair_wager',ctypes.c_int),
+             ('DB_wager',ctypes.c_int),
+             ] 
+
+pDll=ctypes.WinDLL("test5.dll")
+##其中sum是c的函数名称
+pDll.Dec_bet.restype=testdll 
+
 
 class Color:
     ''' See http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winprog/winprog/windows_api_reference.asp
@@ -93,39 +123,100 @@ def consumer():
 	r = ''
 	while True:
 		n = yield r
-		print n
+		# print n
 		if not n:
 			return
 
-		print('[CONSUMER] Consuming %s...' % n)
+		# print('[CONSUMER] Consuming %s...' % n)
 
-		# from IPython import embed
-		# embed()
+		# ##from IPython import embed
+		# ##embed()
 		img = Image.open("testnew.jpg")
 
 		imgBANKER = Image.open("BANKER.jpg")
 
 		cutnum(img,(86,1,111,30),'PLAYER-middle.jpg')
-		# from IPython import embed
-		# embed()
+		# ##from IPython import embed
+		# ##embed()
 		print u"PLAYER-当中是。。。。。"+str(getverify1('PLAYER-middle.jpg'))  #middlecard
-		# from IPython import embed
-		# embed()
+		# ##from IPython import embed
+		# ##embed()
 
 		cutnum(img,((138,1,167,31)),'PLAYER-right.jpg')
 		print u"PLAYER-右边是。。。。。"+str(getverify1('PLAYER-right.jpg'))  #rightcard
 		
-		cutnum(imgBANKER,(69,1,92,32),'BANKER-middle.jpg')
-		clr.print_blue_text(u"BANKER-当中是。。。。。"+str(getverify1('BANKER-middle.jpg')))  #middlecard
-		
 		cutnum(imgBANKER,((12,1,39,32)),'BANKER-left.jpg')
 		clr.print_blue_text(u"BANKER-左边是。。。。。"+str(getverify1('BANKER-left.jpg')))  #leftcard
 
-		r = '200 OK'
+		cutnum(imgBANKER,(69,1,92,32),'BANKER-middle.jpg')
+		clr.print_blue_text(u"BANKER-当中是。。。。。"+str(getverify1('BANKER-middle.jpg')))  #middlecard
+		
 
-def produce(c):
+		r = [str(getverify1('PLAYER-middle.jpg')),str(getverify1('PLAYER-right.jpg')),
+		str(getverify1('BANKER-left.jpg')),str(getverify1('BANKER-middle.jpg'))]
+		##from IPython import embed
+		##embed()
+
+def consumer1():
+	r = ''
+	while True:
+		n = yield r
+		# print n
+		if not n:
+			return
+
+		# print('[CONSUMER] Consuming %s...' % n)
+
+		# ##from IPython import embed
+		# ##embed()
+		img = Image.open("testnew.jpg")
+
+		imgBANKER = Image.open("BANKER.jpg")
+
+		cutnum(img,((0,30,34,53)),'PLAYER-left.jpg')
+		leftpic = Image.open('PLAYER-left.jpg')
+		newLP = leftpic.rotate(270)
+		newLP.save("PLAYER-left.jpg")
+		print u"PLAYER-左边是。。。。。"+str(getverify1('PLAYER-left.jpg'))  #leftcard
+
+		r = str(getverify1('PLAYER-left.jpg'))
+		##from IPython import embed
+		##embed()
+
+def consumer2():
+	r = ''
+	while True:
+		n = yield r
+		# print n
+		if not n:
+			return
+
+		# print('[CONSUMER] Consuming %s...' % n)
+
+		# ##from IPython import embed
+		# ##embed()
+		img = Image.open("testnew.jpg")
+
+		imgBANKER = Image.open("BANKER.jpg")
+
+		cutnum(imgBANKER,((112,30,144,54)),'BANKER-right.jpg')
+		rightpic = Image.open('BANKER-right.jpg')
+		newRP = rightpic.rotate(270)
+		newRP.save("BANKER-right.jpg")
+		clr.print_blue_text(u"BANKER-右边是。。。。。"+str(getverify1('BANKER-right.jpg')))  #rightcard
+
+		r = str(getverify1('BANKER-right.jpg'))
+		##from IPython import embed
+		##embed()
+
+def produce(c,d,e):
 	c.send(None)
+	d.send(None)
+	e.send(None)
 	n = 0
+	MAINCARD = 0
+	PLAYLEFTCARD = 0
+	BANKERRIGHTCARD = 0
 	while True:
 
 		
@@ -140,19 +231,86 @@ def produce(c):
 
 		imgBANKER = Image.open("BANKER.jpg")
 		
-		print('[PRODUCER] Producing %s...' % n)
+		# print('[PRODUCER] Producing %s...' % n)
 
-		# from IPython import embed
-		# embed()
+		##from IPython import embed
+		##embed()
 
-		if img.getpixel((79,16))  in ifcolor  and imgBANKER.getpixel((62,26)) in ifcolor  \
+		if MAINCARD != 0 and img.getpixel((79,16))  not in ifcolor and imgBANKER.getpixel((62,26))   \
+		not in ifcolor and img.getpixel((130,3)) not in ifcolor and imgBANKER.getpixel((7,26)) not in ifcolor and \
+		imgBANKER.getpixel((137,26)) not in ifcolor and img.getpixel((23,23)) not in ifcolor:
+			MAINCARD = 0
+			PLAYLEFTCARD = 0
+			BANKERRIGHTCARD = 0
+			clr.print_red_text('---------------------------------')
+			print clr.print_green_text([
+			'0'+':'+str(cardAllNum.count('0')), 
+			'A'+':'+str(cardAllNum.count('A')), 
+			'2'+':'+str(cardAllNum.count('2')), 
+			'3'+':'+str(cardAllNum.count('3')), 
+			'4'+':'+str(cardAllNum.count('4')),
+			'5'+':'+str(cardAllNum.count('5')), 
+			'6'+':'+str(cardAllNum.count('6')), 
+			'7'+':'+str(cardAllNum.count('7')), 
+			'8'+':'+str(cardAllNum.count('8')), 
+			'9'+':'+str(cardAllNum.count('9')), 
+			'10'+':'+str(cardAllNum.count('10')), 
+			'J'+':'+str(cardAllNum.count('J')), 
+			'Q'+':'+str(cardAllNum.count('Q')), 
+			'K'+':'+str(cardAllNum.count('K'))
+			]) 
+			clr.print_red_text('---------------------------------')
+			finallist = [
+					cardAllNum.count('0'), 
+					cardAllNum.count('A'), 
+					cardAllNum.count('2'), 
+					cardAllNum.count('3'), 
+					cardAllNum.count('4'),
+					cardAllNum.count('5'), 
+					cardAllNum.count('6'), 
+					cardAllNum.count('7'), 
+					cardAllNum.count('8'), 
+					cardAllNum.count('9'), 
+					cardAllNum.count('10'), 
+					cardAllNum.count('J'), 
+					cardAllNum.count('Q'), 
+					cardAllNum.count('K')
+					]
+			m = (ctypes.c_int *14)(*finallist)
+
+			import numpy as np
+			arraytolist = np.array(m)
+			# print arraytolist.tolist()
+
+			t=pDll.Dec_bet(m) 
+			print t.Banker_wager  
+			print t.Player_wager
+			print t.DB_wager
+			print t.Tie_wager
+			print t.Pair_wager
+			clr.print_red_text('---------------------------------')
+
+		if MAINCARD == 0 and img.getpixel((79,16))  in ifcolor  and imgBANKER.getpixel((62,26)) in ifcolor  \
 		and img.getpixel((130,3)) in ifcolor and imgBANKER.getpixel((7,26)) in ifcolor \
 		and imgBANKER.getpixel((2,3)) in ifcolor and imgBANKER.getpixel((103,3)) in ifcolor:
 			r = c.send(n)
-			print ('[PRODUCER] Consumer return: %s' % r)
+			MAINCARD = r
+			# print ('[PRODUCER] Consumer return: %s' % str(r))
+			for i in r:
+				cardAllNum.remove(i)
 			
+		if PLAYLEFTCARD == 0 and img.getpixel((23,23)) in ifcolor:
+			r1 = d.send(n)
+			PLAYLEFTCARD = r1
+			cardAllNum.remove(r1)
+			# print ('[PRODUCER] Consumer return: %s' % r1)
 
-
+		if BANKERRIGHTCARD == 0 and imgBANKER.getpixel((137,26)) in ifcolor:
+			r2 = e.send(n)
+			BANKERRIGHTCARD = r2
+			cardAllNum.remove(r2)
+			##from IPython import embed
+			##embed()
 		# r = c.send(n)
 		# print('[PRODUCER] Consumer return: %s' % r)
 
@@ -162,7 +320,9 @@ def produce(c):
 
 def main():
 	c = consumer()
-	produce(c)
+	d = consumer1()
+	e = consumer2()
+	produce(c,d,e)
 	
 if __name__ == '__main__':
 	main()
