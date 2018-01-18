@@ -1,5 +1,6 @@
 ##Coroutine
 #- * -coding: utf - 8 - * -
+##识别训练方法http://www.cnblogs.com/samlin/p/Tesseract-OCR.html
 
 from getPicture import *
  
