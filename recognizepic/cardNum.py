@@ -1,5 +1,6 @@
 ##cardNum
 #-*-coding:utf-8-*-
+##8付牌生成列表
 
 
 cardAllNum = []

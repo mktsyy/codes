@@ -1,4 +1,6 @@
 #encoding: utf-8
+##dos下字体变色类
+
 import ctypes
 STD_INPUT_HANDLE = -10
 STD_OUTPUT_HANDLE= -11

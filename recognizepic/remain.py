@@ -1,5 +1,6 @@
 ##remain
 #-*-coding:utf-8-*-
+##更多注释见controlMouse。py
 
 from getPicture import *
  
@@ -10,7 +11,7 @@ from pytesser import *
 from recognizenum import *
 import time
 from PIL import Image,ImageGrab
-import when
+import when##
 import os
 from multiprocessing import Process,Manager,Lock
 
@@ -122,6 +123,7 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 	while True:
 		# print "PLAYER-left.jpg here"
 
+		##各进程时间分离
 		if PlayerPicName == "testnew.jpg" :
 			time.sleep(0.2)
 		else:
@@ -129,6 +131,7 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 
 		lock.acquire() 
 
+		##锁定进程，其它进程不能访问图片
 		try:
 			# ScreenShot()
 		
@@ -137,6 +140,7 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 			img = Image.open(PlayerPicName)
 			# print img.getpixel((23,23))
 			
+			##坐标变更为像素列表
 			tempx = []
 			x = 0
 			while x < len(PlayerLeftJudgeCoordinate):
@@ -151,6 +155,7 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 			##判断列表中元素是否在ifcolor中，如果一样，再进行截图操作
 			if len(list(set(tempx).intersection(set(ifcolor)))) == len(PlayerLeftJudgeCoordinate):
 				cutnum(img,(PlayerCutCoordinate),PlayerLeftPicName)
+				##旋转图片
 				leftpic = Image.open(PlayerLeftPicName)
 				newLP = leftpic.rotate(270)
 				newLP.save(PlayerLeftPicName)
@@ -165,6 +170,7 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 
 				del PlayerLeftJudgeCoordinate[0]
 
+				##根据文件名来打印字体dos颜色
 				if "BANKER" in PlayerLeftPicName:
 					clr.print_blue_text(PlayerLeftPicName.split('.')[0]+u"。。。。。"+str(getverify1(PlayerLeftPicName)))
 				
@@ -177,8 +183,9 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 
 				# print str(getverify1(PlayerLeftPicName))
 				# print cardAllNum
+				##q为多进程的共享变量列表
 				q.remove(str(getverify1(PlayerLeftPicName)))
-
+				##进程休眠时间分离
 				if PlayerLeftPicName == 'PLAYER-left.jpg':
 					time.sleep(2.5)
 				else:
@@ -187,6 +194,7 @@ def run_proc(PlayPiccoordinate,PlayerPicName,PlayerLeftJudgeCoordinate,PlayerCut
 			else:
 				break
 		finally:
+			##解除进程锁定
 			lock.release()
 		break
 
@@ -209,7 +217,7 @@ if __name__=='__main__':
 	colorRecorde = 0
 	playLeftColorRecode = 0
 	bankerRightRecode = 0
-
+	##多进程列表变量共享，定义后分别传入每个进程
 	q = Manager().list(cardAllNum)
 
 	while True:
@@ -235,15 +243,16 @@ if __name__=='__main__':
 		# ]) 
 		### print type(q.count('K'))
 		time.sleep(1)
-
+		##截屏进程
 		ScreenShotPic = Process(target=ScreenShot,args=())
 
 		lock = Lock()
 
-		##PLAYER
+		##截屏
 		ScreenShotPic.start()
+		##等待截屏进程结束
 		ScreenShotPic.join()
-
+		##PLAYER进程和BANKER进程
 		PLAYERLeftPic = Process(target=run_proc, args=((569,751,746,817),"testnew.jpg",[(23,23)],(0,30,34,53),'PLAYER-left.jpg',q,lock))
 		BANKERRightPic = Process(target=run_proc, args=((1173,751,1350,817),"BANKER.jpg",[(175,63),(145,63),(165,54)],(112,30,144,54),'BANKER-right.jpg',q,lock))
 
@@ -253,6 +262,7 @@ if __name__=='__main__':
 		# cutpic((569,751,746,817),"testnew.jpg")
 		# cutpic((1173,751,1350,817),"BANKER.jpg")
 
+		##PLAYER进程和BANKER进程开始
 		PLAYERLeftPic.start()
 		BANKERRightPic.start()
 		PLAYERLeftPic.join()
@@ -308,6 +318,7 @@ if __name__=='__main__':
 			clr.print_red_text('---------------------------------')
 			continue
 
+		##当中四张牌判断，没有就清零重新开始
 		elif img.getpixel((79,16))  not in ifcolor and imgBANKER.getpixel((62,26))   \
 		not in ifcolor and img.getpixel((130,3)) not in ifcolor and imgBANKER.getpixel((7,26)) not in ifcolor and \
 		imgBANKER.getpixel((137,26)) not in ifcolor and img.getpixel((23,23)) not in ifcolor:
@@ -406,7 +417,7 @@ if __name__=='__main__':
 		# else:
 		# 	BankerCard = clr.intCardNum(getverify1('BANKER-middle.jpg')) + clr.intCardNum(getverify1('BANKER-left.jpg'))
 
-		
+		##根据百家乐发牌规则编写
 		# if mainCard <= 5:
 
 			

@@ -1,5 +1,6 @@
 ##Import_C
 #-*-coding:utf-8-*-
+##测试C变量导入
 
 # from ctypes import *  
 import ctypes

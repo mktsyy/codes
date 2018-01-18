@@ -6,29 +6,28 @@ from getPicture import *
 import ImageEnhance    
 import ImageFilter    
 import sys    
-from pytesser import *  
-from recognizenum import *
+from pytesser import *  ##调用GOOGLE识别模块
+from recognizenum import * ##识牌模块
 import time
 from PIL import Image,ImageGrab
-import when
+import when##更简单时间模块
 import os
-from multiprocessing import Process,Manager,Lock
-import ctypes
+from multiprocessing import Process,Manager,Lock##多进程模块
+import ctypes##python调用C模块
 
+##ipython的步进调试
 # from ipdb import set_trace
-
 # set_trace()
 
+##生成接近白色的颜色集
 ifcolor = []
 for i in xrange(210,256):
 	for n in xrange(210,256):
 		for g in xrange(210,256):
 			ifcolor.append((i,n,g))
 
-# img = Image.open("testnew.jpg")
 
-# imgBANKER = Image.open("BANKER.jpg")
-
+##抓取桌面全图
 def ScreenShot():
 	im = ImageGrab.grab() 
 	im.save(os.getcwd()+"/screenshot.png")#保存图片 
@@ -48,11 +47,8 @@ BACKGROUND_RED = 0x40 # background color contains red.
 BACKGROUND_INTENSITY = 0x80 # background color is intensified.
 
 
-# global MAINCARD
-# MAINCARD = 0
-# PLAYLEFTCARD = 0
-# BANKERRIGHTCARD = 0
 
+#生成牌总数列表
 cardAllNum = []
 k = 0
 # print cardAllNum.count('A')
@@ -77,6 +73,7 @@ pDll=ctypes.WinDLL("test5.dll")
 pDll.Dec_bet.restype=testdll 
 
 
+##dos下字体变色类
 class Color:
     ''' See http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winprog/winprog/windows_api_reference.asp
     for information on Windows APIs. - www.jb51.net'''
@@ -104,7 +101,9 @@ class Color:
     def print_red_text_with_blue_bg(self, print_text):
         self.set_cmd_color(FOREGROUND_RED | FOREGROUND_INTENSITY| BACKGROUND_BLUE | BACKGROUND_INTENSITY)
         print print_text
-        self.reset_color()  
+        self.reset_color() 
+
+    ##原来是设定检测是否值不在允许值，现在没有用 
     def intCardNum(self,strnum):
     	if strnum not in "12345678910JQKA":
 			pass
@@ -117,8 +116,10 @@ class Color:
     			tempnum = int(strnum)
     	return tempnum
 
+##生成颜色类
 clr = Color()
 
+##生成当中所有牌的生成器函数
 def consumer():
 	r = ''
 	while True:
@@ -151,12 +152,13 @@ def consumer():
 		cutnum(imgBANKER,(69,1,92,32),'BANKER-middle.jpg')
 		clr.print_blue_text(u"BANKER-当中是。。。。。"+str(getverify1('BANKER-middle.jpg')))  #middlecard
 		
-
+		##生成器函数返回列表
 		r = [str(getverify1('PLAYER-middle.jpg')),str(getverify1('PLAYER-right.jpg')),
 		str(getverify1('BANKER-left.jpg')),str(getverify1('BANKER-middle.jpg'))]
 		##from IPython import embed
 		##embed()
 
+##生成PLAYER-left.jpg的生成器函数
 def consumer1():
 	r = ''
 	while True:
@@ -183,6 +185,7 @@ def consumer1():
 		##from IPython import embed
 		##embed()
 
+##生成BANKER.jpg的生成器函数
 def consumer2():
 	r = ''
 	while True:
@@ -199,31 +202,43 @@ def consumer2():
 
 		imgBANKER = Image.open("BANKER.jpg")
 
+		##切图，生成单个图片
 		cutnum(imgBANKER,((112,30,144,54)),'BANKER-right.jpg')
+		##图片旋转
 		rightpic = Image.open('BANKER-right.jpg')
 		newRP = rightpic.rotate(270)
 		newRP.save("BANKER-right.jpg")
+		##以蓝色字体打印
 		clr.print_blue_text(u"BANKER-右边是。。。。。"+str(getverify1('BANKER-right.jpg')))  #rightcard
-
+		#生成器函数返回值
 		r = str(getverify1('BANKER-right.jpg'))
 		##from IPython import embed
 		##embed()
 
 def produce(c,d,e):
+
+	##生成器函数初始化
 	c.send(None)
 	d.send(None)
 	e.send(None)
+	#传递值初始化
 	n = 0
+	##锁定每个生成器函数值设置为0
 	MAINCARD = 0
 	PLAYLEFTCARD = 0
 	BANKERRIGHTCARD = 0
+
+	##开始循环检查是否已经开牌
 	while True:
 
 		
 		n = n + 1
 		time.sleep(0.2)
+		##截屏
 		ScreenShot()
 		time.sleep(0.2)
+
+		##分辨切PLAYER和BANKER的图
 		cutpic((569,751,746,817),"testnew.jpg")
 		cutpic((1173,751,1350,817),"BANKER.jpg")
 
@@ -231,17 +246,19 @@ def produce(c,d,e):
 
 		imgBANKER = Image.open("BANKER.jpg")
 		
-		# print('[PRODUCER] Producing %s...' % n)
-
+		##插入ipython断点，待进入循环时停止检查变量
 		##from IPython import embed
 		##embed()
 
+		##检查是否桌面已清空，清空的话每处归零
 		if MAINCARD != 0 and img.getpixel((79,16))  not in ifcolor and imgBANKER.getpixel((62,26))   \
 		not in ifcolor and img.getpixel((130,3)) not in ifcolor and imgBANKER.getpixel((7,26)) not in ifcolor and \
 		imgBANKER.getpixel((137,26)) not in ifcolor and img.getpixel((23,23)) not in ifcolor:
 			MAINCARD = 0
 			PLAYLEFTCARD = 0
 			BANKERRIGHTCARD = 0
+
+			##打印剩余牌数目
 			clr.print_red_text('---------------------------------')
 			print clr.print_green_text([
 			'0'+':'+str(cardAllNum.count('0')), 
@@ -260,6 +277,8 @@ def produce(c,d,e):
 			'K'+':'+str(cardAllNum.count('K'))
 			]) 
 			clr.print_red_text('---------------------------------')
+
+			##准备c的ARRAY准备传入dll做运算
 			finallist = [
 					cardAllNum.count('0'), 
 					cardAllNum.count('A'), 
@@ -276,6 +295,7 @@ def produce(c,d,e):
 					cardAllNum.count('Q'), 
 					cardAllNum.count('K')
 					]
+			#生成14个变量的ARRAY
 			m = (ctypes.c_int *14)(*finallist)
 
 			import numpy as np
@@ -290,6 +310,7 @@ def produce(c,d,e):
 			print t.Pair_wager
 			clr.print_red_text('---------------------------------')
 
+		##检测当中的四张牌
 		if MAINCARD == 0 and img.getpixel((79,16))  in ifcolor  and imgBANKER.getpixel((62,26)) in ifcolor  \
 		and img.getpixel((130,3)) in ifcolor and imgBANKER.getpixel((7,26)) in ifcolor \
 		and imgBANKER.getpixel((2,3)) in ifcolor and imgBANKER.getpixel((103,3)) in ifcolor:
@@ -298,13 +319,15 @@ def produce(c,d,e):
 			# print ('[PRODUCER] Consumer return: %s' % str(r))
 			for i in r:
 				cardAllNum.remove(i)
-			
+
+		##检查PLAYER的最左面牌
 		if PLAYLEFTCARD == 0 and img.getpixel((23,23)) in ifcolor:
 			r1 = d.send(n)
 			PLAYLEFTCARD = r1
 			cardAllNum.remove(r1)
 			# print ('[PRODUCER] Consumer return: %s' % r1)
 
+		##检查BANKER的最后面牌
 		if BANKERRIGHTCARD == 0 and imgBANKER.getpixel((137,26)) in ifcolor:
 			r2 = e.send(n)
 			BANKERRIGHTCARD = r2
@@ -317,7 +340,7 @@ def produce(c,d,e):
 		
 	c.close()
 
-
+##主进程，生成三个生成器函数，开始循环检查
 def main():
 	c = consumer()
 	d = consumer1()

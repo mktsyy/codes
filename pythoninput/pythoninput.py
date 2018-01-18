@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # 源码https://github.com/SavinaRoja/PyUserInput
+##这个模块年代太久远，很多bug，换用pynput
 
 # import the module
 from pymouse import PyMouse

@@ -53,10 +53,11 @@ def  getverify1(name):
     	text = "10"   
     # print text
 
-    ##del file
+    ##del file删除临时文件
     os.remove('g'+name)
     os.remove('b'+name)
     
+    ##返回生成的数据
     return text    
 # getverify1('PLAYER-left.jpg')  #注意这里的图片要和此文件在同一个目录，要不就传绝对路径也行
 # getverify1('BANKER-right.jpg')  #注意这里的图片要和此文件在同一个目录，要不就传绝对路径也行
