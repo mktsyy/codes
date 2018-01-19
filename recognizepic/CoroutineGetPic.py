@@ -15,6 +15,7 @@ import when##更简单时间模块
 import os
 from multiprocessing import Process,Manager,Lock##多进程模块
 import ctypes##python调用C模块
+from controlMouse import *
 
 ##ipython的步进调试
 # from ipdb import set_trace
@@ -67,6 +68,7 @@ class testdll(ctypes.Structure):
              ('Tie_wager',ctypes.c_int),
              ('Pair_wager',ctypes.c_int),
              ('DB_wager',ctypes.c_int),
+             # ('DB_EV',ctypes.c_double),
              ] 
 
 pDll=ctypes.WinDLL("test5.dll")
@@ -216,6 +218,19 @@ def consumer2():
 		##from IPython import embed
 		##embed()
 
+def gogogo(name,num):
+	oneCoin()
+	if name == "Banker_wager":
+		Banker_wager(num)
+	elif name == "Player_wager":
+		Player_wager(num)
+	elif name == "DB_wager":
+		DB_wager(num)
+	elif name == "Tie_wager":
+		Tie_wager(num)
+	elif name == "Pair_wager":
+		Pair_wager(num)
+
 def produce(c,d,e):
 
 	##生成器函数初始化
@@ -228,6 +243,9 @@ def produce(c,d,e):
 	MAINCARD = 0
 	PLAYLEFTCARD = 0
 	BANKERRIGHTCARD = 0
+
+	##延时押注，以避免进程检测
+	xxxx = when.future(seconds = 600)
 
 	##开始循环检查是否已经开牌
 	while True:
@@ -243,13 +261,36 @@ def produce(c,d,e):
 		cutpic((569,751,746,817),"testnew.jpg")
 		cutpic((1173,751,1350,817),"BANKER.jpg")
 
+		##Screenimg
+		Screenimg = Image.open("screenshot.png")
+
+		##PLAYERimg
 		img = Image.open("testnew.jpg")
 
+		##BANKERimg
 		imgBANKER = Image.open("BANKER.jpg")
 		
 		##插入ipython断点，待进入循环时停止检查变量
 		##from IPython import embed
 		##embed()
+
+		##定时押注，默认为10分钟一次防呆滞
+		if when.now() == xxxx:
+			oneCoin()
+			Player_wager(1)
+			xxxx = when.now()
+
+		##检查是否又是新牌，如果新牌的话，重置牌数
+		if Screenimg.getpixel((1481,130)) in ifcolor:
+			cardAllNum = []
+			k = 0
+			# print cardAllNum.count('A')
+			basicCard =['0','A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] 
+			for i in basicCard:
+				while k < 32:
+					cardAllNum.append(i)
+					k = k + 1
+				k = 0
 
 		##检查是否桌面已清空，清空的话每处归零
 		if MAINCARD != 0 and img.getpixel((79,16))  not in ifcolor and imgBANKER.getpixel((62,26))   \
@@ -304,11 +345,21 @@ def produce(c,d,e):
 			# print arraytolist.tolist()
 
 			t=pDll.Dec_bet(m) 
+
 			print t.Banker_wager  
 			print t.Player_wager
 			print t.DB_wager
 			print t.Tie_wager
 			print t.Pair_wager
+			# print t.DB_EV
+
+			wagerlist = {"t.Banker_wager":t.Banker_wager, "t.Player_wager":t.Player_wager, "t.DB_wager":t.DB_wager, "t.Tie_wager":t.Tie_wager, "t.Pair_wager":t.Pair_wager}
+
+			for wagerName,wagerValue in wagerlist.items():
+				if wagerValue > 0:
+					gogogo (wagerName.split('.')[1],wagerValue)
+
+
 			clr.print_red_text('---------------------------------')
 
 		##检测当中的四张牌
