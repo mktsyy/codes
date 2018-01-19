@@ -252,17 +252,22 @@ def produce(c,d,e):
 
 		
 		n = n + 1
-		time.sleep(0.2)
-		##截屏
+		# time.sleep(0.2)
+		##截屏,原先所用延时方法会导致文件抢读取错误，现在用进程锁保证任务顺利执行完毕
+		##
+		# ScreenShotPic = Process(target=ScreenShot,args=())
+		# ScreenShotPic.start()
+		# ScreenShotPic.join()
 		ScreenShot()
 		time.sleep(0.2)
 
-		##分辨切PLAYER和BANKER的图
+		##分辨切PLAYER和BANKER和牌重置的图
 		cutpic((569,751,746,817),"testnew.jpg")
 		cutpic((1173,751,1350,817),"BANKER.jpg")
+		cutpic((1468,121,1485,138),"Point.jpg")
 
 		##Screenimg
-		Screenimg = Image.open("screenshot.png")
+		Screenimg = Image.open("Point.jpg")
 
 		##PLAYERimg
 		img = Image.open("testnew.jpg")
@@ -280,9 +285,9 @@ def produce(c,d,e):
 			Player_wager(1)
 			xxxx = when.now()
 
-		##检查是否又是新牌，如果新牌的话，重置牌数
-		if Screenimg.getpixel((1481,130)) in ifcolor:
-			cardAllNum = []
+		#检查是否又是新牌，如果新牌的话，重置牌数
+		if Screenimg.getpixel((13,9))  in ifcolor and Screenimg.getpixel((8,14))  in ifcolor:
+			del cardAllNum[:] 
 			k = 0
 			# print cardAllNum.count('A')
 			basicCard =['0','A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] 
@@ -291,6 +296,9 @@ def produce(c,d,e):
 					cardAllNum.append(i)
 					k = k + 1
 				k = 0
+
+			##延时点击重置
+			xxxx = when.future(seconds = 600)
 
 		##检查是否桌面已清空，清空的话每处归零
 		if MAINCARD != 0 and img.getpixel((79,16))  not in ifcolor and imgBANKER.getpixel((62,26))   \
