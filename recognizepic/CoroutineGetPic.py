@@ -244,8 +244,11 @@ def produce(c,d,e):
 	PLAYLEFTCARD = 0
 	BANKERRIGHTCARD = 0
 
-	##延时押注，以避免进程检测
-	xxxx = when.future(seconds = 600)
+	##延时押注，以避免进程检测(这个方法会有漏洞，不用)
+	# xxxx = when.future(seconds = 600)
+
+	##防止闲置变量
+	spareTime = 0
 
 	##开始循环检查是否已经开牌
 	while True:
@@ -279,11 +282,11 @@ def produce(c,d,e):
 		##from IPython import embed
 		##embed()
 
-		##定时押注，默认为10分钟一次防呆滞
-		if when.now() == xxxx:
-			oneCoin()
-			Player_wager(1)
-			xxxx = when.now()
+		##定时押注，默认为10分钟一次防呆滞(有漏洞，弃用)
+		# if when.now() == xxxx:
+		# 	oneCoin()
+		# 	Player_wager(1)
+		# 	xxxx = when.now()
 
 		#检查是否又是新牌，如果新牌的话，重置牌数
 		if Screenimg.getpixel((13,9))  in ifcolor and Screenimg.getpixel((8,14))  in ifcolor:
@@ -297,8 +300,8 @@ def produce(c,d,e):
 					k = k + 1
 				k = 0
 
-			##延时点击重置
-			xxxx = when.future(seconds = 600)
+			##延时点击重置(有漏洞，弃用)
+			# xxxx = when.future(seconds = 600)
 
 		##检查是否桌面已清空，清空的话每处归零
 		if MAINCARD != 0 and img.getpixel((79,16))  not in ifcolor and imgBANKER.getpixel((62,26))   \
@@ -307,6 +310,17 @@ def produce(c,d,e):
 			MAINCARD = 0
 			PLAYLEFTCARD = 0
 			BANKERRIGHTCARD = 0
+
+			##当中点击一下，防锁定
+			clickmiddle()
+
+			##防止闲置
+			spareTime = spareTime + 1
+
+			if spareTime == 12:
+				oneCoin()
+				Player_wager(1)
+				spareTime = 0 
 
 			##打印剩余牌数目
 			clr.print_red_text('---------------------------------')

@@ -94,6 +94,13 @@ def Player_wager(num):
 		time.sleep(0.1)
 		mouse.release(Button.left)
 		i = i + 1
+
+def clickmiddle():
+	mouse.position = (958, 532)
+	mouse.press(Button.left)
+	time.sleep(0.1)
+	mouse.release(Button.left)
+	
 ##test
 # oneCoin()
 
