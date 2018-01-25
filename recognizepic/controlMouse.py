@@ -116,8 +116,8 @@ def clickDevice():
 # resetCard()
 
 # Read pointer position
-print('The current pointer position is {0}'.format(
-    mouse.position))
+# print('The current pointer position is {0}'.format(
+#     mouse.position))
 
 ##选择一元
 # mouse.position = (775, 1022)
