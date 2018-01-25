@@ -100,6 +100,12 @@ def clickmiddle():
 	mouse.press(Button.left)
 	time.sleep(0.1)
 	mouse.release(Button.left)
+
+def clickDevice():
+	mouse.position = (923, 417)
+	mouse.press(Button.left)
+	time.sleep(0.1)
+	mouse.release(Button.left)
 	
 ##test
 # oneCoin()
@@ -110,8 +116,8 @@ def clickmiddle():
 # resetCard()
 
 # Read pointer position
-# print('The current pointer position is {0}'.format(
-#     mouse.position))
+print('The current pointer position is {0}'.format(
+    mouse.position))
 
 ##选择一元
 # mouse.position = (775, 1022)

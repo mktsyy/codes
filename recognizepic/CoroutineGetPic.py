@@ -314,6 +314,9 @@ def produce(c,d,e):
 			##当中点击一下，防锁定
 			clickmiddle()
 
+			#点击确定在此桌
+			clickDevice()
+
 			##防止闲置
 			spareTime = spareTime + 1
 
