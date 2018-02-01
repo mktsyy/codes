@@ -264,6 +264,9 @@ def produce(c,d,e):
 		ScreenShot()
 		time.sleep(0.2)
 
+		#点击确定在此桌
+		clickDevice()
+
 		##分辨切PLAYER和BANKER和牌重置的图
 		cutpic((569,751,746,817),"testnew.jpg")
 		cutpic((1173,751,1350,817),"BANKER.jpg")
@@ -314,9 +317,6 @@ def produce(c,d,e):
 			##当中点击一下，防锁定
 			clickmiddle()
 
-			#点击确定在此桌
-			clickDevice()
-
 			##防止闲置
 			spareTime = spareTime + 1
 
@@ -344,6 +344,9 @@ def produce(c,d,e):
 			'K'+':'+str(cardAllNum.count('K'))
 			]) 
 			clr.print_red_text('---------------------------------')
+
+			#打印当前时间
+			print when.now()
 
 			##准备c的ARRAY准备传入dll做运算
 			finallist = [
