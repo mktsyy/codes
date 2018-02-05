@@ -96,6 +96,7 @@ def Player_wager(num):
 		i = i + 1
 
 def clickmiddle():
+	time.sleep(1)
 	mouse.position = (958, 532)
 	mouse.press(Button.left)
 	time.sleep(0.1)
@@ -106,6 +107,44 @@ def clickDevice():
 	mouse.press(Button.left)
 	time.sleep(0.1)
 	mouse.release(Button.left)
+
+def resign():
+	##点击登录
+	mouse.position = (965,672)
+	mouse.press(Button.left)
+	time.sleep(0.1)
+	mouse.release(Button.left)
+	time.sleep(20)
+	##点击返回大厅
+	mouse.position = (1480,984)
+	mouse.press(Button.left)
+	time.sleep(0.1)
+	mouse.release(Button.left)
+	time.sleep(10)
+	##点击选择第一桌
+	mouse.position = (295,574)
+	mouse.press(Button.left)
+	time.sleep(0.1)
+	mouse.release(Button.left)
+	time.sleep(10)
+	##点击桌面抬高
+	mouse.position = (1293,258)
+	mouse.press(Button.left)
+	time.sleep(0.1)
+	mouse.release(Button.left)
+	time.sleep(1)
+	##点击全屏
+	mouse.position = (1504,250)
+	mouse.press(Button.left)
+	time.sleep(0.1)
+	mouse.release(Button.left)
+	time.sleep(1)
+	##点击允许键盘控制
+	mouse.position = (1060,227)
+	mouse.press(Button.left)
+	time.sleep(0.1)
+	mouse.release(Button.left)
+
 	
 ##test
 # oneCoin()
@@ -116,8 +155,8 @@ def clickDevice():
 # resetCard()
 
 # Read pointer position
-# print('The current pointer position is {0}'.format(
-#     mouse.position))
+print('The current pointer position is {0}'.format(
+    mouse.position))
 
 ##选择一元
 # mouse.position = (775, 1022)

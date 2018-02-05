@@ -385,6 +385,7 @@ def produce(c,d,e):
 
 			for wagerName,wagerValue in wagerlist.items():
 				if wagerValue > 0:
+					time.sleep(1)
 					gogogo (wagerName.split('.')[1],wagerValue)
 
 
