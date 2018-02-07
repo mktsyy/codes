@@ -4,8 +4,8 @@
 
 from getPicture import *
  
-import ImageEnhance    
-import ImageFilter    
+# import ImageEnhance    
+# import ImageFilter    
 import sys    
 from pytesser import *  ##调用GOOGLE识别模块
 from recognizenum import * ##识牌模块
