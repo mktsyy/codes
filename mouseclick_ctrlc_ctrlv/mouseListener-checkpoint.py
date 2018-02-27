@@ -4,8 +4,8 @@
 from pynput import mouse
 from controlKeyboard import doKeyboard,doKeyboardv,doKeyboardc
 import time
-# import win32api
-# import win32con
+import win32api
+import win32con
 
 mouse1 = mouse.Controller()
 
@@ -23,15 +23,23 @@ def on_click(x, y, button, pressed):
 	# doKeyboardv()
 	print (str(button))
 	if pressed and str(button) == "Button.left" :
-		# win32api.keybd_event(17,0,0,0)     # Control 　　　　 
-		# win32api.keybd_event(65,0,0,0)     # A 
-		# win32api.keybd_event(65,0,win32con.KEYEVENTF_KEYUP,0)     #A 
-		# win32api.keybd_event(17,0,win32con.KEYEVENTF_KEYUP,0)     #Control 
-		doKeyboard()
-		time.sleep(0.1)
-		doKeyboardc()
-		time.sleep(0.1)
-		doKeyboardv()
+		win32api.keybd_event(17,0,0,0)     # Control 　　　　 
+		win32api.keybd_event(65,0,0,0)     # A 
+		win32api.keybd_event(65,0,win32con.KEYEVENTF_KEYUP,0)     #A 
+		win32api.keybd_event(17,0,win32con.KEYEVENTF_KEYUP,0)     #Control 
+		# doKeyboard()
+		# time.sleep(0.2)
+		win32api.keybd_event(17,0,0,0)     # Control 　　　　 
+		win32api.keybd_event(67,0,0,0)     # C 
+		win32api.keybd_event(67,0,win32con.KEYEVENTF_KEYUP,0)     #C 
+		win32api.keybd_event(17,0,win32con.KEYEVENTF_KEYUP,0)     #Control 
+		# doKeyboardc()
+		time.sleep(0.2)
+		win32api.keybd_event(17,0,0,0)     # Control 　　　　 
+		win32api.keybd_event(86,0,0,0)     # V 
+		win32api.keybd_event(86,0,win32con.KEYEVENTF_KEYUP,0)     #V 
+		win32api.keybd_event(17,0,win32con.KEYEVENTF_KEYUP,0)     #Control 
+		# doKeyboardv()
 		
 
 	if not pressed:
