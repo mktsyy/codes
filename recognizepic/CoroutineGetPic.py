@@ -16,6 +16,9 @@ import os
 from multiprocessing import Process,Manager,Lock##多进程模块
 import ctypes##python调用C模块
 from controlMouse import *
+from tkinter import *
+import win32gui
+import win32con
 
 ##ipython的步进调试
 # from ipdb import set_trace
@@ -344,6 +347,30 @@ def produce(c,d,e):
 			'K'+':'+str(cardAllNum.count('K'))
 			]) 
 			clr.print_red_text('---------------------------------')
+
+			##UI显示
+			allCard =(
+			'0'+':'+str(cardAllNum.count('0')), 
+			'A'+':'+str(cardAllNum.count('A')), 
+			'2'+':'+str(cardAllNum.count('2')), 
+			'3'+':'+str(cardAllNum.count('3')), 
+			'4'+':'+str(cardAllNum.count('4')),
+			'5'+':'+str(cardAllNum.count('5')), 
+			'6'+':'+str(cardAllNum.count('6')), 
+			'7'+':'+str(cardAllNum.count('7')), 
+			'8'+':'+str(cardAllNum.count('8')), 
+			'9'+':'+str(cardAllNum.count('9')), 
+			'10'+':'+str(cardAllNum.count('10')), 
+			'J'+':'+str(cardAllNum.count('J')), 
+			'Q'+':'+str(cardAllNum.count('Q')), 
+			'K'+':'+str(cardAllNum.count('K')))
+			
+			top = Tk()
+			top.title ("Casino Recognize")
+			##窗口置顶
+			top.wm_attributes('-topmost',1)
+			Label(top,text=allCard,font=50,).pack(side="left")
+			top.mainloop()
 
 			#打印当前时间
 			print when.now()
