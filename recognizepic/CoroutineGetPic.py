@@ -245,6 +245,7 @@ def gogogo(name,num):
 		Tie_wager(num)
 	elif name == "Pair_wager":
 		Pair_wager(num)
+	sendPicMail("screenshot.png")
 
 def produce(c,d,e):
 
@@ -405,7 +406,7 @@ def produce(c,d,e):
 				if wagerValue > 0:
 					time.sleep(1)
 					gogogo (wagerName.split('.')[1],wagerValue)
-					sendPicMail("screenshot.png")
+					
 
 
 			clr.print_red_text('---------------------------------')
