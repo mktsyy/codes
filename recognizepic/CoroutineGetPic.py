@@ -16,6 +16,9 @@ import os
 from multiprocessing import Process,Manager,Lock##多进程模块
 import ctypes##python调用C模块
 from controlMouse import *
+from sendpicmail import sendPicMail
+
+
 
 ##ipython的步进调试
 # from ipdb import set_trace
@@ -28,7 +31,19 @@ for i in xrange(210,256):
 		for g in xrange(210,256):
 			ifcolor.append((i,n,g))
 
+pointColor = []
+for i in xrange(185,194):
+	for n in xrange(176,185):
+		for g in xrange(160,168):
+			pointColor.append((i,n,g))
+##用ie颜色变了，重新调整
+# ifcolor = []
+# for i in xrange(190,256):
+# 	for n in xrange(180,256):
+# 		for g in xrange(160,256):
+# 			ifcolor.append((i,n,g))
 
+		
 ##抓取桌面全图
 def ScreenShot():
 	im = ImageGrab.grab() 
@@ -292,7 +307,7 @@ def produce(c,d,e):
 		# 	xxxx = when.now()
 
 		#检查是否又是新牌，如果新牌的话，重置牌数
-		if Screenimg.getpixel((13,9))  in ifcolor and Screenimg.getpixel((8,14))  in ifcolor:
+		if Screenimg.getpixel((13,9))  in pointColor and Screenimg.getpixel((8,14))  in pointColor:
 			del cardAllNum[:] 
 			k = 0
 			# print cardAllNum.count('A')
@@ -314,7 +329,7 @@ def produce(c,d,e):
 			PLAYLEFTCARD = 0
 			BANKERRIGHTCARD = 0
 
-			##当中点击一下，防锁定
+			#当中点击一下，防锁定
 			clickmiddle()
 
 			##防止闲置
@@ -345,6 +360,8 @@ def produce(c,d,e):
 			]) 
 			clr.print_red_text('---------------------------------')
 
+			
+
 			#打印当前时间
 			print when.now()
 
@@ -361,10 +378,11 @@ def produce(c,d,e):
 					cardAllNum.count('8'), 
 					cardAllNum.count('9'), 
 					cardAllNum.count('10'), 
-					cardAllNum.count('J'), 
+					cardAllNum.count('J'),
 					cardAllNum.count('Q'), 
 					cardAllNum.count('K')
 					]
+			# print finallist
 			#生成14个变量的ARRAY
 			m = (ctypes.c_int *14)(*finallist)
 
@@ -387,6 +405,7 @@ def produce(c,d,e):
 				if wagerValue > 0:
 					time.sleep(1)
 					gogogo (wagerName.split('.')[1],wagerValue)
+					sendPicMail("screenshot.png")
 
 
 			clr.print_red_text('---------------------------------')
@@ -416,8 +435,7 @@ def produce(c,d,e):
 			##from IPython import embed
 			##embed()
 		# r = c.send(n)
-		# print('[PRODUCER] Consumer return: %s' % r)
-
+		# print('[PRODUCER] Consumer return: %s' % r)	
 		
 	c.close()
 
