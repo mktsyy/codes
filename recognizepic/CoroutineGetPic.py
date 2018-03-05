@@ -17,6 +17,7 @@ from multiprocessing import Process,Manager,Lock##多进程模块
 import ctypes##python调用C模块
 from controlMouse import *
 from sendpicmail import sendPicMail
+import Tkinter 
 
 
 
@@ -62,6 +63,17 @@ BACKGROUND_BLUE = 0x10 # background color contains blue.
 BACKGROUND_GREEN= 0x20 # background color contains green.
 BACKGROUND_RED = 0x40 # background color contains red.
 BACKGROUND_INTENSITY = 0x80 # background color is intensified.
+
+# ##加入UI
+root = Tkinter.Tk()
+##tk中独有的变量
+var = Tkinter.StringVar()
+
+root.title ("Casino Recognize")
+##窗口置顶
+root.wm_attributes('-topmost',1)
+##label标签设置文本变量
+Tkinter.Label(root, textvariable = var).pack()
 
 
 
@@ -281,7 +293,7 @@ def produce(c,d,e):
 		time.sleep(0.2)
 
 		#点击确定在此桌
-		clickDevice()
+		# clickDevice()
 
 		##分辨切PLAYER和BANKER和牌重置的图
 		cutpic((569,751,746,817),"testnew.jpg")
@@ -330,16 +342,16 @@ def produce(c,d,e):
 			PLAYLEFTCARD = 0
 			BANKERRIGHTCARD = 0
 
-			#当中点击一下，防锁定
-			clickmiddle()
+			# #当中点击一下，防锁定
+			# clickmiddle()
 
-			##防止闲置
-			spareTime = spareTime + 1
+			# ##防止闲置
+			# spareTime = spareTime + 1
 
-			if spareTime == 12:
-				oneCoin()
-				Player_wager(1)
-				spareTime = 0 
+			# if spareTime == 12:
+			# 	oneCoin()
+			# 	Player_wager(1)
+			# 	spareTime = 0 
 
 			##打印剩余牌数目
 			clr.print_red_text('---------------------------------')
@@ -360,6 +372,26 @@ def produce(c,d,e):
 			'K'+':'+str(cardAllNum.count('K'))
 			]) 
 			clr.print_red_text('---------------------------------')
+
+			# ##UI显示
+			# Uilist =[
+			# '0'+':'+str(cardAllNum.count('0'))+'\n', 
+			# 'A'+':'+str(cardAllNum.count('A'))+'\n', 
+			# '2'+':'+str(cardAllNum.count('2'))+'\n', 
+			# '3'+':'+str(cardAllNum.count('3'))+'\n', 
+			# '4'+':'+str(cardAllNum.count('4'))+'\n',
+			# '5'+':'+str(cardAllNum.count('5'))+'\n', 
+			# '6'+':'+str(cardAllNum.count('6'))+'\n', 
+			# '7'+':'+str(cardAllNum.count('7'))+'\n', 
+			# '8'+':'+str(cardAllNum.count('8'))+'\n', 
+			# '9'+':'+str(cardAllNum.count('9'))+'\n', 
+			# '10'+':'+str(cardAllNum.count('10'))+'\n', 
+			# 'J'+':'+str(cardAllNum.count('J'))+'\n', 
+			# 'Q'+':'+str(cardAllNum.count('Q'))+'\n', 
+			# 'K'+':'+str(cardAllNum.count('K'))
+			# ]
+			# var.set(str(Uilist))
+			# root.update()
 
 			
 
