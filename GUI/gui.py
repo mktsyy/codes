@@ -74,7 +74,7 @@ root.title ("Casino Recognize")
 ##窗口置顶
 root.wm_attributes('-topmost',1)
 ##label标签设置文本变量
-Label(root, textvariable = var).pack()
+Label(root, textvariable = var,font = 100).pack()
 
 
 ##仅6次展示
