@@ -20,6 +20,11 @@ from sendpicmail import sendPicMail
 import Tkinter 
 
 
+##隐藏dos窗口
+import win32api, win32gui  
+ct = win32api.GetConsoleTitle()  
+hd = win32gui.FindWindow(0,ct)  
+win32gui.ShowWindow(hd,0)
 
 ##ipython的步进调试
 # from ipdb import set_trace
@@ -293,7 +298,7 @@ def produce(c,d,e):
 		time.sleep(0.2)
 
 		#点击确定在此桌
-		# clickDevice()
+		clickDevice()
 
 		##分辨切PLAYER和BANKER和牌重置的图
 		cutpic((569,751,746,817),"testnew.jpg")
@@ -343,15 +348,15 @@ def produce(c,d,e):
 			BANKERRIGHTCARD = 0
 
 			# #当中点击一下，防锁定
-			# clickmiddle()
+			clickmiddle()
 
-			# ##防止闲置
-			# spareTime = spareTime + 1
+			##防止闲置
+			spareTime = spareTime + 1
 
-			# if spareTime == 12:
-			# 	oneCoin()
-			# 	Player_wager(1)
-			# 	spareTime = 0 
+			if spareTime == 12:
+				oneCoin()
+				Player_wager(1)
+				spareTime = 0 
 
 			##打印剩余牌数目
 			clr.print_red_text('---------------------------------')
@@ -374,24 +379,25 @@ def produce(c,d,e):
 			clr.print_red_text('---------------------------------')
 
 			# ##UI显示
-			# Uilist =[
-			# '0'+':'+str(cardAllNum.count('0'))+'\n', 
-			# 'A'+':'+str(cardAllNum.count('A'))+'\n', 
-			# '2'+':'+str(cardAllNum.count('2'))+'\n', 
-			# '3'+':'+str(cardAllNum.count('3'))+'\n', 
-			# '4'+':'+str(cardAllNum.count('4'))+'\n',
-			# '5'+':'+str(cardAllNum.count('5'))+'\n', 
-			# '6'+':'+str(cardAllNum.count('6'))+'\n', 
-			# '7'+':'+str(cardAllNum.count('7'))+'\n', 
-			# '8'+':'+str(cardAllNum.count('8'))+'\n', 
-			# '9'+':'+str(cardAllNum.count('9'))+'\n', 
-			# '10'+':'+str(cardAllNum.count('10'))+'\n', 
-			# 'J'+':'+str(cardAllNum.count('J'))+'\n', 
-			# 'Q'+':'+str(cardAllNum.count('Q'))+'\n', 
-			# 'K'+':'+str(cardAllNum.count('K'))
-			# ]
-			# var.set(str(Uilist))
-			# root.update()
+			Uilist = \
+			'0'+':'+str(cardAllNum.count('0'))+',\n' \
+			+  'A'+':'+str(cardAllNum.count('A'))+',\n' \
+			+  '2'+':'+str(cardAllNum.count('2'))+',\n' \
+			+  '3'+':'+str(cardAllNum.count('3'))+',\n' \
+			+  '4'+':'+str(cardAllNum.count('4'))+',\n' \
+			+ '5'+':'+str(cardAllNum.count('5'))+',\n' \
+			+  '6'+':'+str(cardAllNum.count('6'))+',\n' \
+			+  '7'+':'+str(cardAllNum.count('7'))+',\n' \
+			+  '8'+':'+str(cardAllNum.count('8'))+',\n' \
+			+  '9'+':'+str(cardAllNum.count('9'))+',\n' \
+			+  '10'+':'+str(cardAllNum.count('10'))+',\n' \
+			+  'J'+':'+str(cardAllNum.count('J'))+',\n' \
+			+  'Q'+':'+str(cardAllNum.count('Q'))+',\n' \
+			+  'K'+':'+str(cardAllNum.count('K'))+',\n' \
+			+ 'Total :'+str(len(cardAllNum)-32)
+			
+			var.set(str(Uilist))
+			root.update()
 
 			
 
