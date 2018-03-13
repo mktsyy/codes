@@ -16,9 +16,15 @@ import os
 from multiprocessing import Process,Manager,Lock##多进程模块
 import ctypes##python调用C模块
 from controlMouse import *
-from tkinter import *
-import win32gui
-import win32con
+from sendpicmail import sendPicMail
+import Tkinter 
+
+
+##隐藏dos窗口
+import win32api, win32gui  
+ct = win32api.GetConsoleTitle()  
+hd = win32gui.FindWindow(0,ct)  
+win32gui.ShowWindow(hd,0)
 
 ##ipython的步进调试
 # from ipdb import set_trace
@@ -31,7 +37,19 @@ for i in xrange(210,256):
 		for g in xrange(210,256):
 			ifcolor.append((i,n,g))
 
+pointColor = []
+for i in xrange(185,194):
+	for n in xrange(176,185):
+		for g in xrange(160,168):
+			pointColor.append((i,n,g))
+##用ie颜色变了，重新调整
+# ifcolor = []
+# for i in xrange(190,256):
+# 	for n in xrange(180,256):
+# 		for g in xrange(160,256):
+# 			ifcolor.append((i,n,g))
 
+		
 ##抓取桌面全图
 def ScreenShot():
 	im = ImageGrab.grab() 
@@ -50,6 +68,17 @@ BACKGROUND_BLUE = 0x10 # background color contains blue.
 BACKGROUND_GREEN= 0x20 # background color contains green.
 BACKGROUND_RED = 0x40 # background color contains red.
 BACKGROUND_INTENSITY = 0x80 # background color is intensified.
+
+# ##加入UI
+root = Tkinter.Tk()
+##tk中独有的变量
+var = Tkinter.StringVar()
+
+root.title ("Casino Recognize")
+##窗口置顶
+root.wm_attributes('-topmost',1)
+##label标签设置文本变量
+Tkinter.Label(root, textvariable = var).pack()
 
 
 
@@ -233,6 +262,7 @@ def gogogo(name,num):
 		Tie_wager(num)
 	elif name == "Pair_wager":
 		Pair_wager(num)
+	sendPicMail("screenshot.png")
 
 def produce(c,d,e):
 
@@ -295,7 +325,7 @@ def produce(c,d,e):
 		# 	xxxx = when.now()
 
 		#检查是否又是新牌，如果新牌的话，重置牌数
-		if Screenimg.getpixel((13,9))  in ifcolor and Screenimg.getpixel((8,14))  in ifcolor:
+		if Screenimg.getpixel((13,9))  in pointColor and Screenimg.getpixel((8,14))  in pointColor:
 			del cardAllNum[:] 
 			k = 0
 			# print cardAllNum.count('A')
@@ -317,7 +347,7 @@ def produce(c,d,e):
 			PLAYLEFTCARD = 0
 			BANKERRIGHTCARD = 0
 
-			##当中点击一下，防锁定
+			# #当中点击一下，防锁定
 			clickmiddle()
 
 			##防止闲置
@@ -348,29 +378,28 @@ def produce(c,d,e):
 			]) 
 			clr.print_red_text('---------------------------------')
 
-			##UI显示
-			allCard =(
-			'0'+':'+str(cardAllNum.count('0')), 
-			'A'+':'+str(cardAllNum.count('A')), 
-			'2'+':'+str(cardAllNum.count('2')), 
-			'3'+':'+str(cardAllNum.count('3')), 
-			'4'+':'+str(cardAllNum.count('4')),
-			'5'+':'+str(cardAllNum.count('5')), 
-			'6'+':'+str(cardAllNum.count('6')), 
-			'7'+':'+str(cardAllNum.count('7')), 
-			'8'+':'+str(cardAllNum.count('8')), 
-			'9'+':'+str(cardAllNum.count('9')), 
-			'10'+':'+str(cardAllNum.count('10')), 
-			'J'+':'+str(cardAllNum.count('J')), 
-			'Q'+':'+str(cardAllNum.count('Q')), 
-			'K'+':'+str(cardAllNum.count('K')))
+			# ##UI显示
+			Uilist = \
+			'0'+':'+str(cardAllNum.count('0'))+',\n' \
+			+  'A'+':'+str(cardAllNum.count('A'))+',\n' \
+			+  '2'+':'+str(cardAllNum.count('2'))+',\n' \
+			+  '3'+':'+str(cardAllNum.count('3'))+',\n' \
+			+  '4'+':'+str(cardAllNum.count('4'))+',\n' \
+			+ '5'+':'+str(cardAllNum.count('5'))+',\n' \
+			+  '6'+':'+str(cardAllNum.count('6'))+',\n' \
+			+  '7'+':'+str(cardAllNum.count('7'))+',\n' \
+			+  '8'+':'+str(cardAllNum.count('8'))+',\n' \
+			+  '9'+':'+str(cardAllNum.count('9'))+',\n' \
+			+  '10'+':'+str(cardAllNum.count('10'))+',\n' \
+			+  'J'+':'+str(cardAllNum.count('J'))+',\n' \
+			+  'Q'+':'+str(cardAllNum.count('Q'))+',\n' \
+			+  'K'+':'+str(cardAllNum.count('K'))+',\n' \
+			+ 'Total :'+str(len(cardAllNum)-32)
 			
-			top = Tk()
-			top.title ("Casino Recognize")
-			##窗口置顶
-			top.wm_attributes('-topmost',1)
-			Label(top,text=allCard,font=50,).pack(side="left")
-			top.mainloop()
+			var.set(str(Uilist))
+			root.update()
+
+			
 
 			#打印当前时间
 			print when.now()
@@ -388,10 +417,11 @@ def produce(c,d,e):
 					cardAllNum.count('8'), 
 					cardAllNum.count('9'), 
 					cardAllNum.count('10'), 
-					cardAllNum.count('J'), 
+					cardAllNum.count('J'),
 					cardAllNum.count('Q'), 
 					cardAllNum.count('K')
 					]
+			# print finallist
 			#生成14个变量的ARRAY
 			m = (ctypes.c_int *14)(*finallist)
 
@@ -414,6 +444,7 @@ def produce(c,d,e):
 				if wagerValue > 0:
 					time.sleep(1)
 					gogogo (wagerName.split('.')[1],wagerValue)
+					
 
 
 			clr.print_red_text('---------------------------------')
@@ -443,8 +474,7 @@ def produce(c,d,e):
 			##from IPython import embed
 			##embed()
 		# r = c.send(n)
-		# print('[PRODUCER] Consumer return: %s' % r)
-
+		# print('[PRODUCER] Consumer return: %s' % r)	
 		
 	c.close()
 
