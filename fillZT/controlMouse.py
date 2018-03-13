@@ -6,15 +6,15 @@ from pynput.mouse import Button, Controller
 mouse = Controller()
 
 def positionClick():
-	mouse.position = (1553, 840)
-	mouse.click(Button.left, 2)
+	mouse.position = (1584, 818)
+	mouse.click(Button.left, 1)
 
 def writeCity():
-	mouse.position = (553, 710)
+	mouse.position = (871, 686)
 	mouse.click(Button.left, 1)
 
 def restore():
-	mouse.position = (1240,676)
+	mouse.position = (1661,365)
 	mouse.click(Button.left,1)
 
 
