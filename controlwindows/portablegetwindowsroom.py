@@ -31,7 +31,7 @@ def active():
 		win32api.keybd_event(9,0,0,0)     # Tab 　　　　　　
 		win32api.keybd_event(9,0,win32con.KEYEVENTF_KEYUP,0)     #Tab
 		i+=1
-	time.sleep(5)
+	# time.sleep(5)
 	# win32api.keybd_event(9,0,0,0)     # Tab 　　　　　　
 	# win32api.keybd_event(9,0,win32con.KEYEVENTF_KEYUP,0)     #Tab
 	win32api.keybd_event(40,0,0,0)     # Down Arrow 

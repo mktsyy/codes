@@ -1,13 +1,17 @@
 ##writeZT
-
 # -*- coding: UTF-8 -*-
+
 import time
 from pynput.keyboard import Key, Controller
-import win32gui
-import win32api
-import win32con
-from tkinter import *
-from controlMouse import positionClick,restore
+# import win32gui
+# import win32api
+# import win32con
+# from tkinter import *
+
+# from controlMouse import positionClick,restore
+
+##家里电脑的位置
+from controlMouse27home import positionClick,writeCity,restore,writeAddress
 import ctypes
 
 
@@ -91,6 +95,9 @@ def filled():
 			# 	keyboard.press('a')
 			# 	keyboard.release('a')
 			keyboard.type(g.readlines()[0])
+			# writeAddress()
+			# keyboard.type(g.readlines()[0])
+
 
 		# button = Button(root, text='切换输入', width=25, command=switchInput)
 		# button.pack()

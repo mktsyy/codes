@@ -1,14 +1,11 @@
 ##writeZT
-
 # -*- coding: UTF-8 -*-
 import time
 from pynput.keyboard import Key, Controller
-# import win32gui
-# import win32api
-# import win32con
+import win32gui
+import win32api
+import win32con
 # from tkinter import *
-
-##家里电脑的位置
 from controlMouse27home import positionClick,writeCity,restore
 import ctypes
 
@@ -55,7 +52,6 @@ class Color:
         self.reset_color()  
 
 keyboard = Controller()
-# wdname1=u"zt.txt - 记事本"
 # w1hd=win32gui.FindWindow(0,wdname1)
 # w2hd=win32gui.FindWindowEx(w1hd,None,None,None)
 # win32gui.SetForegroundWindow(w2hd)
@@ -73,9 +69,9 @@ def writeAddress():
 		if not n:
 			return
 		# restore()
-		clr.print_blue_text("带库带库带库")
-		inputAddress = input("输入带库：")
-		with open("ztcity.txt","w+",encoding="utf-8") as f:
+		clr.print_blue_text("dkdkdkdkdk")
+		inputAddress = raw_input("input:")
+		with open("ztcity.txt","w+") as f:
 			f.write(inputAddress)
 		r = "gogogo"
 	
@@ -88,12 +84,18 @@ def filled():
 		if not n:
 			return
 		##python3的写法，python2的话不用加encoding="utf-8"
-		with open("ztcity.txt","r",encoding="utf-8") as g:
+		with open("ztcity.txt","r") as g:
 			writeCity()
+			# keyboard.type(("建水").decode("utf-8"))
 			with keyboard.pressed(Key.ctrl):
 				keyboard.press('a')
 				keyboard.release('a')
-			keyboard.type(g.readlines()[0])
+			print len(g.readlines())
+			# print g.readlines()[0].decode("utf-8")
+			print g.readlines()[0]
+			
+			# keyboard.type(g.readlines()[0].decode("utf-8"))
+			keyboard.type(str(g.readlines()[0]))
 			
 			keyboard.press(Key.space)
 			time.sleep(0.2)
@@ -124,9 +126,9 @@ def produce(a,d):
 
 		SWITCH += 1
 		
+		r2 = d.send(SWITCH)
 		r = a.send(SWITCH)
 		
-		r2 = d.send(SWITCH)
 		# time.sleep(1)
 		# print (SWITCH)
 
