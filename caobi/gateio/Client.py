@@ -66,14 +66,18 @@ root.wm_attributes('-topmost',1)
 Label(root, textvariable = var,font = 100).pack()
 
 while True:
-	# time.sleep(1)
-	if gate_query.ticker('btc_usdt')['lowestAsk'] < 7700:
-		print ('gogogoogogogogogogo')
-	print ("BUY: "+str(gate_query.ticker('btc_usdt')['lowestAsk']) \
-		+"~~~ SELL: "+str(gate_query.ticker('btc_usdt')['highestBid'])+'~~~~'+str(when.now().strftime("%H:%M:%S")))
-	var.set("BUY: "+str(gate_query.ticker('btc_usdt')['lowestAsk']) \
-		+"~~~ SELL: "+str(gate_query.ticker('btc_usdt')['highestBid'])+'~~~~'+str(when.now().strftime("%H:%M:%S")))
-	root.update()
+	time.sleep(1)
+	try:
+		if gate_query.ticker('btc_usdt')['lowestAsk'] < 7700:
+			print ('gogogoogogogogogogo')
+
+		print ("BUY: "+str(gate_query.ticker('btc_usdt')['lowestAsk']) \
+			+"~~~ SELL: "+str(gate_query.ticker('btc_usdt')['highestBid'])+'~~~~'+str(when.now().strftime("%H:%M:%S")))
+	except:
+		pass
+	# var.set("BUY: "+str(gate_query.ticker('btc_usdt')['lowestAsk']) \
+	# 	+"~~~ SELL: "+str(gate_query.ticker('btc_usdt')['highestBid'])+'~~~~'+str(when.now().strftime("%H:%M:%S")))
+	# root.update()
 
 # Market depth of pair
 # print(gate_query.orderBook('btc_usdt'))
