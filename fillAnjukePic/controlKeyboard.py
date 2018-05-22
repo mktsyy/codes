@@ -33,3 +33,7 @@ def down():
 def enter():
 	keyboard.press(Key.enter)
 	keyboard.release(Key.enter)
+
+def LaoGongTV():
+	keyboard.type("#打卡")
+	

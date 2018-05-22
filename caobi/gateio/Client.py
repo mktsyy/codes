@@ -55,6 +55,7 @@ print(gate_query.ticker('btc_usdt'))
 from tkinter import *
 import time
 import when
+import os
 root = Tk()
 ##tk中独有的变量
 var = StringVar()
@@ -68,16 +69,17 @@ Label(root, textvariable = var,font = 100).pack()
 while True:
 	time.sleep(1)
 	try:
-		if gate_query.ticker('btc_usdt')['lowestAsk'] < 7700:
-			print ('gogogoogogogogogogo')
+		# if gate_query.ticker('btc_usdt')['lowestAsk'] > 7700:
+		# 	print ('gogogoogogogogogogo')
+		# 	os.system("1.mp3")
+		# var.set("BUY: "+str(gate_query.ticker('btc_usdt')['lowestAsk']) \
+		# 	+"~~~ SELL: "+str(gate_query.ticker('btc_usdt')['highestBid'])+'~~~~'+str(when.now().strftime("%H:%M:%S")))
+		# root.update()
 
-		print ("BUY: "+str(gate_query.ticker('btc_usdt')['lowestAsk']) \
-			+"~~~ SELL: "+str(gate_query.ticker('btc_usdt')['highestBid'])+'~~~~'+str(when.now().strftime("%H:%M:%S")))
+		print ("比特币_BUY: " \
+			+"SELL: "+str(gate_query.ticker('gem_usdt')['highestBid'])+'~~~~'+str(when.now().strftime("%H:%M:%S")))
 	except:
 		pass
-	# var.set("BUY: "+str(gate_query.ticker('btc_usdt')['lowestAsk']) \
-	# 	+"~~~ SELL: "+str(gate_query.ticker('btc_usdt')['highestBid'])+'~~~~'+str(when.now().strftime("%H:%M:%S")))
-	# root.update()
 
 # Market depth of pair
 # print(gate_query.orderBook('btc_usdt'))

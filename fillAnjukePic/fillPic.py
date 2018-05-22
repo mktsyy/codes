@@ -5,8 +5,9 @@
 from pynput.mouse import Button, Controller
 import win32gui,win32api
 import time
-from controlKeyboard import doKeyboard,altUp,down,enter
+from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV
 import sys
+import when
 
 mouse = Controller()
 
@@ -54,6 +55,12 @@ def fillInnerPicSecond():
 	mouse.position = (1074, 739)
 	mouse.click(Button.left, 2)
 
+def signLaoGongTV():
+	mouse.position = (1738,969)
+	mouse.click(Button.left,1)
+	LaoGongTV()
+	enter()
+
 
 
 # fillInnerPicFirst()
@@ -67,5 +74,11 @@ if len(sys.argv)>1:
 		fillInnerPicSecond()
 	elif list(sys.argv)[1] == "First":
 		fillInnerPicFirst()
+	elif list(sys.argv)[1] == "lg":
+		while True:
+			signLaoGongTV()
+			print (when.now())
+			time.sleep(601)
+
 print('The current pointer position is {0}'.format(
     mouse.position))

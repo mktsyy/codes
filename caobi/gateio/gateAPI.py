@@ -5,6 +5,8 @@
 Provide the GateIO class to abstract web interaction
 '''
 
+
+
 from HttpUtil import getSign, httpGet, httpPost
 
 class GateIO:
