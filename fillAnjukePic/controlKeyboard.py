@@ -36,4 +36,17 @@ def enter():
 
 def LaoGongTV():
 	keyboard.type("#打卡")
-	
+
+def ctrlTab():
+	with keyboard.pressed(Key.ctrl):
+		keyboard.press(Key.tab)
+		keyboard.release(Key.tab)
+
+def ctrlW():
+	with keyboard.pressed(Key.ctrl):
+		keyboard.press("w")
+		keyboard.release("w")
+
+def space():
+	keyboard.press(Key.space)
+	keyboard.release(Key.space)

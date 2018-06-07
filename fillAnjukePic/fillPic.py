@@ -5,7 +5,7 @@
 from pynput.mouse import Button, Controller
 import win32gui,win32api
 import time
-from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV
+from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space
 import sys
 import when
 
@@ -61,6 +61,19 @@ def signLaoGongTV():
 	LaoGongTV()
 	enter()
 
+def clickSendRoom():
+	# ctrlTab()
+	mouse.position = (273,518)
+	mouse.click(Button.left,1)
+	space()
+	space()
+	space()
+	time.sleep(1)
+	mouse.position = (583,775)
+	mouse.click(Button.left,1)
+	time.sleep(3)
+	ctrlW()
+
 
 
 # fillInnerPicFirst()
@@ -79,6 +92,11 @@ if len(sys.argv)>1:
 			signLaoGongTV()
 			print (when.now())
 			time.sleep(601)
+	elif list(sys.argv)[1] == "cr":
+		while True:
+			clickSendRoom()
+			print (when.now())
+			time.sleep(30)
 
 print('The current pointer position is {0}'.format(
     mouse.position))
