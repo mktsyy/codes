@@ -111,12 +111,13 @@ def HZmobilBroker(username,password):
 	mouse.position = (958,393)
 	mouse.click(Button.left,1)
 
-def sendMessages():
+def sendMessages(msg):
 	oldPosition = mouse.position
 	mouse.position = (837,949)
 	mouse.click(Button.left,1)
-	ctrlV()
 	time.sleep(0.2)
+	keyFill(msg)
+	time.sleep(0.5)
 	mouse.position = (1188,946)
 	mouse.click(Button.left,1)
 	time.sleep(0.2)
@@ -155,9 +156,9 @@ def fillPhone(phone):
 	time.sleep(0.5)
 	mouse.position = (944,633)
 	mouse.click(Button.left,1)
-	time.sleep(0.5)
-	mouse.position = (737,106)
-	mouse.click(Button.left,1)
+	# time.sleep(0.5)
+	# mouse.position = (737,106)
+	# mouse.click(Button.left,1)
 
 def sendDX():
 	mouse.position = (749,948)
