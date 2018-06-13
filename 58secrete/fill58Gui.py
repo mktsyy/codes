@@ -76,11 +76,13 @@ def addi():
 	I = I + 1
 	# print (name[I])
 	setText(name[I])
+	
 
 def deli():
 	global I
 	I = I - 1
 	setText(name[I])
+
 
 def setText(aString):  
     w.OpenClipboard()  
@@ -104,7 +106,6 @@ button.pack()
 Label(root, textvariable = var).pack()
 
 while True:
-
 	var.set(name[I])
 	root.update()
 

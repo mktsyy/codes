@@ -47,6 +47,14 @@ def ctrlW():
 		keyboard.press("w")
 		keyboard.release("w")
 
+def ctrlV():
+	with keyboard.pressed(Key.ctrl):
+		keyboard.press("v")
+		keyboard.release("v")
+
 def space():
 	keyboard.press(Key.space)
 	keyboard.release(Key.space)
+
+def keyFill(phone):
+	keyboard.type(phone)

@@ -5,11 +5,19 @@
 from pynput.mouse import Button, Controller
 import win32gui,win32api
 import time
-from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space
+from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space,ctrlV,keyFill
 import sys
 import when
+import win32con  
+import win32clipboard as w 
 
 mouse = Controller()
+
+def setText(aString):  
+    w.OpenClipboard()  
+    w.EmptyClipboard()  
+    w.SetClipboardData(win32con.CF_UNICODETEXT, aString)  
+    w.CloseClipboard() 
 
 def fillInnerPicFirst():
 	mouse.position = (649, 512)
@@ -73,6 +81,95 @@ def clickSendRoom():
 	mouse.click(Button.left,1)
 	time.sleep(3)
 	ctrlW()
+
+def HZmobilBroker(username,password):
+
+	##点击删除用户名
+	mouse.position = (1022,292)
+	mouse.click(Button.left,1)
+	time.sleep(0.2)
+
+	##粘帖用户名
+	mouse.position = (897,293)
+	mouse.click(Button.left,1)
+	ctrlV()
+	time.sleep(0.2)
+	mouse.position = (894,326)
+	mouse.click(Button.left,1)
+	time.sleep(0.2)
+	setText(password)
+	time.sleep(0.5)
+
+	##粘帖密码
+	mouse.position = (889,328)
+	mouse.click(Button.left,1)
+	# time.sleep(2)
+	ctrlV()
+
+	##点击登录
+	time.sleep(0.2)
+	mouse.position = (958,393)
+	mouse.click(Button.left,1)
+
+def sendMessages():
+	oldPosition = mouse.position
+	mouse.position = (837,949)
+	mouse.click(Button.left,1)
+	ctrlV()
+	time.sleep(0.2)
+	mouse.position = (1188,946)
+	mouse.click(Button.left,1)
+	time.sleep(0.2)
+	mouse.position = (734,110)
+	mouse.click(Button.left,1)
+	mouse.position = (736,444)
+
+def signOutApp():
+	mouse.position = (1164,949)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	mouse.position = (811,482)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	mouse.position = (947,376)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	mouse.position = (1141,570)
+	mouse.click(Button.left,1)
+
+def fillPhone(phone):
+	mouse.position = (862,167)
+	mouse.click(Button.left,2)
+	time.sleep(0.5)
+	mouse.position = (1165,110)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	mouse.position = (835,500)
+	mouse.click(Button.left,1)
+	keyFill(phone)
+	time.sleep(0.5)
+	mouse.position = (849,547)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	keyFill(phone)
+	time.sleep(0.5)
+	mouse.position = (944,633)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	mouse.position = (737,106)
+	mouse.click(Button.left,1)
+
+def sendDX():
+	mouse.position = (749,948)
+	mouse.click(Button.left,2)
+	time.sleep(0.5)
+	mouse.position = (1079,612)
+	mouse.click(Button.left,1)
+	time.sleep(5)
+	mouse.position = (735,111)
+	mouse.click(Button.left,1)
+
+	
 
 
 
