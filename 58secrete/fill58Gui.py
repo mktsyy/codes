@@ -31,7 +31,8 @@
 from Tkinter import *
 import time 
 import win32con  
-import win32clipboard as w 
+import win32clipboard as w
+from controlMouse import position
 
 
 root = Tk()
@@ -70,18 +71,20 @@ u"嗨住2018",u"890IOPiop",u"您好，咨询房子请拨打电话：13261009316"
 
 ]
 
-I = 0
+I = -3
 def addi():
 	global I
-	I = I + 1
+	I = I + 3
 	# print (name[I])
-	setText(name[I])
+	position(name[I],name[I+1])
+	setText(name[I+2])
 	
 
 def deli():
 	global I
-	I = I - 1
-	setText(name[I])
+	I = I - 3
+	position(name[I],name[I+1])
+	setText(name[I+2])
 
 
 def setText(aString):  
@@ -95,12 +98,18 @@ def getText():
     d = w.GetClipboardData(win32con.CF_UNICODETEXT)  
     w.CloseClipboard() 
 
+
 button = Button(root, text='增加',width=25, command=addi)
 button.pack()
 
 button = Button(root, text='减少', width=25, command=deli)
 button.pack()
 
+# button = Button(root, text='13378414445', width=25, command=setText(u"您好，咨询房子请拨打电话：13378414445"))
+# button.pack()
+
+# button = Button(root, text='13378414445', width=25, command=setText(u"您好，咨询房子请拨打电话：15601708063"))
+# button.pack()
 
 
 Label(root, textvariable = var).pack()
