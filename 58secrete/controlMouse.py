@@ -4,25 +4,35 @@
 
 from pynput.mouse import Button, Controller
 import time
-from controlKeyboard import keyFill
+from controlKeyboard import keyFill,space
 
 
 mouse = Controller()
 
 def position(username,password):
-	mouse.position = (1164, 298)
+	mouse.position = (969, 523)
 	mouse.click(Button.left, 1)
-	time.sleep(0.2)
-	mouse.position = (861, 483)
+	time.sleep(1)
+	mouse.position = (1064, 491)
 	mouse.click(Button.left, 1)
+	space()
 	keyFill(username)
-	time.sleep(0.5)
-	mouse.position = (857, 532)
+	time.sleep(0.3)
+	mouse.position = (916, 558)
 	mouse.click(Button.left, 2)
 	keyFill(password)
-	time.sleep(0.5)
+	time.sleep(0.3)
 	mouse.position = (953, 638)
 	mouse.click(Button.left, 2)
+
+def exita():
+	mouse.position = (1766, 1060)
+	mouse.click(Button.right, 1)
+	time.sleep(0.2)
+	mouse.position = (1727, 1003)
+	mouse.click(Button.left, 1)
+	mouse.position = (1406, 488)
+	
 
 
 

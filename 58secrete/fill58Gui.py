@@ -32,7 +32,7 @@ from Tkinter import *
 import time 
 import win32con  
 import win32clipboard as w
-from controlMouse import position
+from controlMouse import position,exita
 
 
 root = Tk()
@@ -86,6 +86,9 @@ def deli():
 	position(name[I],name[I+1])
 	setText(name[I+2])
 
+def exitApp():
+	exita()
+
 
 def setText(aString):  
     w.OpenClipboard()  
@@ -103,6 +106,9 @@ button = Button(root, text='增加',width=25, command=addi)
 button.pack()
 
 button = Button(root, text='减少', width=25, command=deli)
+button.pack()
+
+button = Button(root, text='退出', width=25, command=exitApp)
 button.pack()
 
 # button = Button(root, text='13378414445', width=25, command=setText(u"您好，咨询房子请拨打电话：13378414445"))

@@ -145,7 +145,7 @@ phone =[
 "15968866951"
 ]
 
-I = 24
+I = -1
 def addi():
 	# print (name[I])
 	global I
