@@ -39,6 +39,8 @@ root = Tk()
 root.wm_attributes('-topmost',1)
 var = StringVar()
 name = [
+u"上海嗨住",
+u"18368828502",
 u"嗨住管家03",
 u"嗨住管家13",
 u"嗨住管家14",
@@ -90,6 +92,8 @@ u"住018",
 ]
 
 password = [
+u"890IOPiop",
+u"a123456",
 u"890WSXwsx",
 u"890WSXwsx",
 u"890WSXwsx",
