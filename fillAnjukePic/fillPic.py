@@ -100,6 +100,10 @@ def HZmobilBroker(username,password):
 	setText(password)
 	time.sleep(0.5)
 
+	##删除密码
+	mouse.position = (1022,326)
+	mouse.click(Button.left,1)
+
 	##粘帖密码
 	mouse.position = (889,328)
 	mouse.click(Button.left,1)
@@ -117,7 +121,7 @@ def sendMessages(msg):
 	mouse.click(Button.left,1)
 	time.sleep(0.2)
 	keyFill(msg)
-	time.sleep(0.5)
+	time.sleep(0.8)
 	mouse.position = (1188,946)
 	mouse.click(Button.left,1)
 	time.sleep(0.2)

@@ -1,43 +1,25 @@
-##changhelabel
-# -*- coding: UTF-8 -*-
-# from Tkinter import *
-# import globalvarity
+# -*- coding: utf-8 -*-
 
-# counter = raw_input("input:  ")
-# newVar = StringVar()
-# def counter_label():
-# 	newVar.set(str(globalvarity.COUNTER))
-# 	# def count():
-# 	# # global counter
-# 	# # counter += 1
+import requests
+# import grequests
+import json 
 
-# 	# 	if globalvarity.A !=globalvarity.COUNTER:
-			
-# 	# 		globalvarity.A = globalvarity.COUNTER
-# 	# 	label.after(1000, count)
-# 	# count()
- 
 
-# root = Tk()
-# root.title("Counting Seconds")
-
-# label = Label(root, fg="green",textvariable = newVar)
-# label.pack()
-# counter_label()
-# # button = Button(root, text='Stop', width=25, command=root.destroy)
-# # button.pack()
-# root.mainloop()	
-
-from tkinter import *
+##导入界面
+from tkinter import *    #注意模块导入方式，否则代码会有差别
 import time 
 import win32con  
 import win32clipboard as w 
 from fillPic import HZmobilBroker,sendMessages,signOutApp,fillPhone,sendDX
 
+##Python 下载win32api 模块  终端输入“pip install pypiwin32”
 
-root = Tk()
-root.wm_attributes('-topmost',1)
-var = StringVar()
+# import win32api, win32gui  
+# ct = win32api.GetConsoleTitle()  
+# hd = win32gui.FindWindow(0,ct)  
+# win32gui.ShowWindow(hd,0)
+
+
 name = [
 u"上海嗨住",
 u"18368828502",
@@ -174,15 +156,7 @@ def addGJPhone():
 	# fillPhone(phone[1])
 	sendMessages(u"您好，咨询房子请拨打电话：13024196747")
 
-def AJKMessage():
-	sendMessages(u"您好，咨询房子请拨打电话：15868422456")
 
-
-def addGJMessage():
-	sendMessages(u"您好，咨询房子请拨打电话：15968866951")
-
-def signOut():
-	signOutApp()
 
 
 def setText(aString):  
@@ -199,32 +173,82 @@ def getText():
 def sendDX1():
 	sendDX()
 
-button = Button(root, text='增加',width=25, command=addi)
-button.pack()
 
-button = Button(root, text='减少', width=25, command=deli)
-button.pack()
+class App:
 
-# button = Button(root, text='上海嗨住聊天消息', width=25, command=addAJKPhone)
-# button.pack()
-# button = Button(root, text='18368828502', width=25, command=addGJPhone)
-# button.pack()
+	def AJKMessage(self,event):
+		sendMessages(u"您好，咨询房子请拨打电话：15868422456")
 
-# button = Button(root, text='发送短信', width=25, command=sendDX1)
-# button.pack()
 
-button = Button(root, text='安居客聊天消息', width=25, command=AJKMessage)
-button.pack()
-button = Button(root, text='赶集聊天消息', width=25, command=addGJMessage)
-button.pack()
+	def addGJMessage(self,event):
+		sendMessages(u"您好，咨询房子请拨打电话：15968866951")
 
-button = Button(root, text='退出', width=25, command=signOut)
-button.pack()
+	def signOut(self,event):
+		signOutApp()
+	
+	def buttonListener1(self,event):
+		global I
+		I = I + 1
+		setText(name[I])
+		HZmobilBroker(name[I],password[I])
+		##改变标题
+		var.set(name[I])
+		
+		
 
-Label(root, textvariable = var).pack()
+	def buttonListener2(self,event):
+		global I
+		I = I - 1
+		setText(name[I])
+		HZmobilBroker(name[I],password[I])
+		##改变标题
+		var.set(name[I])
+	
+	def __init__(self, master,var):
+		#使用Frame增加一层容器
+		
 
-while True:
-	root.title(str(name[I]))
-	var.set(name[I])
-	root.update()
+		##初始化框体大小
+		fm2 = Frame(master,width = 250,height=200)
 
+		##加入事件绑定
+		self.button1 = Button(fm2,width=25, text='增加')
+		self.button1.pack()
+		# Button(fm2, text='This is the Center button').pack(side=LEFT)
+		Label(master, textvariable = var).pack(side=BOTTOM)    
+		self.button2 = Button(fm2,width=25, text='减少')
+		self.button2.pack() 
+		self.button3 = Button(fm2,width=25, text='安居客聊天消息')
+		self.button3.pack()   
+		self.button4 = Button(fm2,width=25, text='赶集聊天消息')
+		self.button4.pack() 
+		self.button5 = Button(fm2,width=25, text='退出')
+		self.button5.pack()   
+
+		##使大小生效
+		###http://effbot.org/tkinterbook/button.htm这里官方解释为don't shrink
+		# fm2.pack_propagate(0)
+		##参数详见https://www.cnblogs.com/muziyunxuan/p/8268179.html
+		fm2.pack()
+
+
+		##焦点为button1
+		self.button1.focus_set()
+
+
+
+		self.button1.bind("<ButtonRelease-1>",self.buttonListener1)
+		self.button2.bind("<ButtonRelease-1>",self.buttonListener2)
+		self.button3.bind("<ButtonRelease-1>",self.AJKMessage)
+		self.button4.bind("<ButtonRelease-1>",self.addGJMessage)
+		self.button5.bind("<ButtonRelease-1>",self.signOut)
+
+
+root = Tk()
+root.title(str(name[I]))
+root.wm_attributes('-topmost',1)
+var = StringVar()
+display = App(root,var)
+
+
+root.mainloop()
