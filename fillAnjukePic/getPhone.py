@@ -26,7 +26,7 @@ def ScreenShot():
 	# img1.save(os.getcwd()+'/'+"test.png")
 	im.save(os.getcwd()+'/'+"test.png")
 
-ScreenShot()
+# ScreenShot()
 
 image = Image.open('test.png')
 
