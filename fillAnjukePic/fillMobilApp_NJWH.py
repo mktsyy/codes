@@ -156,15 +156,15 @@ def sendDX1():
 
 class App:
 
-	def addGJPhone(self,event):
-		sendMessages(u"您好，咨询房子请拨打电话：13024196747")
+	def addNJajkPhone(self,event):
+		sendMessages(u"您好，咨询房子请拨打电话：17388078735")
 
-	def AJKMessage(self,event):
-		sendMessages(u"您好，咨询房子请拨打电话：15868422456")
+	def WHGJMessage(self,event):
+		sendMessages(u"您好，咨询房子请拨打电话：13024114908")
 
 
-	def addGJMessage(self,event):
-		sendMessages(u"您好，咨询房子请拨打电话：15968866951")
+	def addNJGJMessage(self,event):
+		sendMessages(u"您好，咨询房子请拨打电话：17327798350")
 
 	def signOut(self,event):
 		signOutApp()
@@ -206,13 +206,13 @@ class App:
 		Label(master, textvariable = var).pack(side=BOTTOM)    
 		self.button2 = Button(fm2,width=25, text='减少')
 		self.button2.pack() 
-		self.button6 = Button(fm2,width=25, text='18368828502')
+		self.button6 = Button(fm2,width=25, text='南京安居客聊天消息')
 		self.button6.pack()
-		self.button3 = Button(fm2,width=25, text='安居客聊天消息')
+		self.button3 = Button(fm2,width=25, text='武汉赶集聊天消息')
 		self.button3.pack()
 		  
 
-		self.button4 = Button(fm2,width=25, text='赶集聊天消息')
+		self.button4 = Button(fm2,width=25, text='南京赶集聊天消息')
 		self.button4.pack() 
 		self.button5 = Button(fm2,width=25, text='退出')
 		self.button5.pack()   
@@ -231,14 +231,14 @@ class App:
 
 		self.button1.bind("<ButtonRelease-1>",self.buttonListener1)
 		self.button2.bind("<ButtonRelease-1>",self.buttonListener2)
-		self.button3.bind("<ButtonRelease-1>",self.AJKMessage)
-		self.button4.bind("<ButtonRelease-1>",self.addGJMessage)
+		self.button3.bind("<ButtonRelease-1>",self.WHGJMessage)
+		self.button4.bind("<ButtonRelease-1>",self.addNJGJMessage)
 		self.button5.bind("<ButtonRelease-1>",self.signOut)
-		self.button6.bind("<ButtonRelease-1>",self.addGJPhone)
+		self.button6.bind("<ButtonRelease-1>",self.addNJajkPhone)
 
 
 root = Tk()
-root.title(str(name[I]))
+# root.title(str(name[I]))
 root.wm_attributes('-topmost',1)
 var = StringVar()
 display = App(root,var)
