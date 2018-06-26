@@ -188,6 +188,12 @@ class App:
 	def addGJMessage(self,event):
 		sendMessages(u"您好，咨询房子请拨打电话：15968866951")
 
+	def free(self,event):
+		sendMessages(u"我们是免费的租房平台，不收取中介费的")
+
+	def pleaseCall(self,event):
+		sendMessages(u"请打客服电话咨询房源信息，我这边查询不了哦！")
+		
 	def signOut(self,event):
 		signOutApp()
 	
@@ -235,7 +241,11 @@ class App:
 		  
 
 		self.button4 = Button(fm2,width=25, text='赶集聊天消息')
-		self.button4.pack() 
+		self.button4.pack()
+		self.button7 = Button(fm2,width=25, text='我们是免费的租房平台，不收取中介费的')
+		self.button7.pack() 
+		self.button8 = Button(fm2,width=25, text='请打客服电话咨询房源信息，我这边查询不了哦！')
+		self.button8.pack() 
 		self.button5 = Button(fm2,width=25, text='退出')
 		self.button5.pack()   
 
@@ -257,6 +267,8 @@ class App:
 		self.button4.bind("<ButtonRelease-1>",self.addGJMessage)
 		self.button5.bind("<ButtonRelease-1>",self.signOut)
 		self.button6.bind("<ButtonRelease-1>",self.addGJPhone)
+		self.button7.bind("<ButtonRelease-1>",self.free)
+		self.button8.bind("<ButtonRelease-1>",self.pleaseCall)
 
 
 root = Tk()
