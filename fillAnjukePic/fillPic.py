@@ -133,7 +133,10 @@ def signOutApp():
 	mouse.position = (1164,949)
 	mouse.click(Button.left,1)
 	time.sleep(0.5)
-	mouse.position = (1074,568)
+	##有优惠券
+	# mouse.position = (1074,568)
+	##正常
+	mouse.position = (844,483)
 	mouse.click(Button.left,1)
 	time.sleep(0.5)
 	mouse.position = (947,376)

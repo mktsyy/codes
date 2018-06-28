@@ -101,6 +101,12 @@ def getText():
     d = w.GetClipboardData(win32con.CF_UNICODETEXT)  
     w.CloseClipboard() 
 
+def free():
+	setText(u"我们是免费的租房平台，不收取中介费的")
+
+def pleaseCall():
+	setText(u"请打客服电话咨询房源信息，我这边查询不了哦！")
+
 
 button = Button(root, text='增加',width=25, command=addi)
 button.pack()
@@ -110,6 +116,13 @@ button.pack()
 
 button = Button(root, text='退出', width=25, command=exitApp)
 button.pack()
+
+button = Button(root, text='免费的租房平台', width=25, command=free)
+button.pack()
+
+button = Button(root, text='请打客服电话', width=25, command=pleaseCall)
+button.pack()
+
 
 # button = Button(root, text='13378414445', width=25, command=setText(u"您好，咨询房子请拨打电话：13378414445"))
 # button.pack()

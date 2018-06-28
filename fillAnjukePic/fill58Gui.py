@@ -181,6 +181,12 @@ def AJKMessage():
 def addGJMessage():
 	sendMessages(u"您好，咨询房子请拨打电话：15968866951")
 
+def free(self,event):
+		sendMessages(u"我们是免费的租房平台，不收取中介费的")
+
+def pleaseCall(self,event):
+	sendMessages(u"请打客服电话咨询房源信息，我这边查询不了哦！")
+
 def signOut():
 	signOutApp()
 
@@ -217,6 +223,12 @@ button = Button(root, text='安居客聊天消息', width=25, command=AJKMessage
 button.pack()
 button = Button(root, text='赶集聊天消息', width=25, command=addGJMessage)
 button.pack()
+
+# button = Button(root, text='免费的租房平台', width=25, command=free)
+# button.pack()
+
+# button = Button(root, text='请打客服电话', width=25, command=pleaseCall)
+# button.pack()
 
 button = Button(root, text='退出', width=25, command=signOut)
 button.pack()
