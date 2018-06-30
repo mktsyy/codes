@@ -249,8 +249,61 @@ def HZadmin():
 	mouse.position = oldPosition
 
 	
+def HZadminSolo():
+	##记住原来位置
+	oldPosition = mouse.position
+	##点击右面空白console处
+	mouse.position = (1735,520)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	codes = '''
+	//发送后台发布成功房源数目
+	var _alert =window.alert;
+	window.alert = function(){
 
+	    //把字符串分割便于发送到web后端进行处理
+	    var aa = arguments[0].split("成功发布")[1].split("套")[0];
+	    //区域值传递到后台进行处理
+	    var region = document.getElementsByName("region")[0].value;
 
+	    console.log(aa);
+
+	    function showHint() {
+	        var xmlhttp;
+
+	        if (window.XMLHttpRequest) {
+	            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+	            xmlhttp = new XMLHttpRequest();
+	        } else {
+	            // IE6, IE5 浏览器执行代码
+	            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	        }
+	        xmlhttp.onreadystatechange = function() {
+	            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	                // var value = json.parse(xmlhttp.responseText)
+	                alert(xmlhttp.responseText);
+	            }
+	        }
+	        xmlhttp.open("GET", "http://127.0.0.1:8000/HZadmin/?HZalert=" + aa + "&region=" + region, true);
+	        xmlhttp.send();
+	        
+	    }
+
+	    showHint();
+
+	    // _alert(argu ments[0]);
+	}
+
+	'''
+	setText(codes)
+	ctrlV()
+	enter()
+
+	mouse.position = (259,463)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	##恢复原位置
+	mouse.position = oldPosition
 
 # fillInnerPicFirst()
 # fillInnerPicSecond()
