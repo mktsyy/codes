@@ -28,11 +28,11 @@
 # # button.pack()
 # root.mainloop()	
 
-from Tkinter import *
+from tkinter import *
 import time 
 import win32con  
 import win32clipboard as w
-from controlMouse import position,exita
+from controlMouse import position,exita,positionMI,exitaMI
 
 
 root = Tk()
@@ -76,18 +76,21 @@ def addi():
 	global I
 	I = I + 3
 	# print (name[I])
-	position(name[I],name[I+1])
+	positionMI(name[I],name[I+1])
 	setText(name[I+2])
 	
 
 def deli():
 	global I
 	I = I - 3
-	position(name[I],name[I+1])
+	positionMI(name[I],name[I+1])
 	setText(name[I+2])
 
 def exitApp():
 	exita()
+
+def exitAppMI():
+	exitaMI()
 
 
 def setText(aString):  
@@ -114,7 +117,10 @@ button.pack()
 button = Button(root, text='减少', width=25, command=deli)
 button.pack()
 
-button = Button(root, text='退出', width=25, command=exitApp)
+# button = Button(root, text='退出', width=25, command=exitApp)
+# button.pack()
+
+button = Button(root, text='退出', width=25, command=exitAppMI)
 button.pack()
 
 button = Button(root, text='免费的租房平台', width=25, command=free)
