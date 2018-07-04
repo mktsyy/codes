@@ -4,7 +4,7 @@
 
 from pynput.mouse import Button, Controller
 import time
-from controlKeyboard import keyFill,space
+from controlKeyboard import keyFill,space,enter
 
 
 mouse = Controller()
@@ -24,6 +24,14 @@ def position(username,password):
 	time.sleep(0.3)
 	mouse.position = (953, 638)
 	mouse.click(Button.left, 2)
+
+def posMes(mes):
+	##发送客服消息
+	mouse.position = (659, 697)
+	mouse.click(Button.left, 1)
+	keyFill(mes)
+	time.sleep(0.2)
+	enter()
 
 def exita():
 	mouse.position = (1766, 1060)

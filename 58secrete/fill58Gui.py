@@ -32,7 +32,7 @@ from Tkinter import *
 import time 
 import win32con  
 import win32clipboard as w
-from controlMouse import position,exita
+from controlMouse import position,exita,posMes
 
 
 root = Tk()
@@ -102,9 +102,11 @@ def getText():
     w.CloseClipboard() 
 
 def free():
+	# posMes(u"我们是免费的租房平台，不收取中介费的")
 	setText(u"我们是免费的租房平台，不收取中介费的")
 
 def pleaseCall():
+	# posMes(u"请打客服电话咨询房源信息，我这边查询不了哦！")
 	setText(u"请打客服电话咨询房源信息，我这边查询不了哦！")
 
 

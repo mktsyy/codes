@@ -305,6 +305,102 @@ def HZadminSolo():
 	##恢复原位置
 	mouse.position = oldPosition
 
+def HZadminPublic():
+	mouse.position = (433,403)
+	mouse.click(Button.left,1)
+	##点击右面空白console处
+	mouse.position = (1735,520)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	codes = '''
+	function select(num){
+		for (var i = num.length - 1; i >= 0; i--) {
+		document.getElementsByName("userid[]")[num[i]].checked = true;
+		}
+	}
+
+
+	//读取区域以匹配电话号码(上海)
+	var region = Number(document.getElementsByName("region")[0].value);
+	switch (region) {
+	    case 24:
+	        // document.getElementsByName("userid[]")[2].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[2].nextSibling.nodeValue;
+	        select([2,]);
+	        break;
+	    case 43:
+	        // document.getElementsByName("userid[]")[8].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[8].nextSibling.nodeValue;
+	        select([8,]);
+	        break;
+	    case 53:
+	        // document.getElementsByName("userid[]")[0].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[0].nextSibling.nodeValue;
+	        // document.getElementsByName("userid[]")[14].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[14].nextSibling.nodeValue;
+	        select([0,14]);
+	        break;
+	    case 97:
+	        // document.getElementsByName("userid[]")[13].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[13].nextSibling.nodeValue;
+	        select([13,]);
+	        break;
+	    case 108:
+	        // document.getElementsByName("userid[]")[6].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[6].nextSibling.nodeValue;
+	        select([6,]);
+	        break;
+	    case 121:
+	        // document.getElementsByName("userid[]")[1].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[1].nextSibling.nodeValue;
+	        // document.getElementsByName("userid[]")[15].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[15].nextSibling.nodeValue;
+	        select([1,15]);
+	        break;
+	    case 140:
+	        // document.getElementsByName("userid[]")[9].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[9].nextSibling.nodeValue;
+	        select([9,]);
+	        break;
+	    case 147:
+	        // document.getElementsByName("userid[]")[5].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[5].nextSibling.nodeValue;
+	        // document.getElementsByName("userid[]")[17].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[17].nextSibling.nodeValue;
+	        select([5,17]);
+	        break;
+	    case 166:
+	        // document.getElementsByName("userid[]")[4].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[4].nextSibling.nodeValue;
+	        // document.getElementsByName("userid[]")[18].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[18].nextSibling.nodeValue;
+	        select([4,18]);
+	        break;
+	    case 177:
+	        // document.getElementsByName("userid[]")[3].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[3].nextSibling.nodeValue;
+	        // document.getElementsByName("userid[]")[16].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[16].nextSibling.nodeValue;
+	        select([3,16]);
+	        break;
+	    case 215:
+	        // document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
+	        select([7,]);
+	        break;
+	    case 1:
+	        // document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
+	        select([1,]);
+	        break;
+	    case 2:
+	        // document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
+	        select([2,]);
+	        break;
+	    case 2:
+	        // document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
+	        select([2,]);
+	        break;
+	    case 0:
+	        // document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
+	        select([0,]);
+	        break;
+
+	}
+
+	'''
+	setText(codes)
+	ctrlV()
+	time.sleep(0.2)
+	enter()
+
+	##至发布按钮处
+	mouse.position = (881,777)
+	mouse.click(Button.left,1)
+
 # fillInnerPicFirst()
 # fillInnerPicSecond()
 

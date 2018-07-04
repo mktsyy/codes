@@ -15,4 +15,8 @@ def space():
 		keyboard.press(Key.backspace)
 		keyboard.release(Key.backspace)
 		i = i - 1
+
+def enter():
+	keyboard.press(Key.enter)
+	keyboard.release(Key.enter)
 	
