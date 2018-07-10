@@ -32,7 +32,7 @@ from tkinter import *
 import time 
 import win32con  
 import win32clipboard as w
-from controlMouse import position,exita,positionMI,exitaMI
+from controlMouse import position,exita,positionMI,exitaMI,posMes
 
 
 root = Tk()
@@ -76,14 +76,14 @@ def addi():
 	global I
 	I = I + 3
 	# print (name[I])
-	positionMI(name[I],name[I+1])
+	position(name[I],name[I+1])
 	setText(name[I+2])
 	
 
 def deli():
 	global I
 	I = I - 3
-	positionMI(name[I],name[I+1])
+	position(name[I],name[I+1])
 	setText(name[I+2])
 
 def exitApp():
@@ -105,11 +105,15 @@ def getText():
     w.CloseClipboard() 
 
 def free():
-	setText(u"我们是免费的租房平台，不收取中介费的")
+	posMes(u"我们是免费的租房平台，不收取中介费的")
+	global I
+	setText(name[I+2])
+
 
 def pleaseCall():
-	setText(u"请打客服电话咨询房源信息，我这边查询不了哦！")
-
+	posMes(u"请打客服电话咨询房源信息，我这边查询不了哦！")
+	global I
+	setText(name[I+2])
 
 button = Button(root, text='增加',width=25, command=addi)
 button.pack()
@@ -117,11 +121,11 @@ button.pack()
 button = Button(root, text='减少', width=25, command=deli)
 button.pack()
 
-# button = Button(root, text='退出', width=25, command=exitApp)
-# button.pack()
-
-button = Button(root, text='退出', width=25, command=exitAppMI)
+button = Button(root, text='退出', width=25, command=exitApp)
 button.pack()
+
+# button = Button(root, text='退出', width=25, command=exitAppMI)
+# button.pack()
 
 button = Button(root, text='免费的租房平台', width=25, command=free)
 button.pack()

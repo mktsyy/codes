@@ -27,10 +27,10 @@ def position(username,password):
 
 def posMes(mes):
 	##发送客服消息
-	mouse.position = (659, 697)
+	mouse.position = (1118, 721)
 	mouse.click(Button.left, 1)
 	keyFill(mes)
-	time.sleep(0.2)
+	time.sleep(0.5)
 	enter()
 
 def exita():
