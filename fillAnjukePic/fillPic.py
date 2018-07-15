@@ -5,7 +5,7 @@
 from pynput.mouse import Button, Controller
 import win32gui,win32api
 import time
-from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space,ctrlV,keyFill
+from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space,ctrlV,keyFill,ctrlShiftI
 import sys
 import when
 import win32con  
@@ -255,6 +255,15 @@ def HZadminSolo():
 	##点击右面空白console处
 	mouse.position = (1735,520)
 	mouse.click(Button.left,1)
+	time.sleep(0.1)
+
+	##发送ctrlshifti
+	ctrlShiftI()
+	time.sleep(0.5)
+
+	##点击右面空白console处
+	mouse.position = (1735,520)
+	mouse.click(Button.left,1)
 	time.sleep(0.5)
 	codes = '''
 	//发送后台发布成功房源数目
@@ -295,17 +304,20 @@ def HZadminSolo():
 	}
 
 	'''
+
+	##设置代码至剪贴板，并粘帖发送
 	setText(codes)
 	ctrlV()
 	enter()
 
 	mouse.position = (259,463)
 	mouse.click(Button.left,1)
-	time.sleep(0.5)
-	##恢复原位置
+	# time.sleep(0.5)
+	#恢复原位置
 	mouse.position = oldPosition
 
 def HZadminPublic():
+	##原发布账号勾选方法，采用javascript，但有多选择问题，暂时废弃
 	mouse.position = (433,403)
 	mouse.click(Button.left,1)
 	##点击右面空白console处
@@ -400,6 +412,85 @@ def HZadminPublic():
 	##至发布按钮处
 	mouse.position = (881,777)
 	mouse.click(Button.left,1)
+
+def newPublic(coordinate):
+	##记住原来位置
+	oldPosition = mouse.position
+	##点击发布
+	mouse.position = (433,403)
+	mouse.click(Button.left,1)
+	# print (type(coordinate))
+	time.sleep(0.5)
+	##根据发布源勾选账号
+	if coordinate == "长宁:18674586768":
+		mouse.position = (987,589)
+		mouse.click(Button.left,1)
+	elif coordinate == "徐汇:13795419927":
+		mouse.position = (988,515)
+		mouse.click(Button.left,1)
+	elif coordinate == "浦东:13296760994":
+		mouse.position = (766,518)
+		mouse.click(Button.left,1)
+	elif coordinate == "浦东:嗨住全国12":
+		mouse.position = (987,663)
+		mouse.click(Button.left,1)
+	elif coordinate == "杨浦:嗨住全国11":
+		mouse.position = (878,664)
+		mouse.click(Button.left,1)
+	elif coordinate == "普陀:18202158542":
+		mouse.position = (770,590)
+		mouse.click(Button.left,1)
+	elif coordinate == "闵行:13641026605":
+		mouse.position = (877,519)
+		mouse.click(Button.left,1)
+	elif coordinate == "闵行:嗨住全国13":
+		mouse.position = (766,699)
+		mouse.click(Button.left,1)
+	elif coordinate == "闸北:18768113824":
+		mouse.position = (765,625)
+		mouse.click(Button.left,1)
+	elif coordinate == "宝山:15136289152":
+		mouse.position = (988,554)
+		mouse.click(Button.left,1)
+	elif coordinate == "宝山:嗨住全国15":
+		mouse.position = (987,698)
+		mouse.click(Button.left,1)
+	elif coordinate == "嘉定:15026518260":
+		mouse.position = (877,554)
+		mouse.click(Button.left,1)
+	elif coordinate == "嘉定:嗨住全国16":
+		mouse.position = (768,735)
+		mouse.click(Button.left,1)
+	elif coordinate == "松江:13810794175":
+		mouse.position = (768,555)
+		mouse.click(Button.left,1)
+	elif coordinate == "松江:嗨住全国14":
+		mouse.position = (877,699)
+		mouse.click(Button.left,1)
+	elif coordinate == "青浦:18670107293":
+		mouse.position = (876,589)
+		mouse.click(Button.left,1)
+	elif coordinate == "朝阳&丰台:嗨住2017":
+		mouse.position = (877,516)
+		mouse.click(Button.left,1)
+	elif coordinate == "海淀&大兴:嗨住2018":
+		mouse.position = (987,515)
+		mouse.click(Button.left,1)
+	elif coordinate == "郑州:上海高度公司":
+		mouse.position = (765,515)
+		mouse.click(Button.left,1)
+
+	##至发布按钮处
+	# mouse.position = (881,777)
+	# mouse.click(Button.left,1)
+
+	##3秒后关闭
+	time.sleep(3)
+	ctrlW()
+
+	#恢复原位置
+	mouse.position = oldPosition
+
 
 # fillInnerPicFirst()
 # fillInnerPicSecond()

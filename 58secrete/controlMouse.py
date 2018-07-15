@@ -12,7 +12,7 @@ mouse = Controller()
 def position(username,password):
 	mouse.position = (969, 523)
 	mouse.click(Button.left, 1)
-	time.sleep(1)
+	time.sleep(2)
 	mouse.position = (1064, 491)
 	mouse.click(Button.left, 1)
 	space()

@@ -58,3 +58,10 @@ def space():
 
 def keyFill(phone):
 	keyboard.type(phone)
+
+def ctrlShiftI():
+	with keyboard.pressed(Key.ctrl):
+		keyboard.press(Key.shift)
+		keyboard.press("i")
+		keyboard.release(Key.shift)
+		keyboard.release("i")
