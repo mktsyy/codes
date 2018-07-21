@@ -526,6 +526,58 @@ def counterNum():
 	time.sleep(0.2)
 	enter()
 
+def selectCancel(num):
+	##点击右面空白console处
+	mouse.position = (1735,520)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	codes = '''
+
+	//统计数量打印在console口
+	var k = 0;
+	for (var i = document.getElementsByClassName("ck").length - 1; i >=document.getElementsByClassName("ck").length - %s; i--) {
+			document.getElementsByClassName("ck")[i].checked = true;
+	    	console.log(k);
+	    	k = k + 1;
+
+	};
+
+	
+	//翻页绑定左右按键
+
+	document.onkeydown = function(event) {
+	    var e = event || window.event || arguments.callee.caller.arguments[0];  
+	    if (e && e.keyCode == 39) {
+	        document.getElementsByClassName("ui-multipage-next-active")[0].click();
+	    } else if (e && e.keyCode == 37) {
+	        document.getElementsByClassName("ui-multipage-pre-active")[0].click();
+	    }
+	};
+	''' % str(num)
+	setText(codes)
+	ctrlV()
+	time.sleep(0.2)
+	enter()
+
+def firstSendCancle():
+	##记住原来位置
+	oldPosition = mouse.position
+
+	mouse.position = (417,483)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	mouse.position = (518,489)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	mouse.position = (823,621)
+	mouse.click(Button.left,1)
+	time.sleep(0.8)
+	mouse.position = (1205,861)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	
+	#恢复原位置
+	mouse.position = oldPosition
 
 # fillInnerPicFirst()
 # fillInnerPicSecond()

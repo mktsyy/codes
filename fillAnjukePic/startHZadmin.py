@@ -111,7 +111,7 @@ class App:
 								   ) 
 		self.button1.grid(row = 1, column = 2)
 
-		self.button2 = Button(width=25,text='单独')
+		self.button2 = Button(width=25,text='发布')
 		self.button2.pack()
 		# self.button3 = Button(width=25,text='发布')
 		# self.button3.pack()

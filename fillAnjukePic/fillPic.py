@@ -259,7 +259,7 @@ def HZadminSolo():
 
 	##发送ctrlshifti
 	ctrlShiftI()
-	time.sleep(0.5)
+	time.sleep(1)
 
 	##点击右面空白console处
 	mouse.position = (1735,520)
@@ -468,7 +468,7 @@ def newPublic(coordinate):
 		mouse.position = (877,699)
 		mouse.click(Button.left,1)
 	elif coordinate == "青浦:18670107293":
-		mouse.position = (876,589)
+		mouse.position = (884,589)
 		mouse.click(Button.left,1)
 	elif coordinate == "朝阳&丰台:嗨住2017":
 		mouse.position = (877,516)
@@ -481,15 +481,15 @@ def newPublic(coordinate):
 		mouse.click(Button.left,1)
 
 	##至发布按钮处
-	# mouse.position = (881,777)
+	mouse.position = (881,777)
 	# mouse.click(Button.left,1)
 
 	##3秒后关闭
-	time.sleep(3)
-	ctrlW()
+	# time.sleep(3)
+	# ctrlW()
 
 	#恢复原位置
-	mouse.position = oldPosition
+	# mouse.position = oldPosition
 
 
 # fillInnerPicFirst()

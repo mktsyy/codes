@@ -5,7 +5,7 @@ from tkinter import *
 from tkinter import ttk
 import os
 import time
-from fillPic import cityMouse,counterNum
+from fillPic import cityMouse,counterNum,selectCancel,firstSendCancle
 
 class App:
 
@@ -15,24 +15,23 @@ class App:
 		print(self.button1.get())
 		cityMouse(self.button1.get())
 
-		pass
 
 	def buttonListener2(self,event):
 		counterNum()
 
 	def buttonListener3(self,event):
-		pass
+		var = self.e.get()
+		selectCancel(var)
+
 
 	def buttonListener4(self,event):
-
-		pass
+		firstSendCancle()
+		
 
 
 	def __init__(self,master):
 
-		##加入输入框准备后端获取链接，进行改造
-		# self.e = Entry(master)
-		# self.e.pack()
+		
 		
 		##用框架，grid方法来划分
 		frame1 = Frame(master)
@@ -46,29 +45,37 @@ class App:
 
 		##重新定义为选择框，选择发布账号
 		number = StringVar()
-		self.button1 = ttk.Combobox(frame1,width=15,text=number)
+		self.button1 = ttk.Combobox(frame1,width=38,text=number)
 		self.button1['values'] = ("http://vip.58ganji.com/zf58/kcfy58/W0QQpZ6",  \
 								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ36", \
 								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ20",
+								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ10",
+								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ30",
 								
 								   ) 
 		self.button1.grid(row = 1, column = 2)
 
-		self.button2 = Button(width=25,text='统计本页优先推送数量')
-		self.button2.pack()
-		# self.button3 = Button(width=25,text='发布')
-		# self.button3.pack()
+		self.label = Label(frame1,text = "取消数量：")
+		self.label.grid(row = 2, column = 1)
+		##加入输入框准备后端获取链接，进行改造
+		self.e = Entry(frame1,width=38)
+		self.e.grid(row = 2, column = 2)
+
+		self.button2 = Button(frame1,text='统计本页优先推送数量')
+		self.button2.grid(row = 3, column = 1)
+		self.button3 = Button(frame1,text='勾选取消推送')
+		self.button3.grid(row = 3, column = 2)
 		##获取输入框内容按钮
-		# self.button4 = Button(width=25,text='链接转换')
-		# self.button4.pack()
+		self.button4 = Button(frame1,text='批量取消')
+		self.button4.grid(row = 3, column = 3)
 
 		##焦点为button1
 		self.button1.focus_set()
 
 		self.button1.bind("<<ComboboxSelected>>",self.buttonListener1)
 		self.button2.bind("<ButtonRelease-1>",self.buttonListener2)
-		# self.button3.bind("<ButtonRelease-1>",self.buttonListener3)
-		# self.button4.bind("<ButtonRelease-1>",self.buttonListener4)
+		self.button3.bind("<ButtonRelease-1>",self.buttonListener3)
+		self.button4.bind("<ButtonRelease-1>",self.buttonListener4)
 
 root = Tk()
 root.title("58同城")
