@@ -28,6 +28,10 @@ class App:
 
 		##获取链接，准备把链接转换成多个页面
 		var = self.e.get()
+
+		##没有清除文本框，待查
+		# self.e.insert(0, END)
+
 		print (var)
 		# print (var.split("p/")[1].split('/region')[0])
 		## print (var.split("p/")[0]+ "p/%s"  + '/region'% "888")
@@ -59,7 +63,7 @@ class App:
 			g.write(htmlhead)
 
 			##生成页码数
-			for i in range(2,23):
+			for i in range(2,35):
 
 				url = var.split("p/")[0] + "p/%s"  % str(i)
 				newurl = '<A HREF="%s" target="_blank" >第%s页</A>\n' % (url + '/region' + var.split("p/")[1].split('/region')[1],str(i))
@@ -107,7 +111,8 @@ class App:
 								  "宝山:15136289152","宝山:嗨住全国15","嘉定:15026518260", \
 								  "嘉定:嗨住全国16","松江:13810794175","松江:嗨住全国14", \
 								  "青浦:18670107293","朝阳&丰台:嗨住2017","海淀&大兴:嗨住2018", \
-								  "郑州:上海高度公司"
+								  "郑州:上海高度公司","龙岗1", "南山1", "福田1", "宝安1", "龙华", \
+								  "罗湖", "龙岗", "南山", "福田", "宝安",
 								   ) 
 		self.button1.grid(row = 1, column = 2)
 

@@ -535,6 +535,7 @@ def selectCancel(num):
 
 	//统计数量打印在console口
 	var k = 0;
+	console.log(document.getElementsByClassName("ck").length)
 	for (var i = document.getElementsByClassName("ck").length - 1; i >=document.getElementsByClassName("ck").length - %s; i--) {
 			document.getElementsByClassName("ck")[i].checked = true;
 	    	console.log(k);

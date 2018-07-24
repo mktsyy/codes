@@ -5,7 +5,7 @@
 from pynput.mouse import Button, Controller
 import win32gui,win32api
 import time
-from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space,ctrlV,keyFill,ctrlShiftI
+from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space,ctrlV,keyFill,ctrlShiftI,ctrlShiftTab
 import sys
 import when
 import win32con  
@@ -479,6 +479,37 @@ def newPublic(coordinate):
 	elif coordinate == "郑州:上海高度公司":
 		mouse.position = (765,515)
 		mouse.click(Button.left,1)
+	elif coordinate == "龙岗1":
+		mouse.position = (766,518)
+		mouse.click(Button.left,1)
+	elif coordinate == "南山1":
+		mouse.position = (877,519)
+		mouse.click(Button.left,1)
+	elif coordinate == "福田1":
+		mouse.position = (988,515)
+		mouse.click(Button.left,1)
+	elif coordinate == "宝安1":
+		mouse.position = (768,555)
+		mouse.click(Button.left,1)
+	elif coordinate == "龙华":
+		mouse.position = (877,554)
+		mouse.click(Button.left,1)
+	elif coordinate == "罗湖":
+		mouse.position = (988,554)
+		mouse.click(Button.left,1)
+	elif coordinate == "龙岗":
+		mouse.position = (770,590)
+		mouse.click(Button.left,1)
+	elif coordinate == "南山":
+		mouse.position = (884,589)
+		mouse.click(Button.left,1)
+	elif coordinate == "福田":
+		mouse.position = (987,589)
+		mouse.click(Button.left,1)
+	elif coordinate == "宝安":
+		mouse.position = (765,625)
+		mouse.click(Button.left,1)
+
 
 	##至发布按钮处
 	mouse.position = (881,777)
@@ -488,8 +519,16 @@ def newPublic(coordinate):
 	# time.sleep(3)
 	# ctrlW()
 
+	##2秒后页面跳转
+	time.sleep(3)
+	ctrlShiftTab()
+
+	##关闭控制台(郑州用)
+	# time.sleep(1)
+	# ctrlShiftI()
+
 	#恢复原位置
-	# mouse.position = oldPosition
+	mouse.position = oldPosition
 
 
 # fillInnerPicFirst()

@@ -65,3 +65,10 @@ def ctrlShiftI():
 		keyboard.press("i")
 		keyboard.release(Key.shift)
 		keyboard.release("i")
+
+def ctrlShiftTab():
+	with keyboard.pressed(Key.ctrl):
+		keyboard.press(Key.shift)
+		keyboard.press(Key.tab)
+		keyboard.release(Key.shift)
+		keyboard.release(Key.tab)

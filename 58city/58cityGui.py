@@ -51,6 +51,8 @@ class App:
 								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ20",
 								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ10",
 								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ30",
+								"http://vip.58ganji.com/zf58/cxfy58/W0QQpZ3",
+								"http://vip.58ganji.com/zf58/kcfy58  ",
 								
 								   ) 
 		self.button1.grid(row = 1, column = 2)
