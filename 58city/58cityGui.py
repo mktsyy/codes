@@ -21,6 +21,7 @@ class App:
 
 	def buttonListener3(self,event):
 		var = self.e.get()
+		# var = 0
 		selectCancel(var)
 
 

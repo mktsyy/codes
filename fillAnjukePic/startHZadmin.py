@@ -66,8 +66,11 @@ class App:
 			for i in range(2,35):
 
 				url = var.split("p/")[0] + "p/%s"  % str(i)
-				newurl = '<A HREF="%s" target="_blank" >第%s页</A>\n' % (url + '/region' + var.split("p/")[1].split('/region')[1],str(i))
-				# print (newurl)
+				try:
+					newurl = '<A HREF="%s" target="_blank" >第%s页</A>\n' % (url + '/region' + var.split("p/")[1].split('/region')[1],str(i))
+				except:
+					newurl = '<A HREF="%s" target="_blank" >第%s页</A>\n' % (url+ '/moneyMin' + var.split('/moneyMin')[1],str(i))
+				print (newurl)
 
 				if (i-2) % 10 == 0:
 					g.write('<button onclick="openurl(%s)">打开</button><br>\n' % str(i))

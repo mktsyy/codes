@@ -121,7 +121,7 @@ def sendMessages(msg):
 	mouse.click(Button.left,1)
 	time.sleep(0.2)
 	keyFill(msg)
-	time.sleep(0.8)
+	time.sleep(1.2)
 	mouse.position = (1188,946)
 	mouse.click(Button.left,1)
 	time.sleep(0.2)
@@ -134,9 +134,9 @@ def signOutApp():
 	mouse.click(Button.left,1)
 	time.sleep(0.5)
 	##有优惠券
-	# mouse.position = (1074,568)
+	mouse.position = (946,577)
 	##正常
-	mouse.position = (844,483)
+	# mouse.position = (844,483)
 	mouse.click(Button.left,1)
 	time.sleep(0.5)
 	mouse.position = (947,376)
@@ -520,12 +520,12 @@ def newPublic(coordinate):
 	# ctrlW()
 
 	##2秒后页面跳转
-	time.sleep(3)
-	ctrlShiftTab()
+	# time.sleep(3)
+	# ctrlShiftTab()
 
 	##关闭控制台(郑州用)
-	# time.sleep(1)
-	# ctrlShiftI()
+	time.sleep(1)
+	ctrlShiftI()
 
 	#恢复原位置
 	mouse.position = oldPosition

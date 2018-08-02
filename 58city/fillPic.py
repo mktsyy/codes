@@ -526,7 +526,7 @@ def counterNum():
 	time.sleep(0.2)
 	enter()
 
-def selectCancel(num):
+def selectCancel(num1):
 	##点击右面空白console处
 	mouse.position = (1735,520)
 	mouse.click(Button.left,1)
@@ -535,13 +535,18 @@ def selectCancel(num):
 
 	//统计数量打印在console口
 	var k = 0;
-	console.log(document.getElementsByClassName("ck").length)
-	for (var i = document.getElementsByClassName("ck").length - 1; i >=document.getElementsByClassName("ck").length - %s; i--) {
-			document.getElementsByClassName("ck")[i].checked = true;
-	    	console.log(k);
-	    	k = k + 1;
-
-	};
+	for (var i = document.getElementsByClassName("num").length - 2; i >= 0; i--) {
+	if(k == %s){break;}
+		if (Number(document.getElementsByClassName("num")[i].innerText.split("/")[0])==0 &&
+			(Number(document.getElementsByClassName("num")[i].innerText.split("/")[1])==1||
+			Number(document.getElementsByClassName("num")[i].innerText.split("/")[1])==0)) {
+			document.getElementsByClassName("num")[i].parentNode.childNodes[1].childNodes[1].checked = true;
+			k = k + 1;
+			console.log(k);
+			
+		}
+		
+	}
 
 	
 	//翻页绑定左右按键
@@ -554,7 +559,7 @@ def selectCancel(num):
 	        document.getElementsByClassName("ui-multipage-pre-active")[0].click();
 	    }
 	};
-	''' % str(num)
+	''' % str(num1)
 	setText(codes)
 	ctrlV()
 	time.sleep(0.2)
