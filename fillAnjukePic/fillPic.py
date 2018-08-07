@@ -5,7 +5,7 @@
 from pynput.mouse import Button, Controller
 import win32gui,win32api
 import time
-from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space,ctrlV,keyFill,ctrlShiftI,ctrlShiftTab
+from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space,ctrlV,keyFill,ctrlShiftI,ctrlShiftTab,ctrlC
 import sys
 import when
 import win32con  
@@ -18,6 +18,13 @@ def setText(aString):
     w.EmptyClipboard()  
     w.SetClipboardData(win32con.CF_UNICODETEXT, aString)  
     w.CloseClipboard() 
+
+def getText():  
+    w.OpenClipboard()  
+    d = w.GetClipboardData(win32con.CF_UNICODETEXT)  
+    # print (d)
+    w.CloseClipboard()
+    return d
 
 def fillInnerPicFirst():
 	mouse.position = (649, 512)
@@ -520,15 +527,36 @@ def newPublic(coordinate):
 	# ctrlW()
 
 	##2秒后页面跳转
-	# time.sleep(3)
-	# ctrlShiftTab()
+	time.sleep(3)
+	ctrlShiftTab()
 
 	##关闭控制台(郑州用)
-	time.sleep(1)
-	ctrlShiftI()
+	# time.sleep(1)
+	# ctrlShiftI()
 
 	#恢复原位置
 	mouse.position = oldPosition
+
+def copyUrl():
+
+	##点击空白处
+	mouse.position = (1748,568)
+	mouse.click(Button.left,1)
+	##点击地址栏准备复制链接
+	mouse.position = (1667,47)
+	mouse.click(Button.left,1)
+	ctrlC()
+	##点击空白处
+	mouse.position = (1748,568)
+	mouse.click(Button.left,1)
+	##点击地址栏准备复制链接
+	mouse.position = (1667,47)
+	mouse.click(Button.left,1)
+	ctrlC()
+
+	return getText()
+
+
 
 
 # fillInnerPicFirst()

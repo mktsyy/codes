@@ -1,6 +1,6 @@
 #-*-coding:utf-8-*-
 
-from fillPic import HZadmin,HZadminSolo,HZadminPublic,newPublic
+from fillPic import HZadmin,HZadminSolo,HZadminPublic,newPublic,copyUrl
 from tkinter import *
 from tkinter import ttk
 import os
@@ -27,7 +27,7 @@ class App:
 	def buttonListener4(self,event):
 
 		##获取链接，准备把链接转换成多个页面
-		var = self.e.get()
+		var = copyUrl()
 
 		##没有清除文本框，待查
 		# self.e.insert(0, END)

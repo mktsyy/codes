@@ -47,6 +47,11 @@ def ctrlW():
 		keyboard.press("w")
 		keyboard.release("w")
 
+def ctrlC():
+	with keyboard.pressed(Key.ctrl):
+		keyboard.press("c")
+		keyboard.release("c")
+
 def ctrlV():
 	with keyboard.pressed(Key.ctrl):
 		keyboard.press("v")
