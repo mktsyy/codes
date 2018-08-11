@@ -27,7 +27,10 @@ class App:
 	def buttonListener4(self,event):
 
 		##获取链接，准备把链接转换成多个页面
-		var = copyUrl()
+		try:
+			var = copyUrl()
+		except:
+			var = self.e.get()
 
 		##没有清除文本框，待查
 		# self.e.insert(0, END)
