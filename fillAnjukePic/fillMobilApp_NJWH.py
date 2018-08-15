@@ -163,14 +163,20 @@ def sendDX1():
 class App:
 
 	def addNJajkPhone(self,event):
-		sendMessages(u"您好，咨询房子请拨打电话：17388078735")
+		sendMessages(u"您好，咨询房子可以拨打我的电话17388078735，消息可能无法及时回复，抱歉！")
 
 	def WHGJMessage(self,event):
-		sendMessages(u"您好，咨询房子请拨打电话：13024114908")
+		sendMessages(u"您好，咨询房子可以拨打我的电话13024114908，消息可能无法及时回复，抱歉！")
 
 
 	def addNJGJMessage(self,event):
-		sendMessages(u"您好，咨询房子请拨打电话：17327798350")
+		sendMessages(u"您好，咨询房子可以拨打我的电话17327798350，消息可能无法及时回复，抱歉！")
+
+	def addWHajkPhone(self,event):
+		sendMessages(u"您好，咨询房子可以拨打我的电话13517269813，消息可能无法及时回复，抱歉！")
+
+	def mfzf(self,event):
+		sendMessages(u"我们是免费的租房平台，不收取中介费的。")
 
 	def signOut(self,event):
 		signOutApp()
@@ -214,12 +220,20 @@ class App:
 		self.button2.pack() 
 		self.button6 = Button(fm2,width=25, text='南京安居客聊天消息')
 		self.button6.pack()
+
+		self.button7 = Button(fm2,width=25, text='武汉安居客聊天消息')
+		self.button7.pack()
+
 		self.button3 = Button(fm2,width=25, text='武汉赶集聊天消息')
 		self.button3.pack()
 		  
 
 		self.button4 = Button(fm2,width=25, text='南京赶集聊天消息')
 		self.button4.pack() 
+
+		self.button8 = Button(fm2,width=25, text='免费租房')
+		self.button8.pack() 
+
 		self.button5 = Button(fm2,width=25, text='退出')
 		self.button5.pack()   
 
@@ -241,6 +255,8 @@ class App:
 		self.button4.bind("<ButtonRelease-1>",self.addNJGJMessage)
 		self.button5.bind("<ButtonRelease-1>",self.signOut)
 		self.button6.bind("<ButtonRelease-1>",self.addNJajkPhone)
+		self.button7.bind("<ButtonRelease-1>",self.addWHajkPhone)
+		self.button8.bind("<ButtonRelease-1>",self.mfzf)
 
 
 root = Tk()
