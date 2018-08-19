@@ -19,7 +19,7 @@ class App:
 		HZadminSolo()
 		# print(self.button1.get())
 		##点击发布并选择相应账号进行发布
-		newPublic(self.button1.get())
+		newPublic(self.button1.get(),self.city.get())
 
 	def buttonListener3(self,event):
 		HZadminPublic()
@@ -91,13 +91,24 @@ class App:
 
 		os.system("cityurl.html")
 
+	def sel(self):
+		if self.city.get() == 1 :
+			print ("1")
+		elif self.city.get() == 2 :
+			print ("2")
+		elif self.city.get() == 3 :
+			print ("3")
+		# print (self.city.get())
+
+
+
 
 	def __init__(self,master):
 
-		##加入输入框准备后端获取链接，进行改造
-		self.e = Entry(master)
-		self.e.pack()
-		
+		##加入输入框准备后端获取链接，进行改造(链接自动拿取已完成，暂时隐藏)
+		# self.e = Entry(master)
+		# self.e.pack()
+
 		##用框架，grid方法来划分
 		frame1 = Frame(master)
 		frame1.pack()  #看下面的解释（包管理器）
@@ -121,6 +132,22 @@ class App:
 								  "罗湖", "龙岗", "南山", "福田", "宝安",
 								   ) 
 		self.button1.grid(row = 1, column = 2)
+
+		##加入发布按钮选择框
+		self.city = IntVar()
+
+		self.R1 = Radiobutton(frame1, text="上海", variable=self.city, value=1, command=self.sel)
+		self.R1.grid(row = 2, column = 1)
+	 
+		self.R2 = Radiobutton(frame1, text="北京，郑州", variable=self.city, value=2, command=self.sel)
+		self.R2.grid(row = 2, column = 2)
+	 
+		self.R3 = Radiobutton(frame1, text="深圳", variable=self.city, value=3, command=self.sel)
+		self.R3.grid(row = 2, column = 3)
+
+		##默认选中R1按钮
+		self.R1.select()
+
 
 		self.button2 = Button(width=25,text='发布')
 		self.button2.pack()

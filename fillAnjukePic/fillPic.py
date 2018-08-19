@@ -420,7 +420,7 @@ def HZadminPublic():
 	mouse.position = (881,777)
 	mouse.click(Button.left,1)
 
-def newPublic(coordinate):
+def newPublic(coordinate,city):
 	##记住原来位置
 	oldPosition = mouse.position
 	##点击发布
@@ -517,17 +517,27 @@ def newPublic(coordinate):
 		mouse.position = (765,625)
 		mouse.click(Button.left,1)
 
+	##加入前端选择城市
+	if city == 1:
+		##至发布按钮处(上海)
+		mouse.position = (881,777)
+		mouse.click(Button.left,1)
+	elif city == 2:
+		####至发布按钮处(北京，郑州)
+		mouse.position = (887,560)
+		mouse.click(Button.left,1)
+	elif city == 3:
+		##至发布按钮处(深圳)
+		mouse.position = (885,671)
+		mouse.click(Button.left,1)
 
-	##至发布按钮处
-	mouse.position = (881,777)
-	# mouse.click(Button.left,1)
 
 	##3秒后关闭
 	# time.sleep(3)
 	# ctrlW()
 
 	##2秒后页面跳转
-	time.sleep(3)
+	time.sleep(1)
 	ctrlShiftTab()
 
 	##关闭控制台(郑州用)
