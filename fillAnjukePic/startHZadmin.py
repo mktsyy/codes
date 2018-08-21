@@ -66,7 +66,7 @@ class App:
 			g.write(htmlhead)
 
 			##生成页码数
-			for i in range(2,35):
+			for i in range(2,50):
 
 				url = var.split("p/")[0] + "p/%s"  % str(i)
 				try:
