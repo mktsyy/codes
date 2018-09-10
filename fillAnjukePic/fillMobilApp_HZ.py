@@ -168,7 +168,7 @@ class App:
 		sendMessages(u"")
 
 	def mfzf(self,event):
-		sendMessages(u"")
+		sendMessages(u"我们是免费的租房平台，不收取中介费的。")
 
 	def signOut(self,event):
 		signOutApp()

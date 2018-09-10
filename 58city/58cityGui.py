@@ -50,11 +50,11 @@ class App:
 		##重新定义为选择框，选择发布账号
 		number = StringVar()
 		self.button1 = ttk.Combobox(frame1,width=38,text=number)
-		self.button1['values'] = ("http://vip.58ganji.com/zf58/kcfy58/W0QQpZ6",  \
-								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ36", \
-								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ20",
-								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ10",
-								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ30",
+		self.button1['values'] = ("http://vip.58ganji.com/zf58/kcfy58/W0QQpZ5",  \
+								# "http://vip.58ganji.com/zf58/yxtg58/W0QQpZ36", \
+								# "http://vip.58ganji.com/zf58/yxtg58/W0QQpZ20",
+								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ12",
+								# "http://vip.58ganji.com/zf58/yxtg58/W0QQpZ30",
 								"http://vip.58ganji.com/zf58/cxfy58/W0QQpZ3",
 								"http://vip.58ganji.com/zf58/kcfy58  ",
 								
