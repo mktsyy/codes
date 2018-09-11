@@ -538,7 +538,6 @@ def selectCancel(num1):
 	for (var i = document.getElementsByClassName("num").length - 2; i >= 0; i--) {
 	if(k == %s){break;}
 		if (Number(document.getElementsByClassName("num")[i].innerText.split("/")[0])==0 &&
-			# (Number(document.getElementsByClassName("num")[i].innerText.split("/")[1])==1||
 			Number(document.getElementsByClassName("num")[i].innerText.split("/")[1])==0) {
 			document.getElementsByClassName("num")[i].parentNode.childNodes[1].childNodes[1].checked = true;
 			k = k + 1;

@@ -44,6 +44,8 @@ u"南京嗨住租房20",
 u"嗨住21",
 u"嗨住22",
 u"嗨住23",
+u"嗨住24",
+u"嗨住25",
 u"南京嗨住02",
 u"南京嗨住03",
 u"南京嗨住04",
@@ -100,6 +102,8 @@ password = [
 "112233",
 "112233",
 "112233",
+"112233",
+"112233",
 "a123456",
 "a123456",
 "a123456",
@@ -117,7 +121,7 @@ phone =[
 "15968866951"
 ]
 
-I = -1
+I = 30
 def addi():
 	# print (name[I])
 	global I
@@ -221,6 +225,9 @@ class App:
 		self.button6 = Button(fm2,width=25, text='南京安居客聊天消息')
 		self.button6.pack()
 
+		self.button4 = Button(fm2,width=25, text='南京赶集聊天消息')
+		self.button4.pack() 
+
 		self.button7 = Button(fm2,width=25, text='武汉安居客聊天消息')
 		self.button7.pack()
 
@@ -228,8 +235,6 @@ class App:
 		self.button3.pack()
 		  
 
-		self.button4 = Button(fm2,width=25, text='南京赶集聊天消息')
-		self.button4.pack() 
 
 		self.button8 = Button(fm2,width=25, text='免费租房')
 		self.button8.pack() 
