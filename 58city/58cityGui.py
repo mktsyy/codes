@@ -5,7 +5,7 @@ from tkinter import *
 from tkinter import ttk
 import os
 import time
-from fillPic import cityMouse,counterNum,selectCancel,firstSendCancle,dueCancle
+from fillPic import cityMouse,counterNum,selectCancel,firstSendCancle,dueCancle,GJdueCancle
 
 class App:
 
@@ -30,6 +30,9 @@ class App:
 
 	def buttonListener5(self,event):
 		dueCancle()
+
+	def buttonListener6(self,event):
+		GJdueCancle()
 		
 
 
@@ -79,6 +82,10 @@ class App:
 		self.button5 = Button(frame1,text='批量取消推送红色房源')
 		self.button5.grid(row = 3, column = 3)
 
+		##赶集推广(未完成)
+		# self.button6 = Button(frame1,text='赶集推广')
+		# self.button6.grid(row = 3, column = 3)
+
 		##焦点为button1
 		self.button1.focus_set()
 
@@ -87,6 +94,7 @@ class App:
 		self.button3.bind("<ButtonRelease-1>",self.buttonListener3)
 		self.button4.bind("<ButtonRelease-1>",self.buttonListener4)
 		self.button5.bind("<ButtonRelease-1>",self.buttonListener5)
+		# self.button6.bind("<ButtonRelease-1>",self.buttonListener6)
 
 root = Tk()
 root.title("58同城")

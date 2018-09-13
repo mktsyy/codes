@@ -603,6 +603,25 @@ def dueCancle():
 	time.sleep(0.2)
 	enter()
 
+def GJdueCancle():
+	##点击右面空白console处
+	mouse.position = (1735,520)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	codes = '''
+	if(document.getElementsByClassName("lastday")){
+	for (var i = document.getElementsByClassName("lastday").length - 1; i >= 0; i--) {
+	document.getElementsByClassName("lastday")[i].parentNode.parentNode.parentNode.childNodes[1].childNodes[1].checked = true;
+	}
+	console.log(document.getElementsByClassName("lastday").length)
+	}
+
+	'''
+	setText(codes)
+	ctrlV()
+	time.sleep(0.2)
+	enter()
+
 # fillInnerPicFirst()
 # fillInnerPicSecond()
 
