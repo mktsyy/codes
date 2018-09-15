@@ -5,7 +5,7 @@
 from pynput.mouse import Button, Controller
 import win32gui,win32api
 import time
-from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space,ctrlV,keyFill,ctrlShiftI,ctrlShiftTab,ctrlC
+from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space,ctrlV,keyFill,ctrlShiftI
 import sys
 import when
 import win32con  
@@ -18,13 +18,6 @@ def setText(aString):
     w.EmptyClipboard()  
     w.SetClipboardData(win32con.CF_UNICODETEXT, aString)  
     w.CloseClipboard() 
-
-def getText():  
-    w.OpenClipboard()  
-    d = w.GetClipboardData(win32con.CF_UNICODETEXT)  
-    # print (d)
-    w.CloseClipboard()
-    return d
 
 def fillInnerPicFirst():
 	mouse.position = (649, 512)
@@ -128,7 +121,7 @@ def sendMessages(msg):
 	mouse.click(Button.left,1)
 	time.sleep(0.2)
 	keyFill(msg)
-	time.sleep(1.2)
+	time.sleep(0.8)
 	mouse.position = (1188,946)
 	mouse.click(Button.left,1)
 	time.sleep(0.2)
@@ -141,14 +134,14 @@ def signOutApp():
 	mouse.click(Button.left,1)
 	time.sleep(0.5)
 	##有优惠券
-	mouse.position = (984,654)
+	# mouse.position = (1074,568)
 	##正常
-	# mouse.position = (1008,586)
+	mouse.position = (844,483)
 	mouse.click(Button.left,1)
 	time.sleep(0.5)
 	mouse.position = (947,376)
 	mouse.click(Button.left,1)
-	time.sleep(0.8)
+	time.sleep(0.5)
 	mouse.position = (1141,570)
 	mouse.click(Button.left,1)
 
@@ -266,7 +259,7 @@ def HZadminSolo():
 
 	##发送ctrlshifti
 	ctrlShiftI()
-	time.sleep(1)
+	time.sleep(0.5)
 
 	##点击右面空白console处
 	mouse.position = (1735,520)
@@ -420,7 +413,7 @@ def HZadminPublic():
 	mouse.position = (881,777)
 	mouse.click(Button.left,1)
 
-def newPublic(coordinate,city):
+def newPublic(coordinate):
 	##记住原来位置
 	oldPosition = mouse.position
 	##点击发布
@@ -475,7 +468,7 @@ def newPublic(coordinate,city):
 		mouse.position = (877,699)
 		mouse.click(Button.left,1)
 	elif coordinate == "青浦:18670107293":
-		mouse.position = (884,589)
+		mouse.position = (876,589)
 		mouse.click(Button.left,1)
 	elif coordinate == "朝阳&丰台:嗨住2017":
 		mouse.position = (877,516)
@@ -486,88 +479,141 @@ def newPublic(coordinate,city):
 	elif coordinate == "郑州:上海高度公司":
 		mouse.position = (765,515)
 		mouse.click(Button.left,1)
-	elif coordinate == "龙岗1":
-		mouse.position = (766,518)
-		mouse.click(Button.left,1)
-	elif coordinate == "南山1":
-		mouse.position = (877,519)
-		mouse.click(Button.left,1)
-	elif coordinate == "福田1":
-		mouse.position = (988,515)
-		mouse.click(Button.left,1)
-	elif coordinate == "宝安1":
-		mouse.position = (768,555)
-		mouse.click(Button.left,1)
-	elif coordinate == "龙华":
-		mouse.position = (877,554)
-		mouse.click(Button.left,1)
-	elif coordinate == "罗湖":
-		mouse.position = (988,554)
-		mouse.click(Button.left,1)
-	elif coordinate == "龙岗":
-		mouse.position = (770,590)
-		mouse.click(Button.left,1)
-	elif coordinate == "南山":
-		mouse.position = (884,589)
-		mouse.click(Button.left,1)
-	elif coordinate == "福田":
-		mouse.position = (987,589)
-		mouse.click(Button.left,1)
-	elif coordinate == "宝安":
-		mouse.position = (765,625)
-		mouse.click(Button.left,1)
 
-	##加入前端选择城市
-	if city == 1:
-		##至发布按钮处(上海)
-		mouse.position = (881,777)
-		mouse.click(Button.left,1)
-	elif city == 2:
-		####至发布按钮处(北京，郑州)
-		mouse.position = (887,560)
-		mouse.click(Button.left,1)
-	elif city == 3:
-		##至发布按钮处(深圳)
-		mouse.position = (885,671)
-		mouse.click(Button.left,1)
-
+	##至发布按钮处
+	# mouse.position = (881,777)
+	# mouse.click(Button.left,1)
 
 	##3秒后关闭
-	# time.sleep(3)
-	# ctrlW()
-
-	##2秒后页面跳转
-	time.sleep(1)
-	ctrlShiftTab()
-
-	##关闭控制台(郑州用)
-	# time.sleep(1)
-	# ctrlShiftI()
+	time.sleep(3)
+	ctrlW()
 
 	#恢复原位置
 	mouse.position = oldPosition
 
-def copyUrl():
-
-	##点击空白处
-	mouse.position = (1748,568)
+def cityMouse(http):
+	mouse.position = (1068,48)
 	mouse.click(Button.left,1)
-	##点击地址栏准备复制链接
-	mouse.position = (1667,47)
+	keyFill(http)
+	enter()
+
+def counterNum():
+	##点击右面空白console处
+	mouse.position = (1735,520)
 	mouse.click(Button.left,1)
-	ctrlC()
-	##点击空白处
-	mouse.position = (1748,568)
+	time.sleep(0.1)
+	##发送ctrlshifti
+	ctrlShiftI()
+	time.sleep(0.5)
+	##点击右面空白console处
+	mouse.position = (1735,520)
 	mouse.click(Button.left,1)
-	##点击地址栏准备复制链接
-	mouse.position = (1667,47)
+	time.sleep(0.5)
+	codes = '''
+
+	//统计推广数量打印在console口
+	document.getElementsByClassName("opt-link setpro").length;
+	'''
+	setText(codes)
+	ctrlV()
+	time.sleep(0.2)
+	enter()
+
+def selectCancel(num1):
+	##点击右面空白console处
+	mouse.position = (1735,520)
 	mouse.click(Button.left,1)
-	ctrlC()
+	time.sleep(0.5)
+	codes = '''
 
-	return getText()
+	//统计数量打印在console口
+	var k = 0;
+	for (var i = document.getElementsByClassName("num").length - 2; i >= 0; i--) {
+	if(k == %s){break;}
+		if (Number(document.getElementsByClassName("num")[i].innerText.split("/")[0])==0 &&
+			Number(document.getElementsByClassName("num")[i].innerText.split("/")[1])==0) {
+			document.getElementsByClassName("num")[i].parentNode.childNodes[1].childNodes[1].checked = true;
+			k = k + 1;
+			console.log(k);
+			
+		}
+		
+	}
 
+	
+	//翻页绑定左右按键
 
+	document.onkeydown = function(event) {
+	    var e = event || window.event || arguments.callee.caller.arguments[0];  
+	    if (e && e.keyCode == 39) {
+	        document.getElementsByClassName("ui-multipage-next-active")[0].click();
+	    } else if (e && e.keyCode == 37) {
+	        document.getElementsByClassName("ui-multipage-pre-active")[0].click();
+	    }
+	};
+	''' % str(num1)
+	setText(codes)
+	ctrlV()
+	time.sleep(0.2)
+	enter()
 
+def firstSendCancle():
+	##记住原来位置
+	oldPosition = mouse.position
+
+	mouse.position = (417,483)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	mouse.position = (518,489)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	mouse.position = (823,621)
+	mouse.click(Button.left,1)
+	time.sleep(0.8)
+	mouse.position = (1205,861)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	
+	#恢复原位置
+	mouse.position = oldPosition
+
+def dueCancle():
+	##点击右面空白console处
+	mouse.position = (1735,520)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	codes = '''
+	if(document.getElementsByClassName("lastday")){
+	for (var i = document.getElementsByClassName("lastday").length - 1; i >= 0; i--) {
+	document.getElementsByClassName("lastday")[i].parentNode.parentNode.parentNode.childNodes[1].childNodes[1].checked = true;
+	}
+	console.log(document.getElementsByClassName("lastday").length)
+	}
+
+	'''
+	setText(codes)
+	ctrlV()
+	time.sleep(0.2)
+	enter()
+
+def GJdueCancle():
+	##点击右面空白console处
+	mouse.position = (1735,520)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	codes = '''
+	if(document.getElementsByClassName("lastday")){
+	for (var i = document.getElementsByClassName("lastday").length - 1; i >= 0; i--) {
+	document.getElementsByClassName("lastday")[i].parentNode.parentNode.parentNode.childNodes[1].childNodes[1].checked = true;
+	}
+	console.log(document.getElementsByClassName("lastday").length)
+	}
+
+	'''
+	setText(codes)
+	ctrlV()
+	time.sleep(0.2)
+	enter()
 
 # fillInnerPicFirst()
 # fillInnerPicSecond()
