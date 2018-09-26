@@ -10,7 +10,7 @@ import sys
 import when
 import win32con  
 import win32clipboard as w 
-from changeCoordinate import wCoor
+from changeCoordinate import wCoor,wCoorMI
 
 mouse = Controller()
 
@@ -184,14 +184,14 @@ def sendMessagesMI(msg):
 	mouse.click(Button.left,1)
 	mouse.position = (736,444)
 
-def signOutApp():
+def signOutApp(nom_pos=(839, 583)):
 	mouse.position = (1164,949)
 	mouse.click(Button.left,1)
 	time.sleep(0.5)
 	##有优惠券
-	mouse.position = (984,654)
+	# mouse.position = (984,654)
 	##正常
-	# mouse.position = (1008,586)
+	mouse.position = nom_pos
 	mouse.click(Button.left,1)
 	time.sleep(0.5)
 	mouse.position = (947,376)
