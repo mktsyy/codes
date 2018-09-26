@@ -1,4 +1,3 @@
-##controlKeyboard
 #-*-coding:utf-8-*-
 ##这个是关于1920*1080分辨率的
 

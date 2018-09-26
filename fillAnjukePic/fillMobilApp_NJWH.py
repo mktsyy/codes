@@ -10,8 +10,8 @@ from tkinter import *    #注意模块导入方式，否则代码会有差别
 import time 
 import win32con  
 import win32clipboard as w 
-from fillPic import HZmobilBroker,sendMessages,signOutApp,fillPhone,sendDX
-
+from fillPic import HZmobilBroker,sendMessages,signOutApp,fillPhone,sendDX,HZmobilBrokerMI,signOutAppMI,sendMessagesMI,getPos
+import os,sys
 ##Python 下载win32api 模块  终端输入“pip install pypiwin32”
 
 # import win32api, win32gui  
@@ -127,14 +127,17 @@ def addi():
 	global I
 	I = I + 1
 	setText(name[I])
-	HZmobilBroker(name[I],password[I])
+	# HZmobilBroker(name[I],password[I])
+	HZmobilBrokerMI(name[I],password[I])
+
 	
 
 def deli():
 	global I
 	I = I - 1
 	setText(name[I])
-	HZmobilBroker(name[I],password[I])
+	# HZmobilBroker(name[I],password[I])
+	HZmobilBrokerMI(name[I],password[I])
 
 def addAJKPhone():
 	# setText(phone[0])
@@ -167,23 +170,28 @@ def sendDX1():
 class App:
 
 	def addNJajkPhone(self,event):
-		sendMessages(u"您好，咨询房子可以拨打我的电话17388078735，消息可能无法及时回复，抱歉！")
+		setText(u"您好，咨询房子可以拨打我的电话17388078735，消息可能无法及时回复，抱歉！")
+		sendMessagesMI(u"您好，咨询房子可以拨打我的电话17388078735，消息可能无法及时回复，抱歉！")
 
 	def WHGJMessage(self,event):
-		sendMessages(u"您好，咨询房子可以拨打我的电话13024114908，消息可能无法及时回复，抱歉！")
+		setText(u"您好，咨询房子可以拨打我的电话13024114908，消息可能无法及时回复，抱歉！")
+		sendMessagesMI(u"您好，咨询房子可以拨打我的电话13024114908，消息可能无法及时回复，抱歉！")
 
 
 	def addNJGJMessage(self,event):
-		sendMessages(u"您好，咨询房子可以拨打我的电话17327798350，消息可能无法及时回复，抱歉！")
+		setText(u"您好，咨询房子可以拨打我的电话17327798350，消息可能无法及时回复，抱歉！")
+		sendMessagesMI(u"您好，咨询房子可以拨打我的电话17327798350，消息可能无法及时回复，抱歉！")
 
 	def addWHajkPhone(self,event):
-		sendMessages(u"您好，咨询房子可以拨打我的电话13517269813，消息可能无法及时回复，抱歉！")
+		setText(u"您好，咨询房子可以拨打我的电话13517269813，消息可能无法及时回复，抱歉！")
+		sendMessagesMI(u"您好，咨询房子可以拨打我的电话13517269813，消息可能无法及时回复，抱歉！")
 
 	def mfzf(self,event):
-		sendMessages(u"我们是免费的租房平台，不收取中介费的。")
+		setText(u"我们是免费的租房平台，不收取中介费的。")
+		sendMessagesMI(u"我们是免费的租房平台，不收取中介费的。")
 
 	def signOut(self,event):
-		signOutApp()
+		signOutAppMI()
 	
 	def buttonListener1(self,event):
 		global I
@@ -207,7 +215,19 @@ class App:
 		HZmobilBroker(name[I],password[I])
 		##改变标题
 		var.set(name[I])
-	
+
+	def restartApp(self,event):
+		##重启程序
+		python = sys.executable
+		os.execl(python, python, * sys.argv)
+
+	def setPos(self,event):
+		##更改程序位置
+		getPos()
+		##重启程序
+		python = sys.executable
+		os.execl(python, python, * sys.argv)
+
 	def __init__(self, master,var):
 		#使用Frame增加一层容器
 		
@@ -239,6 +259,12 @@ class App:
 		self.button8 = Button(fm2,width=25, text='免费租房')
 		self.button8.pack() 
 
+		# self.button9 = Button(fm2,width=25, text='重启程序')
+		# self.button9.pack() 
+
+		self.button10 = Button(fm2,width=25, text='定位设置')
+		self.button10.pack() 
+
 		self.button5 = Button(fm2,width=25, text='退出')
 		self.button5.pack()   
 
@@ -262,6 +288,8 @@ class App:
 		self.button6.bind("<ButtonRelease-1>",self.addNJajkPhone)
 		self.button7.bind("<ButtonRelease-1>",self.addWHajkPhone)
 		self.button8.bind("<ButtonRelease-1>",self.mfzf)
+		# self.button9.bind("<ButtonRelease-1>",self.restartApp)
+		self.button10.bind("<ButtonRelease-1>",self.setPos)
 
 
 root = Tk()

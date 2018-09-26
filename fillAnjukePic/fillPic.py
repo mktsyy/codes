@@ -2,7 +2,7 @@
 #-*-coding:utf-8-*-
 ##这个是关于1920*1080分辨率的
 
-from pynput.mouse import Button, Controller
+from pynput.mouse import Button, Controller,Listener
 import win32gui,win32api
 import time
 from controlKeyboard import doKeyboard,altUp,down,enter,LaoGongTV,ctrlTab,ctrlW,space,ctrlV,keyFill,ctrlShiftI,ctrlShiftTab,ctrlC
@@ -10,21 +10,22 @@ import sys
 import when
 import win32con  
 import win32clipboard as w 
+from changeCoordinate import wCoor
 
 mouse = Controller()
 
 def setText(aString):  
-    w.OpenClipboard()  
-    w.EmptyClipboard()  
-    w.SetClipboardData(win32con.CF_UNICODETEXT, aString)  
-    w.CloseClipboard() 
+	w.OpenClipboard()  
+	w.EmptyClipboard()  
+	w.SetClipboardData(win32con.CF_UNICODETEXT, aString)  
+	w.CloseClipboard() 
 
 def getText():  
-    w.OpenClipboard()  
-    d = w.GetClipboardData(win32con.CF_UNICODETEXT)  
-    # print (d)
-    w.CloseClipboard()
-    return d
+	w.OpenClipboard()  
+	d = w.GetClipboardData(win32con.CF_UNICODETEXT)  
+	# print (d)
+	w.CloseClipboard()
+	return d
 
 def fillInnerPicFirst():
 	mouse.position = (649, 512)
@@ -122,6 +123,39 @@ def HZmobilBroker(username,password):
 	mouse.position = (958,393)
 	mouse.click(Button.left,1)
 
+def HZmobilBrokerMI(username,password):
+
+	##点击删除用户名
+	mouse.position = (1038,296)
+	mouse.click(Button.left,1)
+	time.sleep(0.2)
+
+	##粘帖用户名
+	mouse.position = (897,293)
+	mouse.click(Button.left,1)
+	ctrlV()
+	time.sleep(0.2)
+	mouse.position = (894,326)
+	mouse.click(Button.left,1)
+	time.sleep(0.2)
+	setText(password)
+	time.sleep(0.5)
+
+	##删除密码
+	mouse.position = (1022,326)
+	mouse.click(Button.left,1)
+
+	##粘帖密码
+	mouse.position = (889,328)
+	mouse.click(Button.left,1)
+	# time.sleep(2)
+	ctrlV()
+
+	##点击登录
+	time.sleep(0.2)
+	mouse.position = (958,393)
+	mouse.click(Button.left,1)
+
 def sendMessages(msg):
 	oldPosition = mouse.position
 	mouse.position = (837,949)
@@ -130,6 +164,20 @@ def sendMessages(msg):
 	keyFill(msg)
 	time.sleep(1.2)
 	mouse.position = (1188,946)
+	mouse.click(Button.left,1)
+	time.sleep(0.2)
+	mouse.position = (734,110)
+	mouse.click(Button.left,1)
+	mouse.position = (736,444)
+
+def sendMessagesMI(msg):
+	oldPosition = mouse.position
+	mouse.position = (1092,981)
+	mouse.click(Button.left,1)
+	time.sleep(0.2)
+	ctrlV()
+	time.sleep(1.2)
+	mouse.position = (1197,978)
 	mouse.click(Button.left,1)
 	time.sleep(0.2)
 	mouse.position = (734,110)
@@ -150,6 +198,22 @@ def signOutApp():
 	mouse.click(Button.left,1)
 	time.sleep(0.8)
 	mouse.position = (1141,570)
+	mouse.click(Button.left,1)
+
+def signOutAppMI(nom_pos=(846, 602)):
+	mouse.position = (1164,984)
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	##有优惠券
+	# mouse.position = (984,654)
+	##正常
+	mouse.position = nom_pos
+	mouse.click(Button.left,1)
+	time.sleep(0.5)
+	mouse.position = (986,445)
+	mouse.click(Button.left,1)
+	time.sleep(0.8)
+	mouse.position = (1169,591)
 	mouse.click(Button.left,1)
 
 def fillPhone(phone):
@@ -211,37 +275,37 @@ def HZadmin():
 	var _alert =window.alert;
 	window.alert = function(){
 
-	    //把字符串分割便于发送到web后端进行处理
-	    var aa = arguments[0].split("成功发布")[1].split("套")[0];
-	    //区域值传递到后台进行处理
-	    var region = document.getElementsByName("region")[0].value;
+		//把字符串分割便于发送到web后端进行处理
+		var aa = arguments[0].split("成功发布")[1].split("套")[0];
+		//区域值传递到后台进行处理
+		var region = document.getElementsByName("region")[0].value;
 
-	    console.log(aa);
+		console.log(aa);
 
-	    function showHint() {
-	        var xmlhttp;
+		function showHint() {
+			var xmlhttp;
 
-	        if (window.XMLHttpRequest) {
-	            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-	            xmlhttp = new XMLHttpRequest();
-	        } else {
-	            // IE6, IE5 浏览器执行代码
-	            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	        }
-	        xmlhttp.onreadystatechange = function() {
-	            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-	                // var value = json.parse(xmlhttp.responseText)
-	                alert(xmlhttp.responseText);
-	            }
-	        }
-	        xmlhttp.open("GET", "http://127.0.0.1:8000/HZadmin/?HZalert=" + aa + "&region=" + region, true);
-	        xmlhttp.send();
-	        
-	    }
+			if (window.XMLHttpRequest) {
+				// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// IE6, IE5 浏览器执行代码
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					// var value = json.parse(xmlhttp.responseText)
+					alert(xmlhttp.responseText);
+				}
+			}
+			xmlhttp.open("GET", "http://127.0.0.1:8000/HZadmin/?HZalert=" + aa + "&region=" + region, true);
+			xmlhttp.send();
+			
+		}
 
-	    showHint();
+		showHint();
 
-	    // _alert(argu ments[0]);
+		// _alert(argu ments[0]);
 	}
 
 	'''
@@ -277,37 +341,37 @@ def HZadminSolo():
 	var _alert =window.alert;
 	window.alert = function(){
 
-	    //把字符串分割便于发送到web后端进行处理
-	    var aa = arguments[0].split("成功发布")[1].split("套")[0];
-	    //区域值传递到后台进行处理
-	    var region = document.getElementsByName("region")[0].value;
+		//把字符串分割便于发送到web后端进行处理
+		var aa = arguments[0].split("成功发布")[1].split("套")[0];
+		//区域值传递到后台进行处理
+		var region = document.getElementsByName("region")[0].value;
 
-	    console.log(aa);
+		console.log(aa);
 
-	    function showHint() {
-	        var xmlhttp;
+		function showHint() {
+			var xmlhttp;
 
-	        if (window.XMLHttpRequest) {
-	            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-	            xmlhttp = new XMLHttpRequest();
-	        } else {
-	            // IE6, IE5 浏览器执行代码
-	            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	        }
-	        xmlhttp.onreadystatechange = function() {
-	            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-	                // var value = json.parse(xmlhttp.responseText)
-	                alert(xmlhttp.responseText);
-	            }
-	        }
-	        xmlhttp.open("GET", "http://127.0.0.1:8000/HZadmin/?HZalert=" + aa + "&region=" + region, true);
-	        xmlhttp.send();
-	        
-	    }
+			if (window.XMLHttpRequest) {
+				// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// IE6, IE5 浏览器执行代码
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					// var value = json.parse(xmlhttp.responseText)
+					alert(xmlhttp.responseText);
+				}
+			}
+			xmlhttp.open("GET", "http://127.0.0.1:8000/HZadmin/?HZalert=" + aa + "&region=" + region, true);
+			xmlhttp.send();
+			
+		}
 
-	    showHint();
+		showHint();
 
-	    // _alert(argu ments[0]);
+		// _alert(argu ments[0]);
 	}
 
 	'''
@@ -342,71 +406,71 @@ def HZadminPublic():
 	//读取区域以匹配电话号码(上海)
 	var region = Number(document.getElementsByName("region")[0].value);
 	switch (region) {
-	    case 24:
-	        // document.getElementsByName("userid[]")[2].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[2].nextSibling.nodeValue;
-	        select([2,]);
-	        break;
-	    case 43:
-	        // document.getElementsByName("userid[]")[8].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[8].nextSibling.nodeValue;
-	        select([8,]);
-	        break;
-	    case 53:
-	        // document.getElementsByName("userid[]")[0].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[0].nextSibling.nodeValue;
-	        // document.getElementsByName("userid[]")[14].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[14].nextSibling.nodeValue;
-	        select([0,14]);
-	        break;
-	    case 97:
-	        // document.getElementsByName("userid[]")[13].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[13].nextSibling.nodeValue;
-	        select([13,]);
-	        break;
-	    case 108:
-	        // document.getElementsByName("userid[]")[6].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[6].nextSibling.nodeValue;
-	        select([6,]);
-	        break;
-	    case 121:
-	        // document.getElementsByName("userid[]")[1].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[1].nextSibling.nodeValue;
-	        // document.getElementsByName("userid[]")[15].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[15].nextSibling.nodeValue;
-	        select([1,15]);
-	        break;
-	    case 140:
-	        // document.getElementsByName("userid[]")[9].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[9].nextSibling.nodeValue;
-	        select([9,]);
-	        break;
-	    case 147:
-	        // document.getElementsByName("userid[]")[5].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[5].nextSibling.nodeValue;
-	        // document.getElementsByName("userid[]")[17].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[17].nextSibling.nodeValue;
-	        select([5,17]);
-	        break;
-	    case 166:
-	        // document.getElementsByName("userid[]")[4].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[4].nextSibling.nodeValue;
-	        // document.getElementsByName("userid[]")[18].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[18].nextSibling.nodeValue;
-	        select([4,18]);
-	        break;
-	    case 177:
-	        // document.getElementsByName("userid[]")[3].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[3].nextSibling.nodeValue;
-	        // document.getElementsByName("userid[]")[16].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[16].nextSibling.nodeValue;
-	        select([3,16]);
-	        break;
-	    case 215:
-	        // document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
-	        select([7,]);
-	        break;
-	    case 1:
-	        // document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
-	        select([1,]);
-	        break;
-	    case 2:
-	        // document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
-	        select([2,]);
-	        break;
-	    case 2:
-	        // document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
-	        select([2,]);
-	        break;
-	    case 0:
-	        // document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
-	        select([0,]);
-	        break;
+		case 24:
+			// document.getElementsByName("userid[]")[2].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[2].nextSibling.nodeValue;
+			select([2,]);
+			break;
+		case 43:
+			// document.getElementsByName("userid[]")[8].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[8].nextSibling.nodeValue;
+			select([8,]);
+			break;
+		case 53:
+			// document.getElementsByName("userid[]")[0].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[0].nextSibling.nodeValue;
+			// document.getElementsByName("userid[]")[14].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[14].nextSibling.nodeValue;
+			select([0,14]);
+			break;
+		case 97:
+			// document.getElementsByName("userid[]")[13].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[13].nextSibling.nodeValue;
+			select([13,]);
+			break;
+		case 108:
+			// document.getElementsByName("userid[]")[6].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[6].nextSibling.nodeValue;
+			select([6,]);
+			break;
+		case 121:
+			// document.getElementsByName("userid[]")[1].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[1].nextSibling.nodeValue;
+			// document.getElementsByName("userid[]")[15].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[15].nextSibling.nodeValue;
+			select([1,15]);
+			break;
+		case 140:
+			// document.getElementsByName("userid[]")[9].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[9].nextSibling.nodeValue;
+			select([9,]);
+			break;
+		case 147:
+			// document.getElementsByName("userid[]")[5].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[5].nextSibling.nodeValue;
+			// document.getElementsByName("userid[]")[17].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[17].nextSibling.nodeValue;
+			select([5,17]);
+			break;
+		case 166:
+			// document.getElementsByName("userid[]")[4].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[4].nextSibling.nodeValue;
+			// document.getElementsByName("userid[]")[18].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[18].nextSibling.nodeValue;
+			select([4,18]);
+			break;
+		case 177:
+			// document.getElementsByName("userid[]")[3].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[3].nextSibling.nodeValue;
+			// document.getElementsByName("userid[]")[16].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[16].nextSibling.nodeValue;
+			select([3,16]);
+			break;
+		case 215:
+			// document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
+			select([7,]);
+			break;
+		case 1:
+			// document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
+			select([1,]);
+			break;
+		case 2:
+			// document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
+			select([2,]);
+			break;
+		case 2:
+			// document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
+			select([2,]);
+			break;
+		case 0:
+			// document.getElementsByName("userid[]")[7].nextSibling.nodeValue = "@" + document.getElementsByName("userid[]")[7].nextSibling.nodeValue;
+			select([0,]);
+			break;
 
 	}
 
@@ -566,6 +630,25 @@ def copyUrl():
 
 	return getText()
 
+def on_click(x, y, button, pressed):
+
+	##拿取坐标
+	# print('{0} at {1}'.format(
+	#     'Pressed' if pressed else 'Released',
+	#     (x, y)))
+
+	if not pressed:
+		# Stop listener
+		return False
+	p = ((x,y))
+	# print (p) 
+
+	wCoor(str(p))
+
+
+def getPos():
+	with Listener(on_click=on_click,) as listener:
+		listener.join()
 
 
 
@@ -594,4 +677,4 @@ if len(sys.argv)>1:
 		HZadmin()
 
 print('The current pointer position is {0}'.format(
-    mouse.position))
+	mouse.position))
