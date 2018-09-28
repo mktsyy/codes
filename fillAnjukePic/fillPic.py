@@ -200,7 +200,7 @@ def signOutApp(nom_pos=(839, 583)):
 	mouse.position = (1141,570)
 	mouse.click(Button.left,1)
 
-def signOutAppMI(nom_pos=(846, 602)):
+def signOutAppMI(nom_pos=(838, 551)):
 	mouse.position = (1164,984)
 	mouse.click(Button.left,1)
 	time.sleep(0.5)
@@ -643,7 +643,7 @@ def on_click(x, y, button, pressed):
 	p = ((x,y))
 	# print (p) 
 
-	wCoor(str(p))
+	wCoorMI(str(p))
 
 
 def getPos():
