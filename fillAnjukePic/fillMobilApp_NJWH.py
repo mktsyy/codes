@@ -7,6 +7,7 @@ import json
 
 ##导入界面
 from tkinter import *    #注意模块导入方式，否则代码会有差别
+import tkinter.messagebox
 import time 
 import win32con  
 import win32clipboard as w 
@@ -122,7 +123,7 @@ phone =[
 "15968866951"
 ]
 
-I =1
+I =-1
 def addi():
 	# print (name[I])
 	global I
@@ -195,7 +196,13 @@ class App:
 		global I
 		if I == len(name) - 1:
 			I = -1
+			saveIMI(I)
+			
+			##弹出账号循环提示消息
+			tkinter.messagebox.showinfo(message="账号将重新循环！")
+
 		signOutAppMI()
+
 	
 	def buttonListener1(self,event):
 		global I
