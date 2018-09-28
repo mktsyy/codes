@@ -9,11 +9,9 @@ def saveIMI(num):
 	with open(path+"fillMobilApp_NJWH.py","r+",encoding="utf-8") as f:
 		for n,i in enumerate(f.readlines()):
 			if i.find('I =') >= 0:
-				if n == 125:
-				# print (i)
-				# print (i.split("=")[1].split('):')[0])
-					i = i.replace(i.split("=")[1],str(num))
-				# print(i)
+				if n == 124:
+					i = i.replace(i.split("=")[1],str(num)+"\n")
+					print(i)
 			with open(path+"tempfillMobilApp_NJWH.py","a+",encoding="utf-8") as g:
 				g.write(i)
 
@@ -21,4 +19,16 @@ def saveIMI(num):
 	os.rename(path+"tempfillMobilApp_NJWH.py",path+"fillMobilApp_NJWH.py")
 
 def saveI(num):
-	pass
+	path = "F:\\python_code\\tempcode\\fillAnjukePic\\"
+	##把I写入文件保存
+	with open(path+"fillMobilApp_NJWH.py","r+",encoding="utf-8") as f:
+		for n,i in enumerate(f.readlines()):
+			if i.find('I =') >= 0:
+				if n == 124:
+					i = i.replace(i.split("=")[1],str(num)+"\n")
+					print(i)
+			with open(path+"tempfillMobilApp_NJWH.py","a+",encoding="utf-8") as g:
+				g.write(i)
+
+	os.remove(path+"fillMobilApp_NJWH.py")
+	os.rename(path+"tempfillMobilApp_NJWH.py",path+"fillMobilApp_NJWH.py")

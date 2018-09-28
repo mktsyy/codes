@@ -11,6 +11,7 @@ import time
 import win32con  
 import win32clipboard as w 
 from fillPic import HZmobilBroker,sendMessages,signOutApp,fillPhone,sendDX,HZmobilBrokerMI,signOutAppMI,sendMessagesMI,getPos
+from saveI import saveIMI,saveI
 import os,sys
 ##Python 下载win32api 模块  终端输入“pip install pypiwin32”
 
@@ -121,7 +122,7 @@ phone =[
 "15968866951"
 ]
 
-I = -1
+I =1
 def addi():
 	# print (name[I])
 	global I
@@ -191,7 +192,10 @@ class App:
 		sendMessagesMI(u"我们是免费的租房平台，不收取中介费的。")
 
 	def signOut(self,event):
-		signOutApp()
+		global I
+		if I == len(name) - 1:
+			I = -1
+		signOutAppMI()
 	
 	def buttonListener1(self,event):
 		global I
@@ -224,6 +228,11 @@ class App:
 	def setPos(self,event):
 		##更改程序位置
 		getPos()
+
+		##记住I位置
+		global I
+		saveIMI(I)
+		
 		##重启程序
 		python = sys.executable
 		os.execl(python, python, * sys.argv)
@@ -295,6 +304,11 @@ class App:
 root = Tk()
 # root.title(str(name[I]))
 root.wm_attributes('-topmost',1)
+
+##界面出现位置（宽*高+离左边缘距离+离顶端距离）
+##见https://blog.csdn.net/Mrliangqixiong/article/details/80934842
+root.geometry("200x300+1300+500")
+
 var = StringVar()
 display = App(root,var)
 

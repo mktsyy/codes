@@ -200,7 +200,7 @@ def signOutApp(nom_pos=(839, 583)):
 	mouse.position = (1141,570)
 	mouse.click(Button.left,1)
 
-def signOutAppMI(nom_pos=(838, 551)):
+def signOutAppMI(nom_pos=(898, 544)):
 	mouse.position = (1164,984)
 	mouse.click(Button.left,1)
 	time.sleep(0.5)
