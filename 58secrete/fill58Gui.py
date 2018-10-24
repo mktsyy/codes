@@ -37,6 +37,11 @@ from controlMouse import position,exita,positionMI,exitaMI,posMes
 
 root = Tk()
 root.wm_attributes('-topmost',1)
+
+##界面出现位置（宽*高+离左边缘距离+离顶端距离）
+##见https://blog.csdn.net/Mrliangqixiong/article/details/80934842
+root.geometry("200x200+1300+500")
+
 var = StringVar()
 name = [
 
@@ -123,11 +128,11 @@ button.pack()
 button = Button(root, text='减少', width=25, command=deli)
 button.pack()
 
-button = Button(root, text='退出', width=25, command=exitApp)
-button.pack()
-
-# button = Button(root, text='退出', width=25, command=exitAppMI)
+# button = Button(root, text='退出', width=25, command=exitApp)
 # button.pack()
+
+button = Button(root, text='退出', width=25, command=exitAppMI)
+button.pack()
 
 button = Button(root, text='免费的租房平台', width=25, command=free)
 button.pack()

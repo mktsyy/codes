@@ -99,6 +99,11 @@ class App:
 
 root = Tk()
 root.title("赶集")
+
+##界面出现位置（宽*高+离左边缘距离+离顶端距离）
+##见https://blog.csdn.net/Mrliangqixiong/article/details/80934842
+# root.geometry("400x80+1100+600")
+
 root.wm_attributes('-topmost',1)
 display = App(root)
 root.mainloop()
