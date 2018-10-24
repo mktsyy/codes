@@ -56,14 +56,14 @@ u"南京嗨住17",
 u"南京嗨住18",
 u"南京嗨住19",
 u"南京嗨住20",
-u"武汉嗨住租房01",
-u"武汉嗨住租房02",
-u"武汉嗨住01",
-u"武汉嗨住02",
-u"武汉嗨住03",
-u"武汉嗨住04",
-u"武汉嗨住05",
-u"武汉嗨住06",
+# u"武汉嗨住租房01",
+# u"武汉嗨住租房02",
+# u"武汉嗨住01",
+# u"武汉嗨住02",
+# u"武汉嗨住03",
+# u"武汉嗨住04",
+# u"武汉嗨住05",
+# u"武汉嗨住06",
 
 
 ]
@@ -104,14 +104,14 @@ password = [
 "112233",
 "112233",
 "112233",
-"a123456",
-"a123456",
-"a123456",
-"a123456",
-"a123456",
-"a123456",
-"a123456",
-"a123456",
+# "a123456",
+# "a123456",
+# "a123456",
+# "a123456",
+# "a123456",
+# "a123456",
+# "a123456",
+# "a123456",
 
 
 ]
@@ -171,24 +171,24 @@ class App:
 
 	def addNJajkPhone(self,event):
 		setText(u"您好，咨询房子可以拨打我的电话17388078735，消息可能无法及时回复，抱歉！")
-		sendMessagesMI(u"您好，咨询房子可以拨打我的电话17388078735，消息可能无法及时回复，抱歉！")
+		sendMessages(u"您好，咨询房子可以拨打我的电话17388078735，消息可能无法及时回复，抱歉！")
 
 	def WHGJMessage(self,event):
 		setText(u"您好，咨询房子可以拨打我的电话13024114908，消息可能无法及时回复，抱歉！")
-		sendMessagesMI(u"您好，咨询房子可以拨打我的电话13024114908，消息可能无法及时回复，抱歉！")
+		sendMessages(u"您好，咨询房子可以拨打我的电话13024114908，消息可能无法及时回复，抱歉！")
 
 
 	def addNJGJMessage(self,event):
 		setText(u"您好，咨询房子可以拨打我的电话17327798350，消息可能无法及时回复，抱歉！")
-		sendMessagesMI(u"您好，咨询房子可以拨打我的电话17327798350，消息可能无法及时回复，抱歉！")
+		sendMessages(u"您好，咨询房子可以拨打我的电话17327798350，消息可能无法及时回复，抱歉！")
 
 	def addWHajkPhone(self,event):
 		setText(u"您好，咨询房子可以拨打我的电话13517269813，消息可能无法及时回复，抱歉！")
-		sendMessagesMI(u"您好，咨询房子可以拨打我的电话13517269813，消息可能无法及时回复，抱歉！")
+		sendMessages(u"您好，咨询房子可以拨打我的电话13517269813，消息可能无法及时回复，抱歉！")
 
 	def mfzf(self,event):
 		setText(u"我们是免费的租房平台，不收取中介费的。")
-		sendMessagesMI(u"我们是免费的租房平台，不收取中介费的。")
+		sendMessages(u"我们是免费的租房平台，不收取中介费的。")
 
 	def signOut(self,event):
 		signOutApp()
@@ -248,11 +248,11 @@ class App:
 		self.button4 = Button(fm2,width=25, text='南京赶集聊天消息')
 		self.button4.pack() 
 
-		self.button7 = Button(fm2,width=25, text='武汉安居客聊天消息')
-		self.button7.pack()
+		# self.button7 = Button(fm2,width=25, text='武汉安居客聊天消息')
+		# self.button7.pack()
 
-		self.button3 = Button(fm2,width=25, text='武汉赶集聊天消息')
-		self.button3.pack()
+		# self.button3 = Button(fm2,width=25, text='武汉赶集聊天消息')
+		# self.button3.pack()
 		  
 
 
@@ -282,11 +282,11 @@ class App:
 
 		self.button1.bind("<ButtonRelease-1>",self.buttonListener1)
 		self.button2.bind("<ButtonRelease-1>",self.buttonListener2)
-		self.button3.bind("<ButtonRelease-1>",self.WHGJMessage)
+		# self.button3.bind("<ButtonRelease-1>",self.WHGJMessage)
 		self.button4.bind("<ButtonRelease-1>",self.addNJGJMessage)
 		self.button5.bind("<ButtonRelease-1>",self.signOut)
 		self.button6.bind("<ButtonRelease-1>",self.addNJajkPhone)
-		self.button7.bind("<ButtonRelease-1>",self.addWHajkPhone)
+		# self.button7.bind("<ButtonRelease-1>",self.addWHajkPhone)
 		self.button8.bind("<ButtonRelease-1>",self.mfzf)
 		# self.button9.bind("<ButtonRelease-1>",self.restartApp)
 		self.button10.bind("<ButtonRelease-1>",self.setPos)

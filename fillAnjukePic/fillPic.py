@@ -184,7 +184,7 @@ def sendMessagesMI(msg):
 	mouse.click(Button.left,1)
 	mouse.position = (736,444)
 
-def signOutApp(nom_pos=(839, 583)):
+def signOutApp(nom_pos=(787, 573)):
 	mouse.position = (1164,949)
 	mouse.click(Button.left,1)
 	time.sleep(0.5)
