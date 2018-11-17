@@ -130,27 +130,67 @@ class App:
 		# print (type(name))
 		#如果拿到数据，再进行数据填充
 		if content:
-			self.sumAll.set(eval(content))
+			##拿到算式错误不报错直接跳过
+			try:
+				self.sumAll.set(int(eval(content)))
+			except:
+				pass
 		# if content:
 		# 	if name == ".!frame.!entry":
 		# 		self.sumAll0.set(eval(content))
 		# 	else:
 		# 		k = "sumAll" + str(int(name.split("entry")[1]) - 1)
 		# 		self.k.set(eval(content))
-		##返回True保证每次都检查苏剧
+		##返回True保证每次都检查算式
 		return True
 	
-		
+	
 	def show(self, event):
 		# print (self.button["text"] == "关闭")
 		# print (self.button["state"])
+
+		##拿到的可以计算的算法集
 		global com1
-		if isinstance(com1,set):
+		# global flag
+		##PanedWindow 见https://blog.csdn.net/m0_37264397/article/details/79101311
+		# if isinstance(com1,set):
+		if self.button["text"] == "查看":
+			# print (com1)
+			##算法set排列
 			for g,i in enumerate(com1):
-				com1 = StringVar()
-				com1.set(i)
-				self.label = Label(textvariable = com1,font=("Arial", 20))
-				self.label.pack()
+				##Label变量准备
+				com2 = StringVar()
+				com2.set(i)
+				# self.label = Label(textvariable = com1,font=("Arial", 20))
+				# self.label.pack()
+				##该用panes来添加窗口
+				##panes窗口内容加入self.ws列表
+				self.ws.append(Label(self.panes, textvariable = com2,font=("Arial", 20)))
+				# flag = False
+				##按钮提示内容变换
+				self.button["text"] = "关闭"
+				# print (self.button["text"])
+			# print (ws)
+			##panes窗口内容填充
+			for w in self.ws:
+				self.panes.add(w)
+			# print (self.ws)
+
+		##按钮文字为“关闭”
+		else:
+			# flag = True
+			# print (self.ws)
+			##按钮提示内容变换
+			self.button["text"] = "查看"
+			##panes窗口内容移除
+			for w in self.ws:
+				self.panes.remove(w)
+			##清空列表，以免算数表达式增长
+			self.ws = []
+			# print (self.ws)
+			# self.master.update()
+			# self.hide()
+
 		# elif isinstance(com1,StringVar):
 		# 	##方法展示
 		# 	self.label = Label(textvariable = "",font=("Arial", 20))
@@ -158,6 +198,15 @@ class App:
 		# 	# print ("here")
 		# 	# self.button["state"]== "disable"
 		# 	com1 = StringVar()
+
+
+	##此方法废弃
+	def hide(self):
+		global flag
+
+		if flag:
+			##主窗口延迟64毫秒进行函数内循环
+			self.master.after(64, self.hide)
 			
 
 
@@ -166,6 +215,8 @@ class App:
 	def __init__(self,master,cardnum,kind,com):
 		##函数包装一下，准备获取值
 		test_cmd = master.register(self.caculation)
+
+		self.master = master
 
 		frame1 = Frame(master)
 		frame1.pack()
@@ -192,7 +243,7 @@ class App:
 			# print (midy)
 			value = StringVar()
 			##验证方法加入获取输入款值和组件名称
-			self.midy = Entry(frame1, width = 25, font=("Arial", 20), textvariable = value, \
+			self.midy = Entry(frame1, width = 18, font=("Arial", 20), textvariable = value, \
 				validate='focus',validatecommand=(test_cmd, '%P', '%W') )
 			self.midy.grid(row = 2 + g, column = 1)
 			# print (midy)
@@ -239,7 +290,15 @@ class App:
 		# self.button["state"]== "disable"
 		self.button.grid(row = 2, column = 2)
 		self.button.bind("<ButtonRelease-1>",self.show)
-		master.update()
+		# master.update()
+
+		##为panes准备的集合(类自变量和普通变量有区别？<--错误认识，不是所说的这种问题)
+		##布局一定按照从上到下，从左到右的来进行，不然会覆盖
+		##panes窗口列表
+		self.ws = []
+		##panes窗口准备
+		self.panes = PanedWindow(orient = VERTICAL)
+		self.panes.pack(fill = BOTH,expand = 1)
 
 
 
