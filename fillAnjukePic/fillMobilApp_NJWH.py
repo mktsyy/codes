@@ -196,12 +196,12 @@ class App:
 		global I
 		if I == len(name) - 1:
 			I = -1
-			saveIMI(I)
+			saveI(I)
 			
 			##弹出账号循环提示消息
 			tkinter.messagebox.showinfo(message="账号将重新循环！")
 
-		signOutAppMI()
+		signOutApp()
 
 	
 	def buttonListener1(self,event):
@@ -238,7 +238,7 @@ class App:
 
 		##记住I位置
 		global I
-		saveIMI(I)
+		saveI(I)
 		
 		##重启程序
 		python = sys.executable
@@ -314,7 +314,7 @@ root.wm_attributes('-topmost',1)
 
 ##界面出现位置（宽*高+离左边缘距离+离顶端距离）
 ##见https://blog.csdn.net/Mrliangqixiong/article/details/80934842
-root.geometry("200x300+1300+500")
+root.geometry("200x230+1300+500")
 
 var = StringVar()
 display = App(root,var)

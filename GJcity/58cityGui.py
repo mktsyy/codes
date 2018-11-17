@@ -53,7 +53,7 @@ class App:
 		##重新定义为选择框，选择发布账号
 		number = StringVar()
 		self.button1 = ttk.Combobox(frame1,width=38,text=number)
-		self.button1['values'] = ("http://vip.58ganji.com/zfgj/jpf",
+		self.button1['values'] = ("http://vip.58ganji.com/zfgj/jpf ",
 								"http://vip.58ganji.com/zfgj/jpfW0QQpZ3",  \
 								# "http://vip.58ganji.com/zf58/yxtg58/W0QQpZ36", \
 								# "http://vip.58ganji.com/zf58/yxtg58/W0QQpZ20",

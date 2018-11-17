@@ -9,7 +9,7 @@ def saveIMI(num):
 	with open(path+"fillMobilApp_NJWH.py","r+",encoding="utf-8") as f:
 		for n,i in enumerate(f.readlines()):
 			if i.find('I =') >= 0:
-				if n == 125:
+				if n == 126:
 					i = i.replace(i.split("=")[1],str(num)+"\n")
 					print(i)
 			with open(path+"tempfillMobilApp_NJWH.py","a+",encoding="utf-8") as g:
@@ -24,7 +24,7 @@ def saveI(num):
 	with open(path+"fillMobilApp_NJWH.py","r+",encoding="utf-8") as f:
 		for n,i in enumerate(f.readlines()):
 			if i.find('I =') >= 0:
-				if n == 125:
+				if n == 126:
 					i = i.replace(i.split("=")[1],str(num)+"\n")
 					print(i)
 			with open(path+"tempfillMobilApp_NJWH.py","a+",encoding="utf-8") as g:

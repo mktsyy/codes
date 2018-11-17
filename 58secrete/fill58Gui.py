@@ -128,11 +128,11 @@ button.pack()
 button = Button(root, text='减少', width=25, command=deli)
 button.pack()
 
-# button = Button(root, text='退出', width=25, command=exitApp)
-# button.pack()
-
-button = Button(root, text='退出', width=25, command=exitAppMI)
+button = Button(root, text='退出', width=25, command=exitApp)
 button.pack()
+
+# button = Button(root, text='退出', width=25, command=exitAppMI)
+# button.pack()
 
 button = Button(root, text='免费的租房平台', width=25, command=free)
 button.pack()
