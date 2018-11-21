@@ -251,10 +251,19 @@ class App:
 		##重启程序
 		python = sys.executable
 		os.execl(python, python, * sys.argv)
+
+	def on_closing(self):
+		##gui关闭时调用此方法
+		try:
+			os.system("taskkill /F /IM osk.exe")
+		except:
+			pass
+		root.destroy()
+
+	def destroy(self):
+		##gui关闭时不调用此方法(废弃)
+		os.system("taskkill /F /IM osk.exe")
 			
-
-
-
 
 	def __init__(self,master,cardnum,kind,com):
 		##加入样式
@@ -375,6 +384,9 @@ class App:
 		# scrollbar.pack( side = RIGHT, fill = Y )
 		# scrollbar.config( command = self.panes.yview )
 
+		##gui关闭时调用的方法
+		self.master.protocol("WM_DELETE_WINDOW", self.on_closing)
+
 
 # 执行主体
 if __name__ == "__main__":
@@ -406,7 +418,7 @@ if __name__ == "__main__":
 	##所有算法传入界面显示
 	# com.set(Compute)
 	display = App(root,cardnum,kind,Compute)
-	
+
 	##q启动屏幕键盘
 	os.system("osk.exe")
 
