@@ -210,7 +210,10 @@ class App:
 	def show(self,event):
 		global com1
 		answer = Toplevel()
-		answer.geometry()
+		##前面参数为窗口大小是一个参数x参数的格式，后面+号和+号的是位置参数
+		##从https://blog.csdn.net/sm9sun/article/details/53743116得灵感，
+		##窗口自适应参数可以如下写
+		answer.geometry('+1000+300')
 		# answer.resizable(0,0)
 
 		##打印窗口的宽度
@@ -225,7 +228,7 @@ class App:
 		# btn.pack()
 		for i,g in enumerate(com1):
 			sort22 = StringVar()
-			print (g)
+			# print (g)
 			sort22.set(g)
 			label = Label(answer, textvariable = sort22, font=("Arial", 12))
 			# if i % 2 == 0:
