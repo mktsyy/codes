@@ -511,15 +511,8 @@ def counterNum():
 	time.sleep(0.5)
 	codes = '''
 
-	//统计数量打印在console口
-	var k = 0;
-	for (var i = document.getElementsByClassName("ck").length - 1; i >= 0; i--) {
-	    if (document.getElementsByClassName("ck")[i].parentNode.parentNode.childNodes[13].childNodes[3].attributes[1].value == 'opt-link batchproyx') {
-	    	console.log(k);
-	    	k = k + 1;
-		    }
-
-	};
+	//统计推广数量打印在console口
+	document.getElementsByClassName("opt-link setpro").length;
 	'''
 	setText(codes)
 	ctrlV()

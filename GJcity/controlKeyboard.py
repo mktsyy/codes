@@ -1,3 +1,4 @@
+##controlKeyboard
 #-*-coding:utf-8-*-
 ##这个是关于1920*1080分辨率的
 
@@ -46,11 +47,6 @@ def ctrlW():
 		keyboard.press("w")
 		keyboard.release("w")
 
-def ctrlC():
-	with keyboard.pressed(Key.ctrl):
-		keyboard.press("c")
-		keyboard.release("c")
-
 def ctrlV():
 	with keyboard.pressed(Key.ctrl):
 		keyboard.press("v")
@@ -69,10 +65,3 @@ def ctrlShiftI():
 		keyboard.press("i")
 		keyboard.release(Key.shift)
 		keyboard.release("i")
-
-def ctrlShiftTab():
-	with keyboard.pressed(Key.ctrl):
-		keyboard.press(Key.shift)
-		keyboard.press(Key.tab)
-		keyboard.release(Key.shift)
-		keyboard.release(Key.tab)

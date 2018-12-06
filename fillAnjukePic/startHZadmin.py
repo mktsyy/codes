@@ -1,6 +1,6 @@
 #-*-coding:utf-8-*-
 
-from fillPic import HZadmin,HZadminSolo,HZadminPublic,newPublic
+from fillPic import HZadmin,HZadminSolo,HZadminPublic,newPublic,copyUrl
 from tkinter import *
 from tkinter import ttk
 import os
@@ -19,7 +19,7 @@ class App:
 		HZadminSolo()
 		# print(self.button1.get())
 		##点击发布并选择相应账号进行发布
-		newPublic(self.button1.get())
+		newPublic(self.button1.get(),self.city.get())
 
 	def buttonListener3(self,event):
 		HZadminPublic()
@@ -27,7 +27,10 @@ class App:
 	def buttonListener4(self,event):
 
 		##获取链接，准备把链接转换成多个页面
-		var = self.e.get()
+		try:
+			var = copyUrl()
+		except:
+			var = self.e.get()
 
 		##没有清除文本框，待查
 		# self.e.insert(0, END)
@@ -63,11 +66,14 @@ class App:
 			g.write(htmlhead)
 
 			##生成页码数
-			for i in range(2,35):
+			for i in range(2,50):
 
 				url = var.split("p/")[0] + "p/%s"  % str(i)
-				newurl = '<A HREF="%s" target="_blank" >第%s页</A>\n' % (url + '/region' + var.split("p/")[1].split('/region')[1],str(i))
-				# print (newurl)
+				try:
+					newurl = '<A HREF="%s" target="_blank" >第%s页</A>\n' % (url + '/region' + var.split("p/")[1].split('/region')[1],str(i))
+				except:
+					newurl = '<A HREF="%s" target="_blank" >第%s页</A>\n' % (url+ '/moneyMin' + var.split('/moneyMin')[1],str(i))
+				print (newurl)
 
 				if (i-2) % 10 == 0:
 					g.write('<button onclick="openurl(%s)">打开</button><br>\n' % str(i))
@@ -85,13 +91,24 @@ class App:
 
 		os.system("cityurl.html")
 
+	def sel(self):
+		if self.city.get() == 1 :
+			print ("1")
+		elif self.city.get() == 2 :
+			print ("2")
+		elif self.city.get() == 3 :
+			print ("3")
+		# print (self.city.get())
+
+
+
 
 	def __init__(self,master):
 
-		##加入输入框准备后端获取链接，进行改造
-		self.e = Entry(master)
-		self.e.pack()
-		
+		##加入输入框准备后端获取链接，进行改造(链接自动拿取已完成，暂时隐藏)
+		# self.e = Entry(master)
+		# self.e.pack()
+
 		##用框架，grid方法来划分
 		frame1 = Frame(master)
 		frame1.pack()  #看下面的解释（包管理器）
@@ -115,6 +132,22 @@ class App:
 								  "罗湖", "龙岗", "南山", "福田", "宝安",
 								   ) 
 		self.button1.grid(row = 1, column = 2)
+
+		##加入发布按钮选择框
+		self.city = IntVar()
+
+		self.R1 = Radiobutton(frame1, text="上海", variable=self.city, value=1, command=self.sel)
+		self.R1.grid(row = 2, column = 1)
+	 
+		self.R2 = Radiobutton(frame1, text="北京，郑州", variable=self.city, value=2, command=self.sel)
+		self.R2.grid(row = 2, column = 2)
+	 
+		self.R3 = Radiobutton(frame1, text="深圳", variable=self.city, value=3, command=self.sel)
+		self.R3.grid(row = 2, column = 3)
+
+		##默认选中R1按钮
+		self.R1.select()
+
 
 		self.button2 = Button(width=25,text='发布')
 		self.button2.pack()

@@ -53,12 +53,13 @@ class App:
 		##重新定义为选择框，选择发布账号
 		number = StringVar()
 		self.button1 = ttk.Combobox(frame1,width=38,text=number)
-		self.button1['values'] = ("http://vip.58ganji.com/zf58/kcfy58/W0QQpZ5",  \
+		self.button1['values'] = ("http://vip.58ganji.com/zfgj/jpf ",
+								"http://vip.58ganji.com/zfgj/jpfW0QQpZ3",  \
 								# "http://vip.58ganji.com/zf58/yxtg58/W0QQpZ36", \
 								# "http://vip.58ganji.com/zf58/yxtg58/W0QQpZ20",
-								"http://vip.58ganji.com/zf58/yxtg58/W0QQpZ12",
+								"http://vip.58ganji.com/zfgj/tgW0QQpZ18",
 								# "http://vip.58ganji.com/zf58/yxtg58/W0QQpZ30",
-								"http://vip.58ganji.com/zf58/cxfy58/W0QQpZ3",
+								"http://vip.58ganji.com/zfgj/zsfxW0QQpZ3",
 								"http://vip.58ganji.com/zf58/kcfy58  ",
 								
 								   ) 
@@ -70,7 +71,7 @@ class App:
 		self.e = Entry(frame1,width=40)
 		self.e.grid(row = 2, column = 1, columnspan=3)
 
-		self.button2 = Button(frame1,text='统计本页优先推送数量')
+		self.button2 = Button(frame1,text='统计本页推广数量')
 		self.button2.grid(row = 3, column = 0)
 		self.button3 = Button(frame1,text='勾选取消推送')
 		self.button3.grid(row = 3, column = 1)
@@ -97,7 +98,12 @@ class App:
 		# self.button6.bind("<ButtonRelease-1>",self.buttonListener6)
 
 root = Tk()
-root.title("58同城")
+root.title("赶集")
+
+##界面出现位置（宽*高+离左边缘距离+离顶端距离）
+##见https://blog.csdn.net/Mrliangqixiong/article/details/80934842
+# root.geometry("400x80+1100+600")
+
 root.wm_attributes('-topmost',1)
 display = App(root)
 root.mainloop()
