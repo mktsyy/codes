@@ -27,16 +27,20 @@ cardResult = []   #存放运算结果
 def cardFun():
 	for i in range(4):
 		cardNum.append(int(random.random() * 100 % 13) + 1)
-	# cardNum = [8,9,6,10]
+	# cardNum = [2,6,1,8]
 	listSet = list(set(itertools.permutations(cardNum, 4)))
+	print (listSet)
 	return listSet         # 存放A(4,4)种排列方式的列表
 
 # 计算方法
 cardList = cardFun()     #将生成的四张牌所有排列顺序放入cardList中
 def cardCompute():
 	for i in range(len(cardList)):
+		# print (len(cardList))
 		cardGroup = cardList[i]
+		# print cardGroup
 		cardOne = cardGroup[0]
+		# print cardOne
 		cardTwo = cardGroup[1]
 		cardThr = cardGroup[2]
 		cardFor = cardGroup[3]
@@ -44,6 +48,9 @@ def cardCompute():
 		# 下面的循环运算体系会有数学上逻辑上的报错，所以用try检测
 		try:
 			for s1 in symbols:
+				# print cardOne,cardTwo,cardThr,cardFor
+				# print cardTwo
+				# print cardThr
 				resultOne = 0
 				if s1 == "+":
 					resultOne = cardOne + cardTwo
@@ -51,19 +58,36 @@ def cardCompute():
 					resultOne = cardOne - cardTwo
 				elif s1 == "*":
 					resultOne = cardOne * cardTwo
+					# if resultOne == 49:
+					# print resultOne
+					# print cardOne
+					# print cardTwo
 				elif s1 == "/":
+					if cardOne % cardTwo != 0:
+						break
+
 					resultOne = cardOne / cardTwo
+				# print "s1..... "+s1
 				for s2 in symbols:
 					resultTwo = 0
 					if s2 == "+":
 						resultTwo = resultOne + cardThr
 					elif s2 == "-":
 						resultTwo = resultOne - cardThr
+						# if resultTwo == 48:
+						# 	print resultTwo
 					elif s2 == "*":
 						resultTwo = resultOne * cardThr
 					elif s2 == "/":
+						if resultOne % cardThr != 0:
+							break
+
 						resultTwo = resultOne / cardThr
+					# print "s2..."+s2
 					for s3 in symbols:
+						# print resultTwo
+						
+
 						resultThr =0 ; resultelse = 0
 						if s3 == "+":
 							resultThr = resultTwo + cardFor
@@ -75,30 +99,58 @@ def cardCompute():
 							resultThr = resultTwo * cardFor
 							resultelse = cardThr * cardFor
 						elif s3 == "/":
+							# print "s3...."+s3
+							if resultTwo % cardFor != 0:
+								break
+
+							
+
+							# if cardOne == 7:
+
+							# 	from IPython import embed
+							# 	embed()
+
 							resultThr = resultTwo / cardFor
-							resultelse = cardThr / cardFor
+
+							# if cardThr % cardFor != 0:
+							# 	break
+
+							# resultelse = cardThr / cardFor
+						# print "s3..."+s3
+						
+						##原代码中有些bug，比如说除法取整，已经修复了，现在还有问题就是负数问题，待查
+						##注释掉源代码中的resultelse，不再采用
+
+						# from IPython import embed
+						# embed()
 
 						# 判断最终结果是否为24
 						if resultThr == 24:
 							cardValue.append("((%s %s %s) %s %s ) %s %s = 24" % (cardOne,s1,cardTwo,s2,cardThr,s3,cardFor))
+							# print cardValue
 							flag = True
 						# 括号与括号的运算
-						elif resultThr != 24 and 24 % resultOne == 0:
-							for s4 in symbols:
-								resultThr = 0
-								if s4 == "+":
-									resultThr = resultOne + resultelse
-								elif s4 == "-":
-									resultThr = resultOne - resultelse
-								elif s4 == "*":
-									resultThr = resultOne * resultelse
-								elif s4 == "/":
-									resultThr = resultOne / resultelse
-								if resultThr == 24:
-									cardValue.append("(%s %s %s) %s (%s %s %s) = 24" % (cardOne,s1,cardTwo,s4,cardThr,s3,cardFor))
-									flag = True
-								if flag:
-									break
+						# elif resultThr != 24 and 24 % resultOne == 0:
+						# elif resultThr != 24 :
+						# 	for s4 in symbols:
+						# 		resultThr = 0
+						# 		if s4 == "+":
+						# 			resultThr = resultOne + resultelse
+						# 		elif s4 == "-":
+						# 			resultThr = resultOne - resultelse
+						# 		elif s4 == "*":
+						# 			resultThr = resultOne * resultelse
+						# 		elif s4 =="/":
+						# 			if resultOne % resultelse != 0:
+						# 				break
+
+						# 			resultThr = resultOne / resultelse
+						# 		if resultThr == 24:
+						# 			cardValue.append("(%s %s %s) %s (%s %s %s) = 24" % (cardOne,s1,cardTwo,s4,cardThr,s3,cardFor))
+						# 			# print cardValue
+						# 			flag = True
+						# 		if flag:
+						# 			break
 					# 如果得到结果，就退出3次运算的循环
 						if flag:
 							break
@@ -108,6 +160,9 @@ def cardCompute():
 					break
 		except ZeroDivisionError:
 			pass
+
+	# from IPython import embed
+	# embed()		
 
 	cardResult = set(cardValue)
 	# print ((cardResult)[0])
